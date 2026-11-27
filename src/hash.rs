@@ -138,25 +138,35 @@ fn abrir_em(dir: &File, nome: &CStr, flags: libc::c_int) -> io::Result<File> {
 }
 
 #[cfg(unix)]
+fn erro_de_caminho(e: io::Error, r: &str) -> String {
+    if e.raw_os_error() == Some(libc::ELOOP) {
+        return format!("J-C5: symlink recusado: {r}");
+    }
+    match e.kind() {
+        io::ErrorKind::NotFound | io::ErrorKind::NotADirectory => format!("J-C4: arquivo ausente: {r}"),
+        _ => format!("J-C7: arquivo ilegível: {r}"),
+    }
+}
+
+#[cfg(unix)]
 fn ler_um(base: &File, c: &str, antes_de_abrir: impl FnOnce()) -> Result<String, String> {
     let r = repr_texto(c);
     let ausente = || format!("J-C4: arquivo ausente: {r}");
     let symlink = || format!("J-C5: symlink recusado: {r}");
     let irregular = || format!("J-C6: não é arquivo regular: {r}");
     let ilegivel = || format!("J-C7: arquivo ilegível: {r}");
+    let erro_de_caminho = |e| erro_de_caminho(e, &r);
     let (pais, nome) = c.rsplit_once('/').map_or((None, c), |(p, n)| (Some(p), n));
     let mut pai = None;
     for parte in pais.into_iter().flat_map(|p| p.split('/')) {
         let dir = pai.as_ref().unwrap_or(base);
         let parte = CString::new(parte).map_err(|_| ilegivel())?;
-        match tipo_em(dir, &parte).map_err(|_| ausente())? {
+        match tipo_em(dir, &parte).map_err(erro_de_caminho)? {
             libc::S_IFLNK => return Err(symlink()),
             libc::S_IFDIR => {}
             _ => return Err(ausente()),
         }
-        let aberto = abrir_em(dir, &parte, ABRIR_DIRETORIO).map_err(|e| {
-            if e.raw_os_error() == Some(libc::ELOOP) { symlink() } else { ausente() }
-        })?;
+        let aberto = abrir_em(dir, &parte, ABRIR_DIRETORIO).map_err(erro_de_caminho)?;
         let meta = aberto.metadata().map_err(|_| ilegivel())?;
         if meta.file_type().is_symlink() {
             return Err(symlink());
@@ -168,17 +178,13 @@ fn ler_um(base: &File, c: &str, antes_de_abrir: impl FnOnce()) -> Result<String,
     }
     let dir = pai.as_ref().unwrap_or(base);
     let nome = CString::new(nome).map_err(|_| ilegivel())?;
-    match tipo_em(dir, &nome).map_err(|e| {
-        if e.kind() == io::ErrorKind::NotFound { ausente() } else { ilegivel() }
-    })? {
+    match tipo_em(dir, &nome).map_err(erro_de_caminho)? {
         libc::S_IFLNK => return Err(symlink()),
         libc::S_IFREG => {}
         _ => return Err(irregular()),
     }
     antes_de_abrir();
-    let mut f = abrir_em(dir, &nome, libc::O_RDONLY | libc::O_NONBLOCK).map_err(|e| {
-        if e.raw_os_error() == Some(libc::ELOOP) { symlink() } else { ilegivel() }
-    })?;
+    let mut f = abrir_em(dir, &nome, libc::O_RDONLY | libc::O_NONBLOCK).map_err(erro_de_caminho)?;
     if !f.metadata().map_err(|_| ilegivel())?.is_file() {
         return Err(irregular());
     }
@@ -211,6 +217,35 @@ mod testes {
         });
         fs::remove_dir_all(&pasta).unwrap();
         assert_eq!(resultado, Err("J-C5: symlink recusado: 'a/t.py'".into()));
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn inventario_distingue_componente_ilegivel_de_ausente() {
+        use std::fs;
+        use std::os::unix::fs::PermissionsExt;
+
+        let base = std::env::temp_dir().join(format!("jim_inv_permissoes_{}", std::process::id()));
+        let restrito = base.join("restrito");
+        let sub = restrito.join("sub");
+        fs::create_dir_all(&sub).unwrap();
+        fs::write(sub.join("t.py"), b"existe").unwrap();
+        let permissoes = fs::metadata(&restrito).unwrap().permissions();
+        fs::set_permissions(&restrito, fs::Permissions::from_mode(0o600)).unwrap();
+        let acesso = fs::symlink_metadata(&sub);
+        let resultado = inventariar(base.to_str().unwrap(), &["restrito/sub/t.py".into()]);
+        fs::set_permissions(&restrito, permissoes).unwrap();
+        fs::remove_dir_all(&base).unwrap();
+
+        // Executores privilegiados podem atravessar diretórios sem bit de busca.
+        if let Err(e) = acesso {
+            assert_eq!(e.kind(), io::ErrorKind::PermissionDenied);
+            assert_eq!(resultado, Err("J-C7: arquivo ilegível: 'restrito/sub/t.py'".into()));
+        }
+        assert_eq!(erro_de_caminho(io::Error::from_raw_os_error(libc::EACCES), "'a/b'"),
+                   "J-C7: arquivo ilegível: 'a/b'");
+        assert_eq!(erro_de_caminho(io::Error::from_raw_os_error(libc::ENOTDIR), "'a/b'"),
+                   "J-C4: arquivo ausente: 'a/b'");
     }
 
     fn d(pares: &[(&str, String)]) -> Vec<(String, String)> {

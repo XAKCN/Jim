@@ -1,3 +1,6 @@
+import os
+from pathlib import Path
+from tempfile import TemporaryDirectory
 import unittest
 
 from jim import _core
@@ -54,3 +57,23 @@ class NucleoTest(unittest.TestCase):
                     _core.validar_contrato(contrato, ["sonda.py", "valor.txt"])
                 with self.assertRaisesRegex(_core.EntradaInvalida, "^R-2.12:"):
                     _core.contrato_gate(contrato, "id")
+
+    @unittest.skipUnless(os.name == "posix", "requer permissões POSIX")
+    def test_inventario_distingue_componente_ilegivel_de_ausente(self):
+        with TemporaryDirectory() as raiz:
+            restrito = Path(raiz) / "restrito"
+            sub = restrito / "sub"
+            sub.mkdir(parents=True)
+            (sub / "t.py").write_bytes(b"existe")
+            restrito.chmod(0o600)
+            try:
+                try:
+                    sub.lstat()
+                except PermissionError:
+                    pass
+                else:
+                    self.skipTest("executor tem permissão de busca privilegiada")
+                with self.assertRaisesRegex(_core.EntradaInvalida, "^J-C7:"):
+                    _core.inventariar(raiz, ["restrito/sub/t.py"])
+            finally:
+                restrito.chmod(0o700)

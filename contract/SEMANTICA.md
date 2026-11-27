@@ -149,6 +149,9 @@ descritor do pai e sem seguir symlinks. O tipo do descritor aberto é conferido 
 usá-lo. Symlink inserido entre a consulta e a abertura também é recusado com J-C5.
 Plataformas sem essa abertura no núcleo recusam o inventário de arquivos com
 `"J-C7: abertura segura indisponível: {c!r}"`.
+C0-8: componente ausente ou intermediário que não é diretório dá J-C4.
+Falha de acesso na consulta, abertura ou leitura, mesmo em componente
+intermediário, dá J-C7.
 
 ## §3 Gate (semântica de `gate43`)
 
