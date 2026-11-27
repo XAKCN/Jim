@@ -1,0 +1,5 @@
+# Jim não tem dependências de runtime (pyproject.toml: dependencies = []).
+# Para instalar, use: pip install git+https://github.com/XAKCN/Jim
+# Este arquivo lista só o que o build da fonte usa (pyproject.toml: build-system).
+# Compilar também exige Rust/cargo >= 1.85 (Cargo.toml: rust-version).
+maturin>=1.9,<2
