@@ -1,0 +1,5704 @@
+[
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-1-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": "J-G1",
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.14: hoje deve ser data AAAA-MM-DD, recebido '2026-1-01'",
+   "tipo": "excecao"
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G001",
+  "limite": [
+   "G: E1",
+   "G: hoje malformado"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.14: hoje deve ser datetime.date, recebido '2026-1-01'",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": [],
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.21: correntes deve ser dict, recebido list",
+   "tipo": "excecao"
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G002",
+  "limite": [
+   "G: E2",
+   "G: correntes lista"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.21: correntes deve ser dict, recebido list",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "exige_humano": null,
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.11: exige_humano deve ser bool, recebido None",
+   "tipo": "excecao"
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G003",
+  "limite": [
+   "G: E3",
+   "G: exige_humano null"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.11: exige_humano deve ser bool, recebido None",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": 1,
+    "atual": null,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.11: adequado deve ser bool, recebido 1",
+   "tipo": "excecao"
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G004",
+  "limite": [
+   "G: E4a"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.11: adequado deve ser bool, recebido 1",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": " teste ",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.13: instrumento desconhecido: ' teste '",
+   "tipo": "excecao"
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G005",
+  "limite": [
+   "G: E4b",
+   "G: instrumento com espa\u00e7os"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.13: instrumento desconhecido: ' teste '",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "2026-1-01",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.14: valido_ate fora do formato AAAA-MM-DD: '2026-1-01'",
+   "tipo": "excecao"
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G006",
+  "limite": [
+   "G: E4c",
+   "G: data 2026-1-01"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.14: valido_ate fora do formato AAAA-MM-DD: '2026-1-01'",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "2026-02-30",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.14: valido_ate n\u00e3o \u00e9 uma data v\u00e1lida: '2026-02-30'",
+   "tipo": "excecao"
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G007",
+  "limite": [
+   "G: E4d",
+   "G: data 2026-02-30"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.14: valido_ate n\u00e3o \u00e9 uma data v\u00e1lida: '2026-02-30'",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "0000-01-01",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.14: valido_ate n\u00e3o \u00e9 uma data v\u00e1lida: '0000-01-01'",
+   "tipo": "excecao"
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G008",
+  "limite": [
+   "G: E4d",
+   "G: data 0000-01-01"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.14: valido_ate n\u00e3o \u00e9 uma data v\u00e1lida: '0000-01-01'",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.8: crit\u00e9rio sem lista de instrumentos aceitos",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G009",
+  "limite": [
+   "G: 1a"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.8: crit\u00e9rio sem lista de instrumentos aceitos",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "familias_aceitas": [],
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.19: lista de fam\u00edlias de revisor aceitas malformada ou vazia",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G010",
+  "limite": [
+   "G: 1b"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.19: lista de fam\u00edlias de revisor aceitas malformada ou vazia",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "exige_humano": true,
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.19: crit\u00e9rio de aprova\u00e7\u00e3o humana sem familias_revisor_aceitas igual a [\"humano\"]",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G011",
+  "limite": [
+   "G: 1c"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.19: crit\u00e9rio de aprova\u00e7\u00e3o humana sem familias_revisor_aceitas igual a [\"humano\"]",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": null
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.7: contrato sem vers\u00e3o",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.7: contrato sem vers\u00e3o",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.7: contrato sem vers\u00e3o",
+     "resultado": "UNKNOWN"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G012",
+  "limite": [
+   "G: 1d",
+   "G: C1"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.7: contrato sem vers\u00e3o",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.7: contrato sem vers\u00e3o",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.7: contrato sem vers\u00e3o",
+      "resultado": "UNKNOWN"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2/\u00a73.4"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": null
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.9: registro de evid\u00eancia ausente",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G013",
+  "limite": [
+   "G: 2a"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.9: registro de evid\u00eancia ausente",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.9: campo adequado omitido",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G014",
+  "limite": [
+   "G: 2b"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.9: campo adequado omitido",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {},
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.12: registro sem depend\u00eancias identificadas",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G015",
+  "limite": [
+   "G: 2c"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.12: registro sem depend\u00eancias identificadas",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "a": null,
+     "z": ""
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.12: depend\u00eancia sem identificador: 'a'",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G016",
+  "limite": [
+   "G: 2d",
+   "G: ordem de inser\u00e7\u00e3o R-2.12"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.12: depend\u00eancia sem identificador: 'a'",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.9: campo instrumento omitido",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G017",
+  "limite": [
+   "G: 2e",
+   "G: instrumento vazio"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.9: campo instrumento omitido",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "autocritica"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "autocritica",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.13: instrumento interno n\u00e3o sustenta PASS: autocritica",
+    "resultado": "FAIL"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G018",
+  "limite": [
+   "G: 2f"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.13: instrumento interno n\u00e3o sustenta PASS: autocritica",
+     "resultado": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "teste"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.13: instrumento fora da lista aceita: execucao",
+    "resultado": "FAIL"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G019",
+  "limite": [
+   "G: 2g"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.13: instrumento fora da lista aceita: execucao",
+     "resultado": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "revisao_independente"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "familia_builder": null,
+    "familia_revisor": "humano",
+    "instrumento": "revisao_independente",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.16: fam\u00edlia do builder ou do revisor ausente",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G020",
+  "limite": [
+   "G: 2h"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.16: fam\u00edlia do builder ou do revisor ausente",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "revisao_independente"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "familia_builder": "\u00e9",
+    "familia_revisor": "humano",
+    "instrumento": "revisao_independente",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": "J-G2",
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "J-G2: fam\u00edlia fora do ASCII; compara\u00e7\u00e3o de caixa n\u00e3o \u00e9 port\u00e1vel",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G021",
+  "limite": [
+   "G: 2h'",
+   "G: fam\u00edlia n\u00e3o ASCII"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": null,
+     "resultado": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "revisao_independente"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "familia_builder": "x\u001c",
+    "familia_revisor": "X",
+    "instrumento": "revisao_independente",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.16: revisor da mesma fam\u00edlia do builder: X",
+    "resultado": "FAIL"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G022",
+  "limite": [
+   "G: 2h''",
+   "G: fam\u00edlia x U+001C e X"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.16: revisor da mesma fam\u00edlia do builder: X",
+     "resultado": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": null,
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.14: registro sem valido_ate",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G023",
+  "limite": [
+   "G: 2i"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.14: registro sem valido_ate",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "2025-12-31",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.14: evid\u00eancia vencida em 2025-12-31",
+    "resultado": "FAIL"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G024",
+  "limite": [
+   "G: 2j",
+   "G: v\u00e9spera"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.14: evid\u00eancia vencida em 2025-12-31",
+     "resultado": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "2026-01-01",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": null,
+    "resultado": "PASS"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G025",
+  "limite": [
+   "G: dia"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": null,
+     "resultado": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "2026-01-02",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": null,
+    "resultado": "PASS"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G026",
+  "limite": [
+   "G: dia seguinte"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": null,
+     "resultado": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": false,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.10: adequado deve ser True, registrado False",
+    "resultado": "FAIL"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G027",
+  "limite": [
+   "G: 2k"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.10: adequado deve ser True, registrado False",
+     "resultado": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.9: campo versao_contrato omitido",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G028",
+  "limite": [
+   "G: 2l",
+   "G: versao_contrato ausente"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.9: campo versao_contrato omitido",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": null
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.9: campo versao_contrato omitido",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G029",
+  "limite": [
+   "G: 2l",
+   "G: versao_contrato null"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.9: campo versao_contrato omitido",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": 1
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.5: evid\u00eancia da vers\u00e3o 1 do contrato, vigente '1'",
+      "resultado": "FAIL",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "FAIL"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G030",
+  "limite": [
+   "G: 2l'",
+   "G: versao_contrato int"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.5: evid\u00eancia da vers\u00e3o 1 do contrato, vigente '1'",
+       "resultado": "FAIL",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": []
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.5: evid\u00eancia da vers\u00e3o [] do contrato, vigente '1'",
+      "resultado": "FAIL",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "FAIL"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G031",
+  "limite": [
+   "G: 2l'",
+   "G: versao_contrato lista"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.5: evid\u00eancia da vers\u00e3o [] do contrato, vigente '1'",
+       "resultado": "FAIL",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "medicao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "medicao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.23: medicao exige valido_ate datado, n\u00e3o vinculada_dependencias",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G032",
+  "limite": [
+   "G: 3"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.23: medicao exige valido_ate datado, n\u00e3o vinculada_dependencias",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {},
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "a": "h",
+     "z": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.21: depend\u00eancia 'a' sem identificador corrente",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G033",
+  "limite": [
+   "G: 4a",
+   "G: duas depend\u00eancias ausentes"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.21: depend\u00eancia 'a' sem identificador corrente",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "mudou"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.21: depend\u00eancia 'artefato' mudou: registro 'h', corrente 'mudou'",
+    "resultado": "FAIL"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G034",
+  "limite": [
+   "G: 4b"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.21: depend\u00eancia 'artefato' mudou: registro 'h', corrente 'mudou'",
+     "resultado": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "familias_aceitas": [
+    "humano"
+   ],
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.19: registro sem familia_revisor",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G035",
+  "limite": [
+   "G: 5a"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.19: registro sem familia_revisor",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "revisao_independente"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "exige_humano": true,
+   "familias_aceitas": [
+    "humano"
+   ],
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "familia_builder": "x",
+    "familia_revisor": "Humano",
+    "instrumento": "revisao_independente",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.19: fam\u00edlia de revisor n\u00e3o aceita: Humano",
+    "resultado": "FAIL"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G036",
+  "limite": [
+   "G: 5b",
+   "G: 5d bloqueado por 5b",
+   "G: Humano"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.19: fam\u00edlia de revisor n\u00e3o aceita: Humano",
+     "resultado": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "exige_humano": true,
+   "familias_aceitas": [
+    "humano"
+   ],
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "familia_revisor": "humano",
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": "R-2.19: aprova\u00e7\u00e3o humana exige revisao_independente, registrado execucao",
+    "resultado": "UNKNOWN"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G037",
+  "limite": [
+   "G: 5c"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": "R-2.19: aprova\u00e7\u00e3o humana exige revisao_independente, registrado execucao",
+     "resultado": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "execucao"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": null,
+    "resultado": "PASS"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G038",
+  "limite": [
+   "G: 6"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": null,
+     "resultado": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "aceitos": [
+    "revisao_independente"
+   ],
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "exige_humano": true,
+   "familias_aceitas": [
+    "humano"
+   ],
+   "hoje": "2026-01-01",
+   "registro": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "artefato": "h"
+    },
+    "falha_critica": false,
+    "familia_builder": "x",
+    "familia_revisor": "humano",
+    "instrumento": "revisao_independente",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "motivo": null,
+    "resultado": "PASS"
+   }
+  },
+  "funcao": "avaliar_criterio_43",
+  "grupo": "G",
+  "id": "G039",
+  "limite": [
+   "G: 6"
+  ],
+  "oraculo": {
+   "chamada": "gate43.avaliar_criterio_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "motivo": null,
+     "resultado": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.2"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {},
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.22: contrato sem integracao.evidencias_aceitas",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.22: contrato sem integracao.evidencias_aceitas",
+     "resultado": "UNKNOWN"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G040",
+  "limite": [
+   "G: I1",
+   "G: C10"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.22: contrato sem integracao.evidencias_aceitas",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.22: contrato sem integracao.evidencias_aceitas",
+      "resultado": "UNKNOWN"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.3/\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "ok": true,
+    "versao_entregue": "id"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.22: integra\u00e7\u00e3o n\u00e3o \u00e9 registro de evid\u00eancia no formato 2.2",
+     "resultado": "UNKNOWN"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G041",
+  "limite": [
+   "G: I2",
+   "G: integra\u00e7\u00e3o 4.2"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.22: integra\u00e7\u00e3o n\u00e3o \u00e9 registro de evid\u00eancia no formato 2.2",
+      "resultado": "UNKNOWN"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.3"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": true
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.22: integra\u00e7\u00e3o n\u00e3o \u00e9 registro de evid\u00eancia no formato 2.2",
+     "resultado": "UNKNOWN"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G042",
+  "limite": [
+   "G: I2",
+   "G: integra\u00e7\u00e3o true"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.22: integra\u00e7\u00e3o n\u00e3o \u00e9 registro de evid\u00eancia no formato 2.2",
+      "resultado": "UNKNOWN"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.3"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": null,
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.7: contrato sem candidato",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.22: contrato sem candidato",
+     "resultado": "UNKNOWN"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G043",
+  "limite": [
+   "G: I3",
+   "G: C2"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.7: contrato sem candidato",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.22: contrato sem candidato",
+      "resultado": "UNKNOWN"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.3/\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {},
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.22: integra\u00e7\u00e3o sem dependencias['candidato']",
+     "resultado": "UNKNOWN"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G044",
+  "limite": [
+   "G: I4"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.22: integra\u00e7\u00e3o sem dependencias['candidato']",
+      "resultado": "UNKNOWN"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.3"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "outro"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.22: integra\u00e7\u00e3o de outro candidato: 'outro', contrato 'id'",
+     "resultado": "FAIL"
+    },
+    "ordem_falhas": [],
+    "veredito": "FAIL"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G045",
+  "limite": [
+   "G: I5"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.22: integra\u00e7\u00e3o de outro candidato: 'outro', contrato 'id'",
+      "resultado": "FAIL"
+     },
+     "ordem_falhas": [],
+     "veredito": "FAIL"
+    }
+   }
+  },
+  "regra": "\u00a73.3"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "PASS"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G046",
+  "limite": [
+   "G: I6"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.3"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.21: depend\u00eancia 'candidato' sem identificador corrente",
+     "resultado": "UNKNOWN"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G047",
+  "limite": [
+   "G: I6",
+   "G: candidato fora de correntes"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.21: depend\u00eancia 'candidato' sem identificador corrente",
+      "resultado": "UNKNOWN"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.3"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a",
+     ""
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.8: lista de crit\u00e9rios obrigat\u00f3rios vazia ou malformada",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G048",
+  "limite": [
+   "G: C3",
+   "G: obrigat\u00f3rio inv\u00e1lido"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.8: lista de crit\u00e9rios obrigat\u00f3rios vazia ou malformada",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {},
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.8: crit\u00e9rio a sem instrumentos aceitos",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.8: crit\u00e9rio sem lista de instrumentos aceitos",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G049",
+  "limite": [
+   "G: C4"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.8: crit\u00e9rio a sem instrumentos aceitos",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.8: crit\u00e9rio sem lista de instrumentos aceitos",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "urgente"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.24: crit\u00e9rio a sem severidade v\u00e1lida: 'urgente'",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": null
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G050",
+  "limite": [
+   "G: C5"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.24: crit\u00e9rio a sem severidade v\u00e1lida: 'urgente'",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": null
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "familias_revisor_aceitas": null,
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.19: familias_revisor_aceitas deve ser dict por crit\u00e9rio",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G051",
+  "limite": [
+   "G: C6"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.19: familias_revisor_aceitas deve ser dict por crit\u00e9rio",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "familias_revisor_aceitas": {
+     "a": []
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.19: fam\u00edlias de revisor aceitas malformadas em 'a'",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.19: lista de fam\u00edlias de revisor aceitas malformada ou vazia",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G052",
+  "limite": [
+   "G: C7"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.19: fam\u00edlias de revisor aceitas malformadas em 'a'",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.19: lista de fam\u00edlias de revisor aceitas malformada ou vazia",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "aprovacao_humana": [
+     ""
+    ],
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.19: aprovacao_humana malformada",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G053",
+  "limite": [
+   "G: C8"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.19: aprovacao_humana malformada",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "aprovacao_humana": [
+     "b"
+    ],
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.19: crit\u00e9rio de aprova\u00e7\u00e3o humana b fora dos obrigat\u00f3rios",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G054",
+  "limite": [
+   "G: C9"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.19: crit\u00e9rio de aprova\u00e7\u00e3o humana b fora dos obrigat\u00f3rios",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "aprovacao_humana": [
+     "a"
+    ],
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.18: crit\u00e9rio a de aprova\u00e7\u00e3o humana com evidencias_aceitas diferente de [\"revisao_independente\"]: ['execucao']",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.19: crit\u00e9rio de aprova\u00e7\u00e3o humana sem familias_revisor_aceitas igual a [\"humano\"]",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G055",
+  "limite": [
+   "G: C9"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.18: crit\u00e9rio a de aprova\u00e7\u00e3o humana com evidencias_aceitas diferente de [\"revisao_independente\"]: ['execucao']",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.19: crit\u00e9rio de aprova\u00e7\u00e3o humana sem familias_revisor_aceitas igual a [\"humano\"]",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "aprovacao_humana": [
+     "a"
+    ],
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "revisao_independente"
+     ]
+    },
+    "familias_revisor_aceitas": {},
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.19: crit\u00e9rio a de aprova\u00e7\u00e3o humana sem familias_revisor_aceitas igual a [\"humano\"]",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.19: crit\u00e9rio de aprova\u00e7\u00e3o humana sem familias_revisor_aceitas igual a [\"humano\"]",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G056",
+  "limite": [
+   "G: C9"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.19: crit\u00e9rio a de aprova\u00e7\u00e3o humana sem familias_revisor_aceitas igual a [\"humano\"]",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.19: crit\u00e9rio de aprova\u00e7\u00e3o humana sem familias_revisor_aceitas igual a [\"humano\"]",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "familia_builder": "x",
+     "familia_revisor": "humano",
+     "instrumento": "revisao_independente",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "aprovacao_humana": [
+     "a"
+    ],
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "revisao_independente"
+     ]
+    },
+    "familias_revisor_aceitas": {
+     "a": [
+      "humano"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "PASS"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G057",
+  "limite": [
+   "G: 6"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.2/\u00a73.4"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": 1,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    },
+    "b": {
+     "adequado": 1,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ],
+     "b": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "b",
+     "a"
+    ],
+    "severidade": {
+     "a": "alta",
+     "b": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": [],
+   "hoje": null,
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": 1,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": "J-G1",
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.14: hoje deve ser data AAAA-MM-DD, recebido None",
+   "tipo": "excecao"
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G058",
+  "limite": [
+   "G: preced\u00eancia data"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.14: hoje deve ser datetime.date, recebido None",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": 1,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    },
+    "b": {
+     "adequado": 1,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ],
+     "b": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "b",
+     "a"
+    ],
+    "severidade": {
+     "a": "alta",
+     "b": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": [],
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": 1,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.21: correntes deve ser dict, recebido list",
+   "tipo": "excecao"
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G059",
+  "limite": [
+   "G: preced\u00eancia correntes"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.21: correntes deve ser dict, recebido list",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": 1,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    },
+    "b": {
+     "adequado": 1,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ],
+     "b": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "b",
+     "a"
+    ],
+    "severidade": {
+     "a": "alta",
+     "b": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": 1,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.11: adequado deve ser bool, recebido 1",
+   "tipo": "excecao"
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G060",
+  "limite": [
+   "G: preced\u00eancia primeiro"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.11: adequado deve ser bool, recebido 1",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": 1,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    },
+    "b": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ],
+     "b": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "b",
+     "a"
+    ],
+    "severidade": {
+     "a": "alta",
+     "b": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": 1,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.11: atual deve ser bool, recebido 1",
+   "tipo": "excecao"
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G061",
+  "limite": [
+   "G: preced\u00eancia segundo"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.11: atual deve ser bool, recebido 1",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    },
+    "b": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ],
+     "b": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "b",
+     "a"
+    ],
+    "severidade": {
+     "a": "alta",
+     "b": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": 1,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.11: conflito deve ser bool, recebido 1",
+   "tipo": "excecao"
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G062",
+  "limite": [
+   "G: preced\u00eancia integra\u00e7\u00e3o"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "classe": "ValueError",
+    "mensagem": "R-2.11: conflito deve ser bool, recebido 1",
+    "tipo": "excecao"
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    },
+    "b": {
+     "adequado": 1
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "PASS"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G063",
+  "limite": [
+   "G: registro extra inv\u00e1lido"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "premissas": null,
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": null
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.17: premissas deve ser dict por crit\u00e9rio",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.7: contrato sem vers\u00e3o",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": "R-2.7: contrato sem vers\u00e3o",
+     "resultado": "UNKNOWN"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G064",
+  "limite": [
+   "G: premissas null"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.17: premissas deve ser dict por crit\u00e9rio",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.7: contrato sem vers\u00e3o",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": "R-2.7: contrato sem vers\u00e3o",
+      "resultado": "UNKNOWN"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "premissas": {
+     "a": [
+      "candidato"
+     ]
+    },
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.17: identificadores de premissas inv\u00e1lidos",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G065",
+  "limite": [
+   "G: premissa candidato"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.17: identificadores de premissas inv\u00e1lidos",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "premissas": {
+     "a": []
+    },
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "PASS"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G066",
+  "limite": [
+   "G: premissas vazias"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "premissas": {
+     "a": [
+      "ausente"
+     ]
+    },
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.17: premissa 'ausente' sem verifica\u00e7\u00e3o vinculada",
+      "resultado": "UNKNOWN",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "a"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G067",
+  "limite": [],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.17: premissa 'ausente' sem verifica\u00e7\u00e3o vinculada",
+       "resultado": "UNKNOWN",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "a"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a",
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "a": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "PASS"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G068",
+  "limite": [
+   "G: obrigat\u00f3rio repetido"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "a": {
+     "adequado": false,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    },
+    "b": {
+     "adequado": false,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "artefato": "h"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    },
+    "z": null
+   },
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ],
+     "b": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "b",
+     "a",
+     "z"
+    ],
+    "severidade": {
+     "a": "alta",
+     "b": "alta",
+     "z": []
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": "R-2.8: crit\u00e9rio z sem instrumentos aceitos",
+     "resultado": "UNKNOWN"
+    },
+    "criterios": {
+     "a": {
+      "motivo": "R-2.10: adequado deve ser True, registrado False",
+      "resultado": "FAIL",
+      "severidade": "alta"
+     },
+     "b": {
+      "motivo": "R-2.10: adequado deve ser True, registrado False",
+      "resultado": "FAIL",
+      "severidade": "alta"
+     },
+     "z": {
+      "motivo": "R-2.8: crit\u00e9rio sem lista de instrumentos aceitos",
+      "resultado": "UNKNOWN",
+      "severidade": null
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "z",
+     "a",
+     "b"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G069",
+  "limite": [
+   "G: ordem_falhas inv\u00e1lida e empate"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": "R-2.8: crit\u00e9rio z sem instrumentos aceitos",
+      "resultado": "UNKNOWN"
+     },
+     "criterios": {
+      "a": {
+       "motivo": "R-2.10: adequado deve ser True, registrado False",
+       "resultado": "FAIL",
+       "severidade": "alta"
+      },
+      "b": {
+       "motivo": "R-2.10: adequado deve ser True, registrado False",
+       "resultado": "FAIL",
+       "severidade": "alta"
+      },
+      "z": {
+       "motivo": "R-2.8: crit\u00e9rio sem lista de instrumentos aceitos",
+       "resultado": "UNKNOWN",
+       "severidade": null
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "z",
+      "a",
+      "b"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": [
+    [
+     "a",
+     {
+      "adequado": true,
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "artefato": "h"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    ]
+   ],
+   "contrato": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "a": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "a"
+    ],
+    "severidade": {
+     "a": "alta"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "artefato": "h",
+    "candidato": "id"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "id"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": "J-G3",
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.9: avaliacoes deve ser dict ou pares (criterio, registro)",
+   "tipo": "excecao"
+  },
+  "funcao": "gate_43",
+  "grupo": "G",
+  "id": "G070",
+  "limite": [
+   "G: avalia\u00e7\u00f5es em pares"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "a": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "alta"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a73.5"
+ }
+]
