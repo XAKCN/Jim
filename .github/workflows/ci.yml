@@ -31,10 +31,13 @@ jobs:
       - name: Núcleo Rust
         run: cargo test --locked --no-default-features
       - name: Instalar o Jim
-        run: python -m pip install .
-      - name: CLI e orquestração
-        run: python -m unittest -v tests.test_cli tests.test_orquestracao
-      - name: Comparador diferencial
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install .
+          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
+      - name: Suíte Python
+        run: python -m unittest discover -v
+      - name: Comparador diferencial com vigia
         run: python -m unittest -v tests.diferencial.test_diferencial
       - name: Demonstração
         run: python -B demo/rodar.py
