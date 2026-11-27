@@ -8,6 +8,8 @@
 // A ligação PyO3 fica atrás da feature `python` (padrão). A lógica pura, a
 // escrever em módulos irmãos, não usa PyO3 e é testada com
 // `cargo test --no-default-features`.
+pub mod json;
+
 #[cfg(feature = "python")]
 mod ligacao {
     // Esqueleto: os parâmetros só existem para congelar a assinatura Python.
