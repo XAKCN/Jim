@@ -1,0 +1,23 @@
+{
+  "esquema": "jim-contrato/1",
+  "versao": "1",
+  "data_referencia": "2026-01-01",
+  "arquivos": ["sonda.py", "*.txt"],
+  "criterios": {
+    "controle_rejeita_codigo_quebrado": {
+      "comando": ["sonda.py", "fator-quebrado.txt"],
+      "aceitos": ["execucao"],
+      "severidade": "alta",
+      "reprova": "o teste deve rejeitar a implementação que devolve zero",
+      "esperado": {"passou": false}
+    },
+    "teste_dobro": {
+      "comando": ["sonda.py", "fator.txt"],
+      "aceitos": ["execucao"],
+      "severidade": "alta",
+      "reprova": "o teste deve aprovar a implementação correta",
+      "esperado": {"passou": true},
+      "controles_negativos": [{"fator.txt": "0\n"}]
+    }
+  }
+}
