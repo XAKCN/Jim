@@ -146,3 +146,21 @@ class CLIPontaAPontaTest(unittest.TestCase):
         self.rodar("provar", codigo=3)
         resultado = self.rodar("verificar", "--reproduzir", codigo=1)
         self.assertTrue(resultado["motivo"].startswith("J-P4: "), resultado)
+
+    def test_reproducao_recusa_diretorio_nao_listavel_no_glob(self):
+        if os.geteuid() == 0:
+            self.skipTest("root pode listar diretórios sem permissão de leitura")
+        preparar(self.raiz, {**CONTRATO, "arquivos": ["**/*.py", "*.txt"]})
+        self.rodar("provar", codigo=3)
+        oculto = self.raiz / "oculto"
+        oculto.mkdir()
+        (oculto / "extra.py").touch()
+        self.rodar("verificar", "--reproduzir", codigo=1)
+
+        oculto.chmod(0o111)
+        try:
+            resultado = chamar("verificar", "--reproduzir", raiz=self.raiz)
+        finally:
+            oculto.chmod(0o700)
+        self.assertEqual((resultado.returncode, resultado.stdout), (4, ""), resultado)
+        self.assertTrue(resultado.stderr.startswith("J-C7: "), resultado.stderr)

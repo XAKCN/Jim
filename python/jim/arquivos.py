@@ -3,6 +3,7 @@
 import os
 import stat
 from contextlib import contextmanager
+from fnmatch import fnmatch
 from pathlib import Path
 from tempfile import NamedTemporaryFile, TemporaryDirectory
 
@@ -37,6 +38,62 @@ def caminho_regular(raiz, relativo):
     return None
 
 
+def _selecionar(raiz, diretorio, parte, final):
+    if any(curinga in parte for curinga in "*?["):
+        try:
+            with os.scandir(diretorio) as entradas:
+                for entrada in entradas:
+                    if entrada.name in _EXCLUIDOS or not fnmatch(entrada.name, parte):
+                        continue
+                    tipo_correto = entrada.is_file if final else entrada.is_dir
+                    if tipo_correto(follow_symlinks=False):
+                        yield diretorio / entrada.name
+        except OSError as erro:
+            relativo = diretorio.relative_to(raiz).as_posix()
+            raise ErroArquivos(f"J-C7: diretório ilegível: {relativo!r}") from erro
+    elif parte not in _EXCLUIDOS:
+        # Componentes literais requerem acesso pelo nome, sem listar o pai.
+        filho = diretorio / parte
+        try:
+            modo = filho.lstat().st_mode
+        except (FileNotFoundError, NotADirectoryError):
+            return
+        except OSError as erro:
+            relativo = filho.relative_to(raiz).as_posix()
+            raise ErroArquivos(f"J-C7: arquivo ilegível: {relativo!r}") from erro
+        tipo_correto = stat.S_ISREG if final else stat.S_ISDIR
+        if tipo_correto(modo):
+            yield filho
+
+
+def _expandir_glob(raiz, padrao):
+    """Expande por componente para listar somente os diretórios exigidos pelo glob."""
+    partes = padrao.split("/")
+    if partes[-1] == "**":
+        partes.append("*")  # Inclui arquivos em qualquer profundidade, inclusive na raiz.
+
+    pendentes = [(raiz, 0)]
+    visitados = set()
+    while pendentes:
+        estado = pendentes.pop()
+        if estado in visitados:
+            continue
+        visitados.add(estado)
+        diretorio, indice = estado
+        parte = partes[indice]
+        final = indice == len(partes) - 1
+        proximo = indice + 1
+        if parte == "**":
+            # ** aceita zero diretórios ou continua valendo no próximo nível.
+            pendentes.append((diretorio, proximo))
+            proximo = indice
+        for caminho in _selecionar(raiz, diretorio, parte, final):
+            if final:
+                yield caminho.relative_to(raiz).as_posix()
+            else:
+                pendentes.append((caminho, proximo))
+
+
 def resolver_arquivos(raiz, contrato):
     padroes = contrato.get("arquivos") if isinstance(contrato, dict) else None
     if not isinstance(padroes, list) or not padroes or not all(
@@ -48,14 +105,7 @@ def resolver_arquivos(raiz, contrato):
     caminhos = set()
     for padrao in padroes:
         _core.validar_caminho(padrao)
-        achados = set()
-        # Antes do CPython 3.13, um ** final em Path.glob só devolve diretórios.
-        busca = padrao + "/*" if padrao.split("/")[-1] == "**" else padrao
-        for caminho in raiz.glob(busca):
-            relativo = caminho.relative_to(raiz)
-            if _EXCLUIDOS.isdisjoint(relativo.parts):
-                if caminho_regular(raiz, relativo.as_posix()) is not None:
-                    achados.add(relativo.as_posix())
+        achados = set(_expandir_glob(raiz, padrao))
         if not achados:
             raise PadraoSemArquivos(f"R-3.13: padrão sem arquivos regulares: {padrao!r}")
         caminhos.update(achados)

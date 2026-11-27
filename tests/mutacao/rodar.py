@@ -17,6 +17,10 @@ class Mutante(NamedTuple):
 
 
 MUTANTES = {
+    "iguais-sempre-true": Mutante(
+        "lib.rs", "let (a, b) = (json_arg(a)?, json_arg(b)?);\n        protegido(|| Ok(crate::json::iguais(&a, &b)))",
+        "let (_a, _b) = (json_arg(a)?, json_arg(b)?);\n        protegido(|| Ok(true))",
+    ),
     "gate-interno": Mutante("gate.rs", "if INTERNOS.contains(&i) {", "if !INTERNOS.contains(&i) {"),
     "gate-vencimento": Mutante("gate.rs", "if hoje > limite {", "if hoje >= limite {"),
     "gate-dependencia": Mutante(
