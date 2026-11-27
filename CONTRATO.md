@@ -194,4 +194,5 @@ exigido dos dois lados.
 | Id | Data | Mudança |
 |---|---|---|
 | C0 | 2026-11-27 | versão inicial do contrato |
+| C0-1 | 2026-11-27 | Distribuição Python `jim-loops`, pois `jim` já identifica outro projeto. Módulo e comando continuam `jim`. |
 | C0-2 | 2026-11-27 | `jim-fecho/1` ganha a chave `selo` (SEMANTICA §5.1, V4b em §5.3, item novo em §7 J). Motivo: A8 exige que um byte trocado no fecho nunca dê 0, mas `ambiente`, `duracao_s` e `contrato.caminho` não são recalculáveis; sem selo, trocá-los mantinha PASS. Interface (`.pyi`) sem mudança. |
