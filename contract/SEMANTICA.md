@@ -364,7 +364,9 @@ Chaves exatas: `esquema` (`"jim-fecho/1"`), `jim` (`"0.1.0"`), `contrato` (`{"ca
 "sha256", "sha256_depois", "versao"}`), `data_referencia`, `candidato`, `arquivos`,
 `arquivos_depois` (chaves ⊆ `arquivos`; ausente = apagado), `execucoes`, `evidencias`,
 `integracao`, `correntes`, `contrato_gate`, `gate`, `veredito`, `ambiente` ({str: str},
-informativo). Execução gravada = `Execucao` (pyi) + `saida`, `stdout_sha256`,
+informativo), `selo` (C0-2: `sha256_hex(json_canonico(fecho sem a chave selo))`; liga os campos
+informativos — `ambiente`, `duracao_s`, `contrato.caminho` — ao documento, para que um byte
+trocado nunca dê PASS; adulteração deliberada continua exigindo âncora, V1). Execução gravada = `Execucao` (pyi) + `saida`, `stdout_sha256`,
 `stderr_sha256` (SHA-256 do UTF-8 do stream); controle gravado = `Controle` + os mesmos três.
 Em disco: `json_canonico(fecho) + b"\n"`; `fecho_sha256` = SHA-256 desses bytes.
 
@@ -376,7 +378,7 @@ de `arquivos`; `hash_fecho(arquivos)`; `arquivos_depois` válido (§2.5, hex64, 
 `saida`/hashes; `controles_negativos` presente se e só se o critério tem controles, mesmo
 tamanho; sem chave extra). M4 grava `saida` e hashes. M5 §4.6, §4.2 e §3.5 com
 `hoje = c.data_referencia`. M6 `veredito` = UNPROVEN se o gate deu PASS, senão o veredito do
-gate. Qualquer violação: EXC. O fecho NUNCA tem veredito PASS: a execução foi do agente.
+gate; por último o `selo` (C0-2). Qualquer violação: EXC. O fecho NUNCA tem veredito PASS: a execução foi do agente.
 
 ### §5.3 `verificar_fecho` (para no primeiro passo que falha; `erros = [motivo]`)
 
@@ -387,6 +389,7 @@ gate. Qualquer violação: EXC. O fecho NUNCA tem veredito PASS: a execução fo
 | V2 | `json_estrito(fecho_bytes)` | UNKNOWN `"J-V2: fecho ilegível: {erro}"` |
 | V3 | bytes == `json_canonico(f) + b"\n"` | UNKNOWN `"J-V3: fecho fora da forma canônica"` |
 | V4 | chaves e tipos de §5.1; `veredito` ∈ {PASS, FAIL, UNKNOWN, UNPROVEN} (PASS gravado cai em V9) | UNKNOWN `"J-V4: fecho malformado: {campo}"` |
+| V4b | `selo == sha256_hex(json_canonico(f sem selo))` (C0-2) | FAIL `"J-V4b: selo do fecho não confere"` |
 | V5 | `json_estrito(contrato_bytes)`; depois `sha256 == f.contrato.sha256` | UNKNOWN `"J-V5: contrato ilegível: {erro}"`; FAIL `"R-2.5: contrato diverge do registrado no fecho"` |
 | V6 | §4.1 com as chaves de `f.arquivos`; `versao`/`data_referencia` iguais aos do fecho | UNKNOWN `"J-V6: contrato inválido: {erro}"`; FAIL `"R-2.5: identidade do contrato diverge"` |
 | V7 | `hash_fecho(f.arquivos) == f.candidato` | FAIL `"R-3.13: hash da árvore diverge do candidato"` |
@@ -505,7 +508,8 @@ pela letra do grupo (H, K, G, D, J) e o campo `limite` cita o item (ex.: `"G: pr
   UNPROVEN; reprodução igual → PASS; exit divergente → FAIL; critério faltando → UNPROVEN;
   cópia diferente → UNPROVEN; bytes não canônicos → UNKNOWN; stdout adulterado → FAIL; `saida`
   adulterada → FAIL; âncora → FAIL; árvore atual mudada → FAIL; contrato trocado → FAIL; fecho
-  com `"veredito": "PASS"` gravado → FAIL (J-V9); controle reproduzido com stderr → FAIL.
+  com `"veredito": "PASS"` gravado → FAIL (J-V9); controle reproduzido com stderr → FAIL;
+  campo informativo (`ambiente`) trocado sem refazer o selo → FAIL (J-V4b, C0-2).
 
 ## §8 Divergências intencionais em relação à v5-alpha
 
