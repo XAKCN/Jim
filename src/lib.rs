@@ -8,6 +8,7 @@
 // A ligação PyO3 fica atrás da feature `python` (padrão). A lógica pura, a
 // escrever em módulos irmãos, não usa PyO3 e é testada com
 // `cargo test --no-default-features`.
+pub mod fecho;
 pub mod gate;
 pub mod hash;
 pub mod json;
