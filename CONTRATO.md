@@ -197,3 +197,4 @@ exigido dos dois lados.
 | C0-1 | 2026-11-27 | Distribuição Python `jim-loops`, pois `jim` já identifica outro projeto. Módulo e comando continuam `jim`. |
 | C0-2 | 2026-11-27 | `jim-fecho/1` ganha a chave `selo` (SEMANTICA §5.1, V4b em §5.3, item novo em §7 J). Motivo: A8 exige que um byte trocado no fecho nunca dê 0, mas `ambiente`, `duracao_s` e `contrato.caminho` não são recalculáveis; sem selo, trocá-los mantinha PASS. Interface (`.pyi`) sem mudança. |
 | C0-3 | 2026-11-27 | V8 confere presença e quantidade de controles negativos contra o contrato (J-V8). Um controle fora do contrato invalidava a reprodução na v5-alpha e podia ser aceito pelas funções do núcleo se repetido em ambas as observações. |
+| C0-4 | 2026-11-27 | §2.7 abre cada componente do inventário a partir do descritor do pai, sem seguir symlinks, e confere o descritor obtido. Sem essa abertura segura, o inventário de arquivos é recusado com J-C7. |

@@ -4,7 +4,21 @@
 use crate::json::repr_texto;
 use sha2::{Digest, Sha256};
 use std::collections::HashSet;
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
+#[cfg(unix)]
+use std::{
+    ffi::{CStr, CString},
+    fs::{File, OpenOptions},
+    io::{self, Read},
+    os::{fd::{AsRawFd, FromRawFd}, unix::fs::OpenOptionsExt},
+};
+
+#[cfg(any(target_os = "linux", target_os = "android"))]
+const ABRIR_DIRETORIO: libc::c_int = libc::O_PATH;
+#[cfg(target_vendor = "apple")]
+const ABRIR_DIRETORIO: libc::c_int = libc::O_SEARCH;
+#[cfg(all(unix, not(any(target_os = "linux", target_os = "android", target_vendor = "apple"))))]
+const ABRIR_DIRETORIO: libc::c_int = libc::O_RDONLY | libc::O_NONBLOCK;
 
 /// SHA-256 hex minúsculo.
 pub fn sha256_hex(dados: &[u8]) -> String {
@@ -73,9 +87,10 @@ pub fn hash_fecho(arquivos: &[(String, String)]) -> Result<String, String> {
 
 /// §2.7.
 pub fn inventariar(raiz: &str, caminhos: &[String]) -> Result<Vec<(String, String)>, String> {
+    let raiz_invalida = || format!("J-C8: raiz não é diretório: {}", repr_texto(raiz));
     let base: PathBuf = match std::fs::canonicalize(raiz) {
         Ok(b) if b.is_dir() => b,
-        _ => return Err(format!("J-C8: raiz não é diretório: {}", repr_texto(raiz))),
+        _ => return Err(raiz_invalida()),
     };
     let mut vistos = HashSet::new();
     for c in caminhos {
@@ -84,52 +99,119 @@ pub fn inventariar(raiz: &str, caminhos: &[String]) -> Result<Vec<(String, Strin
             return Err(format!("J-C3: caminho repetido: {}", repr_texto(c)));
         }
     }
-    let mut out = Vec::with_capacity(caminhos.len());
-    for c in caminhos {
-        out.push((c.clone(), ler_um(&base, c)?));
+    #[cfg(unix)]
+    {
+        let base = OpenOptions::new().read(true)
+            .custom_flags(ABRIR_DIRETORIO | libc::O_DIRECTORY | libc::O_NOFOLLOW)
+            .open(base).map_err(|_| raiz_invalida())?;
+        caminhos.iter().map(|c| Ok((c.clone(), ler_um(&base, c, || {})?))).collect()
     }
-    Ok(out)
+    #[cfg(not(unix))]
+    {
+        let _ = base;
+        match caminhos.first() {
+            None => Ok(Vec::new()),
+            Some(c) => Err(format!("J-C7: abertura segura indisponível: {}", repr_texto(c))),
+        }
+    }
 }
 
-fn ler_um(base: &Path, c: &str) -> Result<String, String> {
-    let r = repr_texto(c);
-    let partes: Vec<&str> = c.split('/').collect();
-    let mut atual = base.to_path_buf();
-    for (i, parte) in partes.iter().enumerate() {
-        atual.push(parte);
-        let meta = match std::fs::symlink_metadata(&atual) {
-            Ok(m) => m,
-            Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Err(format!("J-C4: arquivo ausente: {r}")),
-            // ENOTDIR: componente intermediário não é diretório → o caminho não existe.
-            Err(_) if i + 1 < partes.len() => return Err(format!("J-C4: arquivo ausente: {r}")),
-            Err(_) => return Err(format!("J-C7: arquivo ilegível: {r}")),
-        };
-        if meta.file_type().is_symlink() {
-            return Err(format!("J-C5: symlink recusado: {r}"));
-        }
-        if i + 1 < partes.len() {
-            if !meta.is_dir() {
-                return Err(format!("J-C4: arquivo ausente: {r}"));
-            }
-        } else if !meta.is_file() {
-            return Err(format!("J-C6: não é arquivo regular: {r}"));
-        }
+#[cfg(unix)]
+fn tipo_em(dir: &File, nome: &CStr) -> io::Result<libc::mode_t> {
+    let mut meta = std::mem::MaybeUninit::<libc::stat>::uninit();
+    // fstatat só inicializa meta quando retorna 0.
+    let rc = unsafe { libc::fstatat(dir.as_raw_fd(), nome.as_ptr(), meta.as_mut_ptr(), libc::AT_SYMLINK_NOFOLLOW) };
+    if rc != 0 {
+        return Err(io::Error::last_os_error());
     }
-    use std::io::Read;
-    let mut f = std::fs::File::open(&atual).map_err(|_| format!("J-C7: arquivo ilegível: {r}"))?;
-    // Confere de novo no descritor aberto (troca entre lstat e open).
-    match f.metadata() {
-        Ok(m) if m.is_file() => {}
-        _ => return Err(format!("J-C6: não é arquivo regular: {r}")),
+    Ok(unsafe { meta.assume_init() }.st_mode & libc::S_IFMT)
+}
+
+#[cfg(unix)]
+fn abrir_em(dir: &File, nome: &CStr, flags: libc::c_int) -> io::Result<File> {
+    // O descritor retornado pertence a esta chamada e passa a ser gerido por File.
+    let fd = unsafe { libc::openat(dir.as_raw_fd(), nome.as_ptr(), flags | libc::O_NOFOLLOW | libc::O_CLOEXEC) };
+    if fd < 0 {
+        return Err(io::Error::last_os_error());
+    }
+    Ok(unsafe { File::from_raw_fd(fd) })
+}
+
+#[cfg(unix)]
+fn ler_um(base: &File, c: &str, antes_de_abrir: impl FnOnce()) -> Result<String, String> {
+    let r = repr_texto(c);
+    let ausente = || format!("J-C4: arquivo ausente: {r}");
+    let symlink = || format!("J-C5: symlink recusado: {r}");
+    let irregular = || format!("J-C6: não é arquivo regular: {r}");
+    let ilegivel = || format!("J-C7: arquivo ilegível: {r}");
+    let (pais, nome) = c.rsplit_once('/').map_or((None, c), |(p, n)| (Some(p), n));
+    let mut pai = None;
+    for parte in pais.into_iter().flat_map(|p| p.split('/')) {
+        let dir = pai.as_ref().unwrap_or(base);
+        let parte = CString::new(parte).map_err(|_| ilegivel())?;
+        match tipo_em(dir, &parte).map_err(|_| ausente())? {
+            libc::S_IFLNK => return Err(symlink()),
+            libc::S_IFDIR => {}
+            _ => return Err(ausente()),
+        }
+        let aberto = abrir_em(dir, &parte, ABRIR_DIRETORIO).map_err(|e| {
+            if e.raw_os_error() == Some(libc::ELOOP) { symlink() } else { ausente() }
+        })?;
+        let meta = aberto.metadata().map_err(|_| ilegivel())?;
+        if meta.file_type().is_symlink() {
+            return Err(symlink());
+        }
+        if !meta.is_dir() {
+            return Err(ausente());
+        }
+        pai = Some(aberto);
+    }
+    let dir = pai.as_ref().unwrap_or(base);
+    let nome = CString::new(nome).map_err(|_| ilegivel())?;
+    match tipo_em(dir, &nome).map_err(|e| {
+        if e.kind() == io::ErrorKind::NotFound { ausente() } else { ilegivel() }
+    })? {
+        libc::S_IFLNK => return Err(symlink()),
+        libc::S_IFREG => {}
+        _ => return Err(irregular()),
+    }
+    antes_de_abrir();
+    let mut f = abrir_em(dir, &nome, libc::O_RDONLY | libc::O_NONBLOCK).map_err(|e| {
+        if e.raw_os_error() == Some(libc::ELOOP) { symlink() } else { ilegivel() }
+    })?;
+    if !f.metadata().map_err(|_| ilegivel())?.is_file() {
+        return Err(irregular());
     }
     let mut dados = Vec::new();
-    f.read_to_end(&mut dados).map_err(|_| format!("J-C7: arquivo ilegível: {r}"))?;
+    f.read_to_end(&mut dados).map_err(|_| ilegivel())?;
     Ok(sha256_hex(&dados))
 }
 
 #[cfg(test)]
 mod testes {
     use super::*;
+
+    #[cfg(unix)]
+    #[test]
+    fn inventario_recusa_symlink_trocado_antes_do_open() {
+        use std::fs;
+        use std::os::unix::fs::symlink;
+
+        let pasta = std::env::temp_dir().join(format!("jim_inv_troca_{}", std::process::id()));
+        fs::create_dir_all(pasta.join("raiz/a")).unwrap();
+        let raiz = pasta.join("raiz");
+        let arquivo = raiz.join("a/t.py");
+        let alvo = pasta.join("alvo");
+        fs::write(&arquivo, b"original").unwrap();
+        fs::write(&alvo, b"fora da raiz").unwrap();
+        let base = File::open(&raiz).unwrap();
+        let resultado = ler_um(&base, "a/t.py", || {
+            fs::remove_file(&arquivo).unwrap();
+            symlink(&alvo, &arquivo).unwrap();
+        });
+        fs::remove_dir_all(&pasta).unwrap();
+        assert_eq!(resultado, Err("J-C5: symlink recusado: 'a/t.py'".into()));
+    }
 
     fn d(pares: &[(&str, String)]) -> Vec<(String, String)> {
         pares.iter().map(|(a, b)| (a.to_string(), b.clone())).collect()
@@ -177,6 +259,7 @@ mod testes {
     }
 
     #[test]
+    #[cfg(unix)]
     fn inventario_em_disco() {
         let base = std::env::temp_dir().join(format!("jim_inv_{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&base);

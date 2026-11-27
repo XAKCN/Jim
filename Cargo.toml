@@ -22,6 +22,9 @@ ryu = "1.0.23"
 # sha2 0.11 exige rustc 1.88; 0.10 compila com 1.85.
 sha2 = "0.10"
 
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
 [features]
 # `python` (padrão) liga PyO3 em modo extensão: `cargo build` e o maturin não ligam libpython.
 # A lógica pura não depende de PyO3: `cargo test --no-default-features` roda sem Python.

@@ -139,10 +139,16 @@ Internamente (§4.6) a mesma fórmula aceita dicionário vazio: `sha256("")` =
 
 `raiz`: diretório existente (resolvido uma vez; symlink na própria raiz é aceito). Cada caminho:
 §2.5; repetido → `"J-C3: caminho repetido: {c!r}"`. Componentes intermediários têm de ser
-diretórios e nenhum componente pode ser symlink (`lstat`) → `"J-C5: symlink recusado: {c!r}"`;
+diretórios e nenhum componente pode ser symlink → `"J-C5: symlink recusado: {c!r}"`;
 ausente → `"J-C4: arquivo ausente: {c!r}"`; não regular → `"J-C6: não é arquivo regular: {c!r}"`;
 erro de leitura → `"J-C7: arquivo ilegível: {c!r}"`. Devolve {caminho: sha256_hex(bytes)} na
 ordem de `caminhos`. `raiz` que não é diretório → `"J-C8: raiz não é diretório: {raiz!r}"`.
+
+C0-4: a partir do descritor da raiz resolvida, cada componente é aberto relativo ao
+descritor do pai e sem seguir symlinks. O tipo do descritor aberto é conferido antes de
+usá-lo. Symlink inserido entre a consulta e a abertura também é recusado com J-C5.
+Plataformas sem essa abertura no núcleo recusam o inventário de arquivos com
+`"J-C7: abertura segura indisponível: {c!r}"`.
 
 ## §3 Gate (semântica de `gate43`)
 
