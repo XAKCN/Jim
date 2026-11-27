@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
+jobs:
+  testes:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Rust 1.85
+        run: |
+          rustup toolchain install 1.85.1 --profile minimal
+          rustup override set 1.85.1
+      - name: Núcleo Rust
+        run: cargo test --locked --no-default-features
+      - name: Instalar o Jim
+        run: python -m pip install .
+      - name: CLI e orquestração
+        run: python -m unittest -v tests.test_cli tests.test_orquestracao
+      - name: Comparador diferencial
+        run: python -m unittest -v tests.diferencial.test_diferencial
+      - name: Demonstração
+        run: python -B demo/rodar.py
