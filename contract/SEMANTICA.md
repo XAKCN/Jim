@@ -142,7 +142,8 @@ Internamente (§4.6) a mesma fórmula aceita dicionário vazio: `sha256("")` =
 diretórios e nenhum componente pode ser symlink → `"J-C5: symlink recusado: {c!r}"`;
 ausente → `"J-C4: arquivo ausente: {c!r}"`; não regular → `"J-C6: não é arquivo regular: {c!r}"`;
 erro de leitura → `"J-C7: arquivo ilegível: {c!r}"`. Devolve {caminho: sha256_hex(bytes)} na
-ordem de `caminhos`. `raiz` que não é diretório → `"J-C8: raiz não é diretório: {raiz!r}"`.
+ordem de `caminhos`. `raiz` ausente ou que não é diretório →
+`"J-C8: raiz não é diretório: {raiz!r}"`.
 
 C0-4: a partir do descritor da raiz resolvida, cada componente é aberto relativo ao
 descritor do pai e sem seguir symlinks. O tipo do descritor aberto é conferido antes de
@@ -152,6 +153,9 @@ Plataformas sem essa abertura no núcleo recusam o inventário de arquivos com
 C0-8: componente ausente ou intermediário que não é diretório dá J-C4.
 Falha de acesso na consulta, abertura ou leitura, mesmo em componente
 intermediário, dá J-C7.
+C0-9: falha ao acessar a raiz ou um ancestral dela (incluindo EACCES e EPERM) dá
+`"J-C7: raiz ilegível: {raiz!r}"`. J-C8 cobre ausência ou componente que não é diretório
+no caminho da raiz.
 
 ## §3 Gate (semântica de `gate43`)
 

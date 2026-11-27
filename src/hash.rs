@@ -4,11 +4,12 @@
 use crate::json::repr_texto;
 use sha2::{Digest, Sha256};
 use std::collections::HashSet;
+use std::io;
 #[cfg(unix)]
 use std::{
     ffi::{CStr, CString},
     fs::{File, OpenOptions},
-    io::{self, Read},
+    io::Read,
     os::{fd::{AsRawFd, FromRawFd}, unix::fs::OpenOptionsExt},
 };
 
@@ -94,17 +95,17 @@ fn inventariar_apos_resolver(
     caminhos: &[String],
     apos_resolver: impl FnOnce(),
 ) -> Result<Vec<(String, String)>, String> {
-    let raiz_invalida = || format!("J-C8: raiz não é diretório: {}", repr_texto(raiz));
+    let erro_raiz = |erro: io::Error| erro_da_raiz(raiz, erro.kind());
     // A abertura resolve a raiz (inclusive symlinks) e fixa seu descritor.
     #[cfg(unix)]
     let base = OpenOptions::new()
         .read(true)
         .custom_flags(ABRIR_DIRETORIO | libc::O_DIRECTORY)
         .open(raiz)
-        .map_err(|_| raiz_invalida())?;
+        .map_err(erro_raiz)?;
     #[cfg(not(unix))]
-    if !std::fs::metadata(raiz).is_ok_and(|meta| meta.is_dir()) {
-        return Err(raiz_invalida());
+    if !std::fs::metadata(raiz).map_err(erro_raiz)?.is_dir() {
+        return Err(erro_da_raiz(raiz, io::ErrorKind::NotADirectory));
     }
     apos_resolver();
     let mut vistos = HashSet::new();
@@ -124,6 +125,16 @@ fn inventariar_apos_resolver(
             None => Ok(Vec::new()),
             Some(c) => Err(format!("J-C7: abertura segura indisponível: {}", repr_texto(c))),
         }
+    }
+}
+
+fn erro_da_raiz(raiz: &str, tipo: io::ErrorKind) -> String {
+    let raiz = repr_texto(raiz);
+    match tipo {
+        io::ErrorKind::NotFound | io::ErrorKind::NotADirectory => {
+            format!("J-C8: raiz não é diretório: {raiz}")
+        }
+        _ => format!("J-C7: raiz ilegível: {raiz}"),
     }
 }
 
@@ -229,6 +240,36 @@ mod testes {
             ("a.txt", sha256_hex(b"primeiro")),
             ("sub/b.txt", sha256_hex(b"segundo")),
         ])));
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn inventario_distingue_raiz_inacessivel() {
+        use std::fs;
+        use std::os::unix::fs::PermissionsExt;
+
+        let pasta = std::env::temp_dir().join(format!("jim_inv_raiz_ilegivel_{}", std::process::id()));
+        let ancestral = pasta.join("restrito");
+        let raiz = ancestral.join("raiz");
+        fs::create_dir_all(&raiz).unwrap();
+        let permissoes = fs::metadata(&ancestral).unwrap().permissions();
+        fs::set_permissions(&ancestral, fs::Permissions::from_mode(0o600)).unwrap();
+        let acesso = fs::metadata(&raiz);
+        let raiz_texto = raiz.to_str().unwrap();
+        let resultado = inventariar(raiz_texto, &[]);
+        fs::set_permissions(&ancestral, permissoes).unwrap();
+        fs::remove_dir_all(&pasta).unwrap();
+
+        let esperado = format!("J-C7: raiz ilegível: {}", repr_texto(raiz_texto));
+        // Executores privilegiados podem atravessar diretórios sem bit de busca.
+        if let Err(erro) = acesso {
+            assert_eq!(erro.kind(), io::ErrorKind::PermissionDenied);
+            assert_eq!(resultado, Err(esperado.clone()));
+        }
+        for codigo in [libc::EACCES, libc::EPERM] {
+            let tipo = io::Error::from_raw_os_error(codigo).kind();
+            assert_eq!(erro_da_raiz(raiz_texto, tipo), esperado);
+        }
     }
 
     #[cfg(unix)]

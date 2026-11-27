@@ -181,9 +181,10 @@ def inventariar(raiz: str, caminhos: List[str]) -> Dict[str, str]:
     (EntradaInvalida) caminho inválido, symlink em qualquer componente,
     saída da raiz, não-arquivo e caminho repetido. Arquivo ausente:
     EntradaInvalida "J-C4: ..." (quem chama decide se ausência é FAIL).
-    Symlink na abertura também é recusado (J-C5). Erro de acesso em
-    qualquer componente ou abertura segura indisponível: EntradaInvalida
-    "J-C7: ..."."""
+    Symlink na abertura também é recusado (J-C5). Erro de acesso na raiz,
+    em seus ancestrais ou em um componente do inventário dá J-C7. Abertura
+    segura indisponível também dá J-C7. Raiz ausente ou caminho da raiz
+    com componente que não é diretório dá J-C8."""
 
 
 # ---------------------------------------------------------------- §3 gate (semântica gate43 da v5-alpha)
