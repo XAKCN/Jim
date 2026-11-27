@@ -256,6 +256,7 @@ def verificar_fecho(fecho_bytes: bytes, contrato_bytes: bytes, atuais: Dict[str,
                     reproducao: Optional[Reproducao] = None,
                     ancora: Optional[str] = None) -> Verificacao:
     """Verificação completa (§5.3) e veredito final do Jim (§5.4).
+    V8 confere também a presença e o número de controles negativos do contrato.
     Conteúdo malformado de fecho_bytes/contrato_bytes NÃO levanta: vira
     veredito UNKNOWN com motivo. Levanta EntradaInvalida só por G1/G2 e por
     `atuais`/`reproducao`/`ancora` malformados (vêm do próprio Jim).

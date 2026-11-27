@@ -393,7 +393,7 @@ gate; por último o `selo` (C0-2). Qualquer violação: EXC. O fecho NUNCA tem v
 | V5 | `json_estrito(contrato_bytes)`; depois `sha256 == f.contrato.sha256` | UNKNOWN `"J-V5: contrato ilegível: {erro}"`; FAIL `"R-2.5: contrato diverge do registrado no fecho"` |
 | V6 | §4.1 com as chaves de `f.arquivos`; `versao`/`data_referencia` iguais aos do fecho | UNKNOWN `"J-V6: contrato inválido: {erro}"`; FAIL `"R-2.5: identidade do contrato diverge"` |
 | V7 | `hash_fecho(f.arquivos) == f.candidato` | FAIL `"R-3.13: hash da árvore diverge do candidato"` |
-| V8 | execuções/comandos (§4.6) e streams (J-N7) | FAIL com a mensagem de §4.6 |
+| V8 | execuções/comandos (§4.6) e streams (J-N7); a presença e o número de controles correspondem ao contrato (§5.2 M3) | FAIL com a mensagem de §4.6 ou `"J-V8: controles negativos diferem do contrato: {criterio}"` |
 | V9 | recalcula §4.6, §4.2, §3.5 e o veredito do fecho; `iguais` com o gravado | FAIL `"R-2.21: evidências/integração não se reconstroem"` / `"J-V9: veredito gravado diverge do recalculado"` |
 | V10 | chaves de `atuais` (globs do contrato resolvidos agora) == chaves de `f.arquivos`; depois valores | FAIL `"R-3.13: arquivos do contrato diferem do fecho"` / `"R-2.21: árvore atual diverge do fecho: {primeiro caminho em ordem de código!r}"` |
 | V11 | gate recalculado ≠ PASS | o veredito do gate; motivo = primeiro não nulo entre contrato, `criterios[ordem_falhas[0]]`, integração |
@@ -509,7 +509,8 @@ pela letra do grupo (H, K, G, D, J) e o campo `limite` cita o item (ex.: `"G: pr
   cópia diferente → UNPROVEN; bytes não canônicos → UNKNOWN; stdout adulterado → FAIL; `saida`
   adulterada → FAIL; âncora → FAIL; árvore atual mudada → FAIL; contrato trocado → FAIL; fecho
   com `"veredito": "PASS"` gravado → FAIL (J-V9); controle reproduzido com stderr → FAIL;
-  campo informativo (`ambiente`) trocado sem refazer o selo → FAIL (J-V4b, C0-2).
+  campo informativo (`ambiente`) trocado sem refazer o selo → FAIL (J-V4b, C0-2);
+  controles fora do contrato → FAIL (J-V8, C0-3).
 
 ## §8 Divergências intencionais em relação à v5-alpha
 
@@ -532,4 +533,5 @@ Todas tornam o Jim mais restritivo ou só mudam o formato; nenhuma cria PASS ond
 | J-S3 | controle sem `stderr_sha256`/`stderr_final` | `stderr == ""` | streams inteiros (N7) |
 | J-N7 | evidência guarda só hashes | exige streams inteiros e confere hash e saída | CONTRATO.md §5 |
 | J-R1 | `repr` com tabela Unicode do Python | tabela fixa para não-ASCII | texto não-ASCII não é normativo |
+| J-V8 | verificador compara os controles declarados com os gravados durante a reexecução | o fecho confere presença e quantidade antes da reprodução | validar o fecho contra o contrato antes de usar a evidência gravada |
 | J-P | PASS do gate encerra | PASS só com reprodução (§5.4) | ideia central do Jim |

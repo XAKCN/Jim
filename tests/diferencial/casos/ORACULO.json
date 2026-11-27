@@ -1,6 +1,6 @@
 {
  "commit": "f761213",
- "gerador_sha256": "2e4cc6e184b7fab001a7e60accc3462e07adf01e3a71c54db559dc9c974c04eb",
+ "gerador_sha256": "a4f428f40c9b7b462c0e15002f9c3394271b00cc7accb17dd5a1c7d16d4a8ddf",
  "limites": [
   "D: CRLF",
   "D: PASS com esperado",
@@ -144,6 +144,7 @@
   "J: bytes n\u00e3o can\u00f4nicos",
   "J: campo informativo sem novo selo",
   "J: contrato trocado",
+  "J: controles fora do contrato",
   "J: crit\u00e9rio faltando",
   "J: c\u00f3pia diferente",
   "J: exit divergente",

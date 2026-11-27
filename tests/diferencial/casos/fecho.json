@@ -944,6 +944,99 @@
  },
  {
   "args": {
+   "ancora": null,
+   "atuais": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   },
+   "contrato_bytes": {
+    "$bytes": "eyJhcnF1aXZvcyI6IFsiKi5weSIsICIqLnR4dCJdLCAiY3JpdGVyaW9zIjogeyJkb2JybyI6IHsiYWNlaXRvcyI6IFsiZXhlY3VjYW8iXSwgImNvbWFuZG8iOiBbInNvbmRhLnB5Il0sICJlc3BlcmFkbyI6IHsiZG9icm8iOiA0fSwgInJlcHJvdmEiOiAibyBkb2JybyBkZSAyIGRldmUgc2VyIDQiLCAic2V2ZXJpZGFkZSI6ICJhbHRhIn19LCAiZGF0YV9yZWZlcmVuY2lhIjogIjIwMjYtMDEtMDEiLCAiZXNxdWVtYSI6ICJqaW0tY29udHJhdG8vMSIsICJ2ZXJzYW8iOiAiMSJ9Cg=="
+   },
+   "fecho_bytes": {
+    "$bytes": "eyJhbWJpZW50ZSI6e30sImFycXVpdm9zIjp7InNvbmRhLnB5IjoiYjY4MDEwOTVjZGQ2MmExNmYzMDM4ZDcyNGY2YzNiMWNjZmM5MDhlNTE3ZjNmZDhlYWMzYWY2MTQxYTRjZGQ3MCIsInZhbG9yLnR4dCI6IjUzYzIzNGU1ZTg0NzJiNmFjNTFjMWFlMWNhYjNmZTA2ZmFkMDUzYmViOGViZmQ4OTc3YjAxMDY1NWJmZGQzYzMifSwiYXJxdWl2b3NfZGVwb2lzIjp7InNvbmRhLnB5IjoiYjY4MDEwOTVjZGQ2MmExNmYzMDM4ZDcyNGY2YzNiMWNjZmM5MDhlNTE3ZjNmZDhlYWMzYWY2MTQxYTRjZGQ3MCIsInZhbG9yLnR4dCI6IjUzYzIzNGU1ZTg0NzJiNmFjNTFjMWFlMWNhYjNmZTA2ZmFkMDUzYmViOGViZmQ4OTc3YjAxMDY1NWJmZGQzYzMifSwiY2FuZGlkYXRvIjoic2hhMjU2OmFmOTM5Yzg4YTRlOGU5MDQxYTVjZTcwNTJjYTA0OWZjZDEyZmQ3ZjRlYzNmYzM4MjFmNDRlODc3OTcxNGM3ZDQiLCJjb250cmF0byI6eyJjYW1pbmhvIjoiamltLmpzb24iLCJzaGEyNTYiOiJlZDUwNDUwYzQwZjA2NDRjMmI5MjUxNWFiMzUzZjFhNzg0MDMyMWM3NjZjMDdjMzY2ZGUzMTEzMTdhYmZjNzM2Iiwic2hhMjU2X2RlcG9pcyI6ImVkNTA0NTBjNDBmMDY0NGMyYjkyNTE1YWIzNTNmMWE3ODQwMzIxYzc2NmMwN2MzNjZkZTMxMTMxN2FiZmM3MzYiLCJ2ZXJzYW8iOiIxIn0sImNvbnRyYXRvX2dhdGUiOnsiY2FuZGlkYXRvIjoic2hhMjU2OmFmOTM5Yzg4YTRlOGU5MDQxYTVjZTcwNTJjYTA0OWZjZDEyZmQ3ZjRlYzNmYzM4MjFmNDRlODc3OTcxNGM3ZDQiLCJldmlkZW5jaWFzX2FjZWl0YXMiOnsiZG9icm8iOlsiZXhlY3VjYW8iXX0sImludGVncmFjYW8iOnsiZXZpZGVuY2lhc19hY2VpdGFzIjpbImV4ZWN1Y2FvIl19LCJvYnJpZ2F0b3Jpb3MiOlsiZG9icm8iXSwic2V2ZXJpZGFkZSI6eyJkb2JybyI6ImFsdGEifSwidmVyc2FvIjoiMSJ9LCJjb3JyZW50ZXMiOnsiY2FuZGlkYXRvIjoic2hhMjU2OmFmOTM5Yzg4YTRlOGU5MDQxYTVjZTcwNTJjYTA0OWZjZDEyZmQ3ZjRlYzNmYzM4MjFmNDRlODc3OTcxNGM3ZDQiLCJjb250cmF0byI6InNoYTI1NjplZDUwNDUwYzQwZjA2NDRjMmI5MjUxNWFiMzUzZjFhNzg0MDMyMWM3NjZjMDdjMzY2ZGUzMTEzMTdhYmZjNzM2Iiwic29uZGEucHkiOiJzaGEyNTY6YjY4MDEwOTVjZGQ2MmExNmYzMDM4ZDcyNGY2YzNiMWNjZmM5MDhlNTE3ZjNmZDhlYWMzYWY2MTQxYTRjZGQ3MCIsInZhbG9yLnR4dCI6InNoYTI1Njo1M2MyMzRlNWU4NDcyYjZhYzUxYzFhZTFjYWIzZmUwNmZhZDA1M2JlYjhlYmZkODk3N2IwMTA2NTViZmRkM2MzIn0sImRhdGFfcmVmZXJlbmNpYSI6IjIwMjYtMDEtMDEiLCJlc3F1ZW1hIjoiamltLWZlY2hvLzEiLCJldmlkZW5jaWFzIjp7ImRvYnJvIjp7ImFkZXF1YWRvIjp0cnVlLCJhdHVhbCI6dHJ1ZSwiY29uZmxpdG8iOmZhbHNlLCJkZXBlbmRlbmNpYXMiOnsiY2FuZGlkYXRvIjoic2hhMjU2OmFmOTM5Yzg4YTRlOGU5MDQxYTVjZTcwNTJjYTA0OWZjZDEyZmQ3ZjRlYzNmYzM4MjFmNDRlODc3OTcxNGM3ZDQiLCJjb250cmF0byI6InNoYTI1NjplZDUwNDUwYzQwZjA2NDRjMmI5MjUxNWFiMzUzZjFhNzg0MDMyMWM3NjZjMDdjMzY2ZGUzMTEzMTdhYmZjNzM2Iiwic29uZGEucHkiOiJzaGEyNTY6YjY4MDEwOTVjZGQ2MmExNmYzMDM4ZDcyNGY2YzNiMWNjZmM5MDhlNTE3ZjNmZDhlYWMzYWY2MTQxYTRjZGQ3MCIsInZhbG9yLnR4dCI6InNoYTI1Njo1M2MyMzRlNWU4NDcyYjZhYzUxYzFhZTFjYWIzZmUwNmZhZDA1M2JlYjhlYmZkODk3N2IwMTA2NTViZmRkM2MzIn0sImZhbGhhX2NyaXRpY2EiOmZhbHNlLCJpbnN0cnVtZW50byI6ImV4ZWN1Y2FvIiwidmFsaWRvX2F0ZSI6InZpbmN1bGFkYV9kZXBlbmRlbmNpYXMiLCJ2ZXJzYW9fY29udHJhdG8iOiIxIn19LCJleGVjdWNvZXMiOlt7ImNvbWFuZG8iOlsicHl0aG9uIiwic29uZGEucHkiXSwiY29udHJvbGVzX25lZ2F0aXZvcyI6W3siYWx0ZXJhZG8iOnRydWUsImV4aXRfY29kZSI6MCwic2FpZGEiOnsiZG9icm8iOjZ9LCJzdGRlcnIiOiIiLCJzdGRlcnJfc2hhMjU2IjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsInN0ZG91dCI6IntcImRvYnJvXCI6IDZ9XG4iLCJzdGRvdXRfc2hhMjU2IjoiNGU3MzY0MzFkMjA5MTMyMmE0MDhlOTFlYWMwZjcxZWUyODU5MGU5ZTAzODVkZmJjZmY0Zjk0MTM0YTMxYjk0ZiJ9XSwiY3JpdGVyaW8iOiJkb2JybyIsImR1cmFjYW9fcyI6MS4wLCJleGl0X2NvZGUiOjAsInNhaWRhIjp7ImRvYnJvIjo0fSwic3RkZXJyIjoiIiwic3RkZXJyX3NoYTI1NiI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJzdGRvdXQiOiJ7XCJkb2Jyb1wiOiA0fVxuIiwic3Rkb3V0X3NoYTI1NiI6IjUzMTU5N2UyZjdmZDFhYzhhZDJhNGUxOWM5ODBhYThiYjcwMDk5YThlYTc0OWFmODgxZjBiMTRlZDg2ZTdkYzEifV0sImdhdGUiOnsiY29udHJhdG8iOnsibW90aXZvIjpudWxsLCJyZXN1bHRhZG8iOiJQQVNTIn0sImNyaXRlcmlvcyI6eyJkb2JybyI6eyJtb3Rpdm8iOm51bGwsInJlc3VsdGFkbyI6IlBBU1MiLCJzZXZlcmlkYWRlIjoiYWx0YSJ9fSwiaW50ZWdyYWNhbyI6eyJtb3Rpdm8iOm51bGwsInJlc3VsdGFkbyI6IlBBU1MifSwib3JkZW1fZmFsaGFzIjpbXSwidmVyZWRpdG8iOiJQQVNTIn0sImludGVncmFjYW8iOnsiYWRlcXVhZG8iOnRydWUsImF0dWFsIjp0cnVlLCJjb25mbGl0byI6ZmFsc2UsImRlcGVuZGVuY2lhcyI6eyJjYW5kaWRhdG8iOiJzaGEyNTY6YWY5MzljODhhNGU4ZTkwNDFhNWNlNzA1MmNhMDQ5ZmNkMTJmZDdmNGVjM2ZjMzgyMWY0NGU4Nzc5NzE0YzdkNCIsImNvbnRyYXRvIjoic2hhMjU2OmVkNTA0NTBjNDBmMDY0NGMyYjkyNTE1YWIzNTNmMWE3ODQwMzIxYzc2NmMwN2MzNjZkZTMxMTMxN2FiZmM3MzYifSwiZmFsaGFfY3JpdGljYSI6ZmFsc2UsImluc3RydW1lbnRvIjoiZXhlY3VjYW8iLCJ2YWxpZG9fYXRlIjoidmluY3VsYWRhX2RlcGVuZGVuY2lhcyIsInZlcnNhb19jb250cmF0byI6IjEifSwiamltIjoiMC4xLjAiLCJzZWxvIjoiOGJkMTYzOGQwNGZhZWFjY2NiMjcyYWYwMDNmMWRkMWI4Njk3ZjUxNjRlZmQyMzlkZmM0OTJjN2U4YzczYmYyZSIsInZlcmVkaXRvIjoiVU5QUk9WRU4ifQo="
+   },
+   "reproducao": {
+    "execucoes": [
+     {
+      "comando": [
+       "python",
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "alterado": true,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "{\"dobro\": 6}\n"
+       }
+      ],
+      "criterio": "dobro",
+      "duracao_s": 1.0,
+      "exit_code": 0,
+      "stderr": "",
+      "stdout": "{\"dobro\": 4}\n"
+     }
+    ],
+    "inventario_antes": {
+     "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+     "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+    },
+    "inventario_depois": {
+     "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+     "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+    }
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": "J-V8",
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+    "contrato_sha256": "ed50450c40f0644c2b92515ab353f1a7840321c766c07c366de311317abfc736",
+    "erros": [
+     "J-V8: controles negativos diferem do contrato: dobro"
+    ],
+    "fecho_sha256": "573852d564933a8a062d366ada85cab71d0c3afde23bdd788f584061c6556f85",
+    "gate": null,
+    "motivo": "J-V8: controles negativos diferem do contrato: dobro",
+    "reproducao": null,
+    "veredito": "FAIL"
+   }
+  },
+  "fecho_sha256": "573852d564933a8a062d366ada85cab71d0c3afde23bdd788f584061c6556f85",
+  "funcao": "verificar_fecho",
+  "grupo": "J",
+  "id": "J012",
+  "limite": [
+   "J: controles fora do contrato"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "gate": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "dobro": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "alta"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "PASS"
+   }
+  },
+  "regra": "\u00a75.3 V8"
+ },
+ {
+  "args": {
    "contrato_bytes": {
     "$bytes": "eyJhcnF1aXZvcyI6IFsiKi5weSIsICIqLnR4dCJdLCAiY3JpdGVyaW9zIjogeyJkb2JybyI6IHsiYWNlaXRvcyI6IFsiZXhlY3VjYW8iXSwgImNvbWFuZG8iOiBbInNvbmRhLnB5Il0sICJjb250cm9sZXNfbmVnYXRpdm9zIjogW3sidmFsb3IudHh0IjogIjNcbiJ9XSwgImVzcGVyYWRvIjogeyJkb2JybyI6IDR9LCAicmVwcm92YSI6ICJvIGRvYnJvIGRlIDIgZGV2ZSBzZXIgNCIsICJzZXZlcmlkYWRlIjogImNyaXRpY2EifX0sICJkYXRhX3JlZmVyZW5jaWEiOiAiMjAyNi0wMS0wMSIsICJlc3F1ZW1hIjogImppbS1jb250cmF0by8xIiwgInZlcnNhbyI6ICIxIn0K"
    },
@@ -1120,7 +1213,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "comparar_reproducao",
   "grupo": "J",
-  "id": "J012",
+  "id": "J013",
   "limite": [
    "J: reprodu\u00e7\u00e3o igual"
   ],
@@ -1323,7 +1416,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "comparar_reproducao",
   "grupo": "J",
-  "id": "J013",
+  "id": "J014",
   "limite": [
    "J: c\u00f3pia diferente"
   ],
@@ -1434,7 +1527,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "verificar_fecho",
   "grupo": "J",
-  "id": "J014",
+  "id": "J015",
   "limite": [
    "J: c\u00f3pia diferente"
   ],
@@ -1620,7 +1713,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "comparar_reproducao",
   "grupo": "J",
-  "id": "J015",
+  "id": "J016",
   "limite": [
    "J: crit\u00e9rio faltando"
   ],
@@ -1714,7 +1807,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "verificar_fecho",
   "grupo": "J",
-  "id": "J016",
+  "id": "J017",
   "limite": [
    "J: crit\u00e9rio faltando"
   ],
@@ -1920,7 +2013,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "comparar_reproducao",
   "grupo": "J",
-  "id": "J017",
+  "id": "J018",
   "limite": [
    "J: exit divergente"
   ],
@@ -2034,7 +2127,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "verificar_fecho",
   "grupo": "J",
-  "id": "J018",
+  "id": "J019",
   "limite": [
    "J: exit divergente"
   ],
@@ -2240,7 +2333,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "comparar_reproducao",
   "grupo": "J",
-  "id": "J019",
+  "id": "J020",
   "limite": [
    "J: stderr de controle"
   ],
@@ -2354,7 +2447,7 @@
   "fecho_sha256": "8afc54e266ab8edab79c76ea8294fa837cf14c4b225fd69507d31b94e78800ba",
   "funcao": "verificar_fecho",
   "grupo": "J",
-  "id": "J020",
+  "id": "J021",
   "limite": [
    "J: stderr de controle"
   ],

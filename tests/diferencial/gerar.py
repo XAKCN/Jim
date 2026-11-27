@@ -498,7 +498,7 @@ def derivacao(casos):
 
 
 def fecho(casos):
-    _, dados, arquivos, ex = cenario()
+    contrato, dados, arquivos, ex = cenario()
     args = {
         "contrato_bytes": dados, "caminho_contrato": "jim.json", "execucoes": [ex],
         "arquivos": arquivos, "arquivos_depois": arquivos, "contrato_sha256_depois": sha(dados), "ambiente": {},
@@ -509,27 +509,29 @@ def fecho(casos):
     if gate["veredito"] != "PASS":
         raise ValueError("o oráculo recusou o cenário sintético do fecho")
 
-    def caso(funcao, regra, limite, args, esperado, f_sha=None, divergencia="J-P"):
+    def caso(funcao, regra, limite, args, esperado, f_sha=None, *, divergencia="J-P", referencia=montado):
         casos.adicionar("J", funcao, regra, (limite,), args, esperado=retorno(esperado),
-                        divergencia=divergencia, gate=gate, fecho_sha256=f_sha or montado["sha256"])
+                        divergencia=divergencia, gate=referencia["fecho"]["gate"],
+                        fecho_sha256=f_sha or referencia["sha256"])
 
     caso("montar_fecho", "§5.2", "montar gate PASS", args, montado)
     rep = {"inventario_antes": arquivos, "inventario_depois": arquivos, "execucoes": [ex]}
 
     def verifica(passo, limite, veredito, motivo, *, fecho_bytes=montado["dados"], atuais=arquivos,
-                 contrato_bytes=dados, ancora=None, reproducao=None):
+                 contrato_bytes=dados, ancora=None, reproducao=None, referencia=montado, divergencia="J-P"):
         etapa = int(str(passo).removesuffix("b"))
         digest = sha(fecho_bytes)
         args = dict(fecho_bytes=fecho_bytes, contrato_bytes=contrato_bytes, atuais=atuais,
                     reproducao=reproducao, ancora=ancora)
         esperado = {
             "veredito": veredito, "motivo": motivo, "erros": [motivo] if motivo else [], "fecho_sha256": digest,
-            "candidato": documento["candidato"] if etapa >= 3 else None,
+            "candidato": referencia["fecho"]["candidato"] if etapa >= 3 else None,
             "contrato_sha256": sha(contrato_bytes) if etapa >= 5 else None,
-            "gate": gate if etapa >= 9 else None,
+            "gate": referencia["fecho"]["gate"] if etapa >= 9 else None,
             "reproducao": {"resultado": veredito, "motivo": motivo} if etapa == 13 else None,
         }
-        caso("verificar_fecho", f"§5.3 V{passo}", limite, args, esperado, digest)
+        caso("verificar_fecho", f"§5.3 V{passo}", limite, args, esperado, digest,
+             referencia=referencia, divergencia=divergencia)
 
     verifica(12, "sem reprodução", "UNPROVEN", "J-P1: PASS do gate sem reprodução externa")
     verifica(13, "reprodução igual", "PASS", None, reproducao=rep)
@@ -552,6 +554,19 @@ def fecho(casos):
         gravado = dict(documento["execucoes"][0], **alteracao)
         adulterado = canonico(selar(dict(documento, execucoes=[gravado]))) + b"\n"
         verifica(8, limite, "FAIL", "J-N7: stream gravado não confere: dobro", fecho_bytes=adulterado)
+
+    sem_controles = deepcopy(contrato)
+    criterio = sem_controles["criterios"]["dobro"]
+    del criterio["controles_negativos"]
+    criterio["severidade"] = "alta"
+    sem_ex = {k: v for k, v in ex.items() if k != "controles_negativos"}
+    sem_dados = contrato_bytes(sem_controles)
+    base = casos.oraculo.montar(**dict(args, contrato_bytes=sem_dados, execucoes=[sem_ex],
+                                      contrato_sha256_depois=sha(sem_dados)))
+    adulterado = canonico(selar(dict(base["fecho"], execucoes=documento["execucoes"]))) + b"\n"
+    verifica(8, "controles fora do contrato", "FAIL", "J-V8: controles negativos diferem do contrato: dobro",
+             fecho_bytes=adulterado, contrato_bytes=sem_dados, reproducao=rep, referencia=base,
+             divergencia="J-V8")
 
     controle = dict(ex["controles_negativos"][0], stderr="aviso\n")
     for passo, limite, muda, veredito, motivo in (

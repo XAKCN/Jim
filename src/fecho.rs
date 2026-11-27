@@ -257,16 +257,13 @@ fn conferir_entrada(c: &Valor, execucoes: &Valor) -> Result<(), String> {
         }
     }
     conferir_execucoes_sem_stream(cr, exs)?;
+    conferir_controles_do_contrato(cr, exs).map_err(|e| format!("J-M3: {e}"))
+}
+
+fn conferir_controles_do_contrato(cr: &Objeto, exs: &[Valor]) -> Result<(), String> {
     for (e, (nome, crit)) in exs.iter().zip(cr.iter()) {
-        let declara = crit.como_objeto().and_then(|o| o.bruto("controles_negativos")).and_then(|v| v.como_lista());
-        let gravados = e.como_objeto().and_then(|o| o.bruto("controles_negativos")).and_then(|v| v.como_lista());
-        let ok = match (declara, gravados) {
-            (None, None) => true,
-            (Some(d), Some(g)) => d.len() == g.len(),
-            _ => false,
-        };
-        if !ok {
-            return Err(format!("J-M3: controles negativos diferem do contrato: {nome}"));
+        if controles(crit).map(Vec::len) != controles(e).map(Vec::len) {
+            return Err(format!("controles negativos diferem do contrato: {nome}"));
         }
     }
     Ok(())
@@ -475,6 +472,10 @@ fn conferir_v5_v9(f: &Objeto, contrato_bytes: &[u8], hc_saida: &mut Option<Strin
     // V8
     let execucoes = f.bruto("execucoes").cloned().unwrap_or(Valor::Nulo);
     conferir_execucoes(&c, &execucoes).map_err(|e| (Veredito::Fail, e))?;
+    let criterios = co.get("criterios").and_then(Valor::como_objeto)
+        .ok_or_else(|| falha("R-2.8: critérios ausentes ou reservados"))?;
+    let exs = execucoes.como_lista().ok_or_else(|| falha("R-2.1: execuções diferem dos critérios"))?;
+    conferir_controles_do_contrato(criterios, exs).map_err(|e| falha(&format!("J-V8: {e}")))?;
     // V9
     let hc_depois = ct.bruto("sha256_depois").and_then(|v| v.como_texto()).unwrap_or("").to_string();
     let reconstroi = "R-2.21: evidências/integração não se reconstroem";
@@ -953,6 +954,22 @@ mod testes {
         let m2 = montar(&cb2, vec![execucao(0, SAIDA_OK, None)]);
         assert_eq!(m2.veredito, Veredito::Unknown);
         nao_pass(&verif(&m2, &cb2, Some(&rep(vec![execucao(0, SAIDA_OK, None)]))), Veredito::Unknown, "R-2.9: campo adequado omitido");
+    }
+
+    #[test]
+    fn j_recusa_controles_fora_do_contrato() {
+        let cb = contrato_bytes("");
+        let m = montar(&cb, vec![execucao(0, SAIDA_OK, None)]);
+        let exec = execucao(0, SAIDA_OK, Some(vec![controle_entrada("{\"ok\": false}", "")]));
+        let dados = adulterar(&m, |o| o.inserir("execucoes", Valor::Lista(vec![gravar(&exec)])));
+        let reproduzida = rep(vec![exec]);
+        let v = verificar_fecho(&dados, &cb, &arquivos(), Some(&reproduzida), None).unwrap();
+        nao_pass(&v, Veredito::Fail, "J-V8: controles negativos diferem do contrato: t");
+        let fecho = json_estrito(&dados).unwrap();
+        assert_eq!(
+            comparar_reproducao(&fecho, &cb, &reproduzida).unwrap_err(),
+            "J-P0: fecho não validado: J-V8: controles negativos diferem do contrato: t",
+        );
     }
 
     #[test]
