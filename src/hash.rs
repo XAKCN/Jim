@@ -4,7 +4,6 @@
 use crate::json::repr_texto;
 use sha2::{Digest, Sha256};
 use std::collections::HashSet;
-use std::path::PathBuf;
 #[cfg(unix)]
 use std::{
     ffi::{CStr, CString},
@@ -87,11 +86,27 @@ pub fn hash_fecho(arquivos: &[(String, String)]) -> Result<String, String> {
 
 /// §2.7.
 pub fn inventariar(raiz: &str, caminhos: &[String]) -> Result<Vec<(String, String)>, String> {
+    inventariar_apos_resolver(raiz, caminhos, || {})
+}
+
+fn inventariar_apos_resolver(
+    raiz: &str,
+    caminhos: &[String],
+    apos_resolver: impl FnOnce(),
+) -> Result<Vec<(String, String)>, String> {
     let raiz_invalida = || format!("J-C8: raiz não é diretório: {}", repr_texto(raiz));
-    let base: PathBuf = match std::fs::canonicalize(raiz) {
-        Ok(b) if b.is_dir() => b,
-        _ => return Err(raiz_invalida()),
-    };
+    // A abertura resolve a raiz (inclusive symlinks) e fixa seu descritor.
+    #[cfg(unix)]
+    let base = OpenOptions::new()
+        .read(true)
+        .custom_flags(ABRIR_DIRETORIO | libc::O_DIRECTORY)
+        .open(raiz)
+        .map_err(|_| raiz_invalida())?;
+    #[cfg(not(unix))]
+    if !std::fs::metadata(raiz).is_ok_and(|meta| meta.is_dir()) {
+        return Err(raiz_invalida());
+    }
+    apos_resolver();
     let mut vistos = HashSet::new();
     for c in caminhos {
         validar_caminho(c)?;
@@ -101,14 +116,10 @@ pub fn inventariar(raiz: &str, caminhos: &[String]) -> Result<Vec<(String, Strin
     }
     #[cfg(unix)]
     {
-        let base = OpenOptions::new().read(true)
-            .custom_flags(ABRIR_DIRETORIO | libc::O_DIRECTORY | libc::O_NOFOLLOW)
-            .open(base).map_err(|_| raiz_invalida())?;
         caminhos.iter().map(|c| Ok((c.clone(), ler_um(&base, c, || {})?))).collect()
     }
     #[cfg(not(unix))]
     {
-        let _ = base;
         match caminhos.first() {
             None => Ok(Vec::new()),
             Some(c) => Err(format!("J-C7: abertura segura indisponível: {}", repr_texto(c))),
@@ -196,6 +207,29 @@ fn ler_um(base: &File, c: &str, antes_de_abrir: impl FnOnce()) -> Result<String,
 #[cfg(test)]
 mod testes {
     use super::*;
+
+    #[cfg(unix)]
+    #[test]
+    fn inventario_mantem_raiz_apos_mover_ancestral() {
+        use std::fs;
+
+        let pasta = std::env::temp_dir().join(format!("jim_inv_ancestral_{}", std::process::id()));
+        let ancestral = pasta.join("ancestral");
+        let raiz = ancestral.join("raiz");
+        fs::create_dir_all(raiz.join("sub")).unwrap();
+        fs::write(raiz.join("a.txt"), b"primeiro").unwrap();
+        fs::write(raiz.join("sub/b.txt"), b"segundo").unwrap();
+        let caminhos = ["a.txt".into(), "sub/b.txt".into()];
+        let resultado = inventariar_apos_resolver(raiz.to_str().unwrap(), &caminhos, || {
+            fs::rename(&ancestral, pasta.join("movido")).unwrap();
+        });
+        fs::remove_dir_all(&pasta).unwrap();
+
+        assert_eq!(resultado, Ok(d(&[
+            ("a.txt", sha256_hex(b"primeiro")),
+            ("sub/b.txt", sha256_hex(b"segundo")),
+        ])));
+    }
 
     #[cfg(unix)]
     #[test]

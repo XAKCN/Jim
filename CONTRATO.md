@@ -202,3 +202,6 @@ exigido dos dois lados.
 | C0-6 | 2026-11-27 | §4.6 recusa execuções e controles com chaves ou tipos fora do formato gravado de §5.1, usando a mesma validação de formato do fecho. |
 | C0-7 | 2026-11-27 | §4.2 exige caminhos válidos em `depende_de` mesmo sem a lista de arquivos resolvidos. Uma dependência inválida na projeção devolve EntradaInvalida R-2.12. |
 | C0-8 | 2026-11-27 | §2.7 distingue caminho ausente (J-C4) de erro de acesso em qualquer componente (J-C7). |
+
+Complemento de C0-4. Uma única abertura resolve a raiz e obtém o descritor usado para
+todo o inventário. Renomear um ancestral da raiz depois da abertura não altera a árvore lida.
