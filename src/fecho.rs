@@ -382,6 +382,7 @@ pub fn montar_fecho(
     let fecho = selar(fecho);
     let mut dados = json_canonico(&fecho);
     dados.push(b'\n');
+    json_estrito(&dados)?;
     let sha256 = sha256_hex(&dados);
     Ok(FechoMontado { fecho, dados, sha256, veredito })
 }
@@ -823,6 +824,27 @@ mod testes {
         // comparar_reproducao direto
         let cr = comparar_reproducao(&m.fecho, &cb, &r).unwrap();
         assert_eq!(cr.resultado, Veredito::Pass);
+    }
+
+    #[test]
+    fn montagem_respeita_limite_do_leitor_estrito() {
+        let cb = String::from_utf8(contrato_bytes("")).unwrap()
+            .replace(r#""esperado": {"ok": true}"#, r#""regra": "todos_aprovados""#);
+        let cb = cb.as_bytes();
+        let montar_com_niveis = |n: usize| {
+            let stdout = format!(r#"{{"casos":1,"aprovados":1,"falhas":[],"extra":{}0{}}}"#,
+                "[".repeat(n), "]".repeat(n));
+            let exs = Valor::Lista(vec![execucao(0, &stdout, None)]);
+            montar_fecho(cb, "jim.json", &exs, &arquivos(), &arquivos(), &sha256_hex(cb), &vec![])
+        };
+        let no_limite = montar_com_niveis(60).unwrap();
+        assert_eq!(verif(&no_limite, cb, None).veredito, Veredito::Unproven);
+        let erro = match montar_com_niveis(61) {
+            Err(erro) => erro,
+            Ok(fecho) => panic!("montou {:?}, mas o leitor recusou: {:?}",
+                fecho.veredito, verif(&fecho, cb, None).motivo),
+        };
+        assert_eq!(erro, "R-5.16: mais de 64 níveis de aninhamento");
     }
 
     #[test]

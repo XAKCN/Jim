@@ -244,7 +244,8 @@ def montar_fecho(contrato_bytes: bytes, caminho_contrato: str, execucoes: List[E
                  arquivos: Dict[str, str], arquivos_depois: Dict[str, str],
                  contrato_sha256_depois: str, ambiente: Dict[str, str]) -> FechoMontado:
     """Monta o documento jim-fecho/1 (§5.1–§5.2) a partir do que o Python
-    observou. Contrato ou entradas inválidos: EntradaInvalida. O veredito do
+    observou. Contrato, entradas ou bytes finais fora das regras de §2.1:
+    EntradaInvalida. O veredito do
     fecho nunca é PASS: no máximo UNPROVEN (a execução foi do agente)."""
 
 

@@ -384,7 +384,8 @@ de `arquivos`; `hash_fecho(arquivos)`; `arquivos_depois` válido (§2.5, hex64, 
 `saida`/hashes; `controles_negativos` presente se e só se o critério tem controles, mesmo
 tamanho; sem chave extra). M4 grava `saida` e hashes. M5 §4.6, §4.2 e §3.5 com
 `hoje = c.data_referencia`. M6 `veredito` = UNPROVEN se o gate deu PASS, senão o veredito do
-gate; por último o `selo` (C0-2). Qualquer violação: EXC. O fecho NUNCA tem veredito PASS: a execução foi do agente.
+gate; grava o `selo` (C0-2). M7 valida os bytes finais com `json_estrito` (§2.1), o mesmo
+leitor de V2 (C0-5). Qualquer violação: EXC. O fecho NUNCA tem veredito PASS: a execução foi do agente.
 
 ### §5.3 `verificar_fecho` (para no primeiro passo que falha; `erros = [motivo]`)
 
