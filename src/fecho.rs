@@ -989,6 +989,25 @@ mod testes {
     }
 
     #[test]
+    fn j_controle_reproduzido_com_rejeicao_diferente() {
+        let cb = String::from_utf8(contrato_bytes(", \"controles_negativos\": [{\"dados.txt\": \"lixo\"}]"))
+            .unwrap().replace("\"ok\": true", "\"ok\": 1").into_bytes();
+        let com_controle = |c| execucao(0, "{\"ok\": 1}", Some(vec![c]));
+        let original = controle_entrada("{\"ok\": 2}", "");
+        let mut outro_exit = original.como_objeto().unwrap().clone();
+        outro_exit.inserir("exit_code", Valor::Int(0));
+        let m = montar(&cb, vec![com_controle(original)]);
+
+        for controle in [Valor::Objeto(outro_exit), controle_entrada("{\"ok\": 3}", "")] {
+            let observado = com_controle(controle);
+            assert_eq!(montar(&cb, vec![observado.clone()]).veredito, Veredito::Unproven);
+            let r = rep(vec![observado]);
+            let v = verif(&m, &cb, Some(&r));
+            nao_pass(&v, Veredito::Fail, "J-P5: controle negativo diverge do gravado: t#1");
+        }
+    }
+
+    #[test]
     fn montar_recusas() {
         let cb = contrato_bytes("");
         let amb = inv(&[]);

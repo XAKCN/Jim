@@ -1,6 +1,6 @@
 {
  "commit": "f761213",
- "gerador_sha256": "a4f428f40c9b7b462c0e15002f9c3394271b00cc7accb17dd5a1c7d16d4a8ddf",
+ "gerador_sha256": "08979eaffe74013ecc8e0020dcc490aee1a3f2c1b9d2c32d14a96aae3cef1b57",
  "limites": [
   "D: CRLF",
   "D: PASS com esperado",
@@ -147,10 +147,12 @@
   "J: controles fora do contrato",
   "J: crit\u00e9rio faltando",
   "J: c\u00f3pia diferente",
+  "J: exit de controle divergente",
   "J: exit divergente",
   "J: montar gate PASS",
   "J: reprodu\u00e7\u00e3o igual",
   "J: sa\u00edda adulterada",
+  "J: sa\u00edda de controle divergente",
   "J: sem reprodu\u00e7\u00e3o",
   "J: stderr de controle",
   "J: stdout adulterado",

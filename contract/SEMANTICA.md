@@ -509,6 +509,7 @@ pela letra do grupo (H, K, G, D, J) e o campo `limite` cita o item (ex.: `"G: pr
   cópia diferente → UNPROVEN; bytes não canônicos → UNKNOWN; stdout adulterado → FAIL; `saida`
   adulterada → FAIL; âncora → FAIL; árvore atual mudada → FAIL; contrato trocado → FAIL; fecho
   com `"veredito": "PASS"` gravado → FAIL (J-V9); controle reproduzido com stderr → FAIL;
+  controle reproduzido com saída ou exit diferentes apesar de rejeição válida → FAIL (J-P5);
   campo informativo (`ambiente`) trocado sem refazer o selo → FAIL (J-V4b, C0-2);
   controles fora do contrato → FAIL (J-V8, C0-3).
 

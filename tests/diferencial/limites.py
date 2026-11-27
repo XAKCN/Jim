@@ -55,6 +55,7 @@ _ITENS = {
         "stdout adulterado", "saída adulterada", "âncora divergente",
         "árvore atual mudou", "contrato trocado", "PASS gravado", "stderr de controle",
         "campo informativo sem novo selo", "controles fora do contrato",
+        "exit de controle divergente", "saída de controle divergente",
     ),
 }
 

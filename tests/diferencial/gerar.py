@@ -583,6 +583,24 @@ def fecho(casos):
         if muda:
             verifica(13, limite, veredito, motivo, reproducao=reproducao)
 
+    # As duas reproduções ainda rejeitam o artefato alterado. Só P5 distingue as observações.
+    oraculo = casos.oraculo
+    criterio = contrato["criterios"]["dobro"]
+    assert oraculo.release.controles_aprovados(oraculo.adaptar_execucao(ex), criterio)
+    for limite, mudanca in (
+        ("exit de controle divergente", {"exit_code": 1}),
+        ("saída de controle divergente", {"stdout": '{"dobro": 8}\n'}),
+    ):
+        controle = dict(ex["controles_negativos"][0], **mudanca)
+        executada = dict(ex, controles_negativos=[controle])
+        assert oraculo.release.controles_aprovados(oraculo.adaptar_execucao(executada), criterio)
+        reproduzido = dict(rep, execucoes=[executada])
+        motivo = "J-P5: controle negativo diverge do gravado: dobro#1"
+        caso("comparar_reproducao", "§5.5 P5", limite,
+             dict(fecho=documento, contrato_bytes=dados, reproducao=reproduzido),
+             {"resultado": "FAIL", "motivo": motivo})
+        verifica(13, limite, "FAIL", motivo, reproducao=reproduzido)
+
 
 def conferir_git(raiz):
     def git(*args):
