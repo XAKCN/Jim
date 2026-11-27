@@ -1,0 +1,26 @@
+# Dono único deste arquivo: sessão de contrato (CONTRATO.md §6).
+[build-system]
+requires = ["maturin>=1.9,<2"]
+build-backend = "maturin"
+
+[project]
+name = "jim"
+version = "0.1.0"
+description = "Jim: loop que obriga o agente a provar; PASS só com evidência reproduzida fora do agente."
+authors = [{ name = "XAKCN" }]
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = []
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Rust",
+]
+
+[project.scripts]
+jim = "jim.cli:main"
+
+[tool.maturin]
+python-source = "python"
+module-name = "jim._core"
+bindings = "pyo3"

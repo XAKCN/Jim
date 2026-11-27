@@ -1,0 +1,32 @@
+# Dono único deste arquivo: sessão de contrato (CONTRATO.md §6).
+[package]
+name = "jim"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+# Resolução ciente de MSRV: dependências escolhidas compatíveis com rust-version.
+resolver = "3"
+license = "MIT"
+description = "Núcleo do Jim (jim._core): gate, verificação e hash canônico do fecho."
+publish = false
+
+[lib]
+# O nome da biblioteca define o símbolo PyInit__core, exigido por module-name = "jim._core".
+name = "_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# abi3-py39: uma roda serve para CPython >= 3.9. PyO3 0.30 exige Rust >= 1.85.
+pyo3 = { version = "0.30.1", features = ["abi3-py39"], optional = true }
+# sha2 0.11 exige rustc 1.88; 0.10 compila com 1.85.
+sha2 = "0.10"
+
+[features]
+# `python` (padrão) liga PyO3 em modo extensão: `cargo build` e o maturin não ligam libpython.
+# A lógica pura não depende de PyO3: `cargo test --no-default-features` roda sem Python.
+default = ["python"]
+python = ["dep:pyo3", "pyo3/extension-module"]
+
+[profile.release]
+lto = true
+codegen-units = 1
