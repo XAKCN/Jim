@@ -2,6 +2,8 @@ import unittest
 
 from jim import _core
 
+from .diferencial.formato import carregar_casos, decodificar
+
 
 class NucleoTest(unittest.TestCase):
     def test_montagem_respeita_limite_do_leitor_estrito(self):
@@ -27,3 +29,15 @@ class NucleoTest(unittest.TestCase):
                          "UNPROVEN")
         with self.assertRaisesRegex(_core.EntradaInvalida, "^R-5.16: mais de 64 níveis"):
             montar(61)
+
+    def test_derivacao_recusa_execucao_gravada_malformada(self):
+        caso = next(c for c in carregar_casos() if c["funcao"] == "derivar_registros")
+        args = decodificar(caso["args"])
+        execucao, = args["execucoes"]
+        self.assertTrue(_core.derivar_registros(**args)["avaliacoes"])
+        del execucao["duracao_s"]
+        with self.assertRaisesRegex(_core.EntradaInvalida, "^R-2.1: execução gravada malformada"):
+            _core.derivar_registros(**args)
+        execucao["duracao_s"] = True
+        with self.assertRaisesRegex(_core.EntradaInvalida, "^R-2.1: execução gravada malformada"):
+            _core.derivar_registros(**args)

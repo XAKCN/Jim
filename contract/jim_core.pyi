@@ -235,7 +235,8 @@ def derivar_registros(contrato: Json, execucoes: Json, executados: Dict[str, str
                       atuais: Dict[str, str], contrato_sha256: str,
                       contrato_sha256_depois: str) -> Registros:
     """release.registros da v5-alpha (§4.6): evidências, integração e correntes
-    derivadas só do observado. `execucoes` no formato gravado (§5.1)."""
+    derivadas só do observado. `execucoes` e seus controles devem obedecer
+    às chaves e aos tipos do formato gravado (§5.1), ou EntradaInvalida."""
 
 
 # ---------------------------------------------------------------- §5 fecho e veredito do Jim

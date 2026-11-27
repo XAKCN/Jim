@@ -347,6 +347,9 @@ Pré: `execucoes` no formato gravado (§5.1), uma por critério na ordem do cont
 `"R-2.1: execuções diferem dos critérios"`), com `comando == ["python"] + comando` e `exit_code`
 int (senão EXC `"R-2.1: instrumento gravado diverge"`), e cada stream conferido (J-N7: `stdout_sha256 == sha256(stdout)`, idem stderr, `iguais(saida,
 ultima_linha_json(stdout))`, também nos controles; senão EXC `"J-N7: stream gravado não confere: {criterio}"`).
+Depois dessas conferências, a derivação valida as chaves e os tipos da execução e dos controles
+gravados com as regras de V4 (C0-6). Se o formato divergir, EXC
+`"R-2.1: execução gravada malformada: {criterio}"`.
 Com `T(d)` = fórmula de §2.6 (aceita vazio):
 - `candidato = "sha256:" + T(executados)`.
 - `correntes` = {p: `"sha256:" + h`} de `atuais` (ordem de `atuais`) + `candidato: "sha256:" + T(atuais)`

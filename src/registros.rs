@@ -413,7 +413,7 @@ fn stream_confere(o: &Objeto) -> bool {
         && iguais(saida, &ultima_linha_json(out).unwrap_or(Valor::Nulo))
 }
 
-/// Pré-condições de §4.6 (V8): execuções uma por critério, comandos e streams (J-N7).
+/// Pré-condições de §4.6 (V8): critérios, comandos, streams (J-N7) e formato gravado.
 pub fn conferir_execucoes(c: &Valor, execucoes: &Valor) -> Result<(), String> {
     let cr = criterios_de(c)?;
     let diferem = || "R-2.1: execuções diferem dos critérios".to_string();
@@ -450,6 +450,9 @@ pub fn conferir_execucoes(c: &Valor, execucoes: &Valor) -> Result<(), String> {
         }
         if !ok {
             return Err(format!("J-N7: stream gravado não confere: {nome}"));
+        }
+        if !crate::fecho::execucao_ok(ex, true) {
+            return Err(format!("R-2.1: execução gravada malformada: {nome}"));
         }
     }
     Ok(())
@@ -749,6 +752,26 @@ pub(crate) mod testes {
         let mut cc = ctl("{}", "", true, 1).como_objeto().unwrap().clone();
         cc.inserir("stderr", Valor::texto("x"));
         assert_eq!(d(vec![gravada("t", &["t.py"], 0, ok, Some(vec![Valor::Objeto(cc)]))]), "J-N7: stream gravado não confere: t");
+    }
+
+    #[test]
+    fn derivacao_recusa_execucao_gravada_malformada() {
+        let c = contrato("");
+        let derivar = |e| derivar_registros(&c, &Valor::Lista(vec![e]), &arquivos(), &arquivos(), HC, HC);
+        let valida = gravada("t", &["t.py"], 0, r#"{"ok":true}"#, None);
+        assert!(derivar(valida.clone()).is_ok());
+        for duracao in [None, Some(Valor::Nulo), Some(Valor::Bool(false)), Some(Valor::texto("0.5"))] {
+            let mut e = valida.como_objeto().unwrap().clone();
+            match duracao {
+                None => e.remover("duracao_s"),
+                Some(v) => e.inserir("duracao_s", v),
+            }
+            assert_eq!(derivar(Valor::Objeto(e)).unwrap_err(), "R-2.1: execução gravada malformada: t");
+        }
+        let mut controle = ctl(r#"{"ok":false}"#, "", true, 1).como_objeto().unwrap().clone();
+        controle.inserir("alterado", Valor::Int(1));
+        let e = gravada("t", &["t.py"], 0, r#"{"ok":true}"#, Some(vec![Valor::Objeto(controle)]));
+        assert_eq!(derivar(e).unwrap_err(), "R-2.1: execução gravada malformada: t");
     }
 
     #[test]

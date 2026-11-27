@@ -92,7 +92,7 @@ fn hex(v: Option<&Valor>) -> bool {
 }
 
 /// Execução: `Execucao` do pyi (+ os três campos gravados se `gravado`).
-fn execucao_ok(e: &Valor, gravado: bool) -> bool {
+pub(crate) fn execucao_ok(e: &Valor, gravado: bool) -> bool {
     let o = match e {
         Valor::Objeto(o) => o,
         _ => return false,
