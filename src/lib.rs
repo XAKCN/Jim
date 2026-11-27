@@ -11,6 +11,7 @@
 pub mod gate;
 pub mod hash;
 pub mod json;
+pub mod registros;
 
 #[cfg(feature = "python")]
 mod ligacao {
