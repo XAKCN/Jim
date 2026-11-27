@@ -31,6 +31,11 @@ def canonico(valor):
     return json.dumps(valor, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
 
 
+def selar(fecho):
+    sem_selo = {k: v for k, v in fecho.items() if k != "selo"}
+    return {**sem_selo, "selo": sha(canonico(sem_selo))}
+
+
 def retorno(valor):
     return {"tipo": "retorno", "valor": valor}
 
@@ -136,6 +141,7 @@ class Oraculo:
             "integracao": registros["integracao"], "correntes": registros["correntes"],
             "contrato_gate": cg, "gate": gate, "veredito": veredito, "ambiente": ambiente,
         }
+        fecho = selar(fecho)
         dados = canonico(fecho) + b"\n"
         return {"fecho": fecho, "dados": dados, "sha256": sha(dados), "veredito": veredito}
 
@@ -509,15 +515,16 @@ def fecho(casos):
 
     def verifica(passo, limite, veredito, motivo, *, fecho_bytes=montado["dados"], atuais=arquivos,
                  contrato_bytes=dados, ancora=None, reproducao=None):
+        etapa = int(str(passo).removesuffix("b"))
         digest = sha(fecho_bytes)
         args = dict(fecho_bytes=fecho_bytes, contrato_bytes=contrato_bytes, atuais=atuais,
                     reproducao=reproducao, ancora=ancora)
         esperado = {
             "veredito": veredito, "motivo": motivo, "erros": [motivo] if motivo else [], "fecho_sha256": digest,
-            "candidato": documento["candidato"] if passo >= 3 else None,
-            "contrato_sha256": sha(contrato_bytes) if passo >= 5 else None,
-            "gate": gate if passo >= 9 else None,
-            "reproducao": {"resultado": veredito, "motivo": motivo} if passo == 13 else None,
+            "candidato": documento["candidato"] if etapa >= 3 else None,
+            "contrato_sha256": sha(contrato_bytes) if etapa >= 5 else None,
+            "gate": gate if etapa >= 9 else None,
+            "reproducao": {"resultado": veredito, "motivo": motivo} if etapa == 13 else None,
         }
         caso("verificar_fecho", f"§5.3 V{passo}", limite, args, esperado, digest)
 
@@ -525,19 +532,22 @@ def fecho(casos):
     verifica(13, "reprodução igual", "PASS", None, reproducao=rep)
     verifica(3, "bytes não canônicos", "UNKNOWN", "J-V3: fecho fora da forma canônica",
              fecho_bytes=montado["dados"] + b" ")
+    adulterado = canonico(dict(documento, ambiente={"teste": "troca"})) + b"\n"
+    verifica("4b", "campo informativo sem novo selo", "FAIL", "J-V4b: selo do fecho não confere",
+             fecho_bytes=adulterado)
     verifica(1, "âncora divergente", "FAIL", "J-V1: fecho não confere com a âncora externa", ancora="0" * 64)
     verifica(10, "árvore atual mudou", "FAIL", "R-2.21: árvore atual diverge do fecho: 'valor.txt'",
              atuais=dict(arquivos, **{"valor.txt": sha(b"3\n")}))
     verifica(5, "contrato trocado", "FAIL", "R-2.5: contrato diverge do registrado no fecho",
              contrato_bytes=dados + b" ")
-    adulterado = canonico(dict(documento, veredito="PASS")) + b"\n"
+    adulterado = canonico(selar(dict(documento, veredito="PASS"))) + b"\n"
     verifica(9, "PASS gravado", "FAIL", "J-V9: veredito gravado diverge do recalculado", fecho_bytes=adulterado)
     for limite, alteracao in (
         ("stdout adulterado", {"stdout": '{"dobro":6}'}),
         ("saída adulterada", {"saida": {"dobro": 6}}),
     ):
         gravado = dict(documento["execucoes"][0], **alteracao)
-        adulterado = canonico(dict(documento, execucoes=[gravado])) + b"\n"
+        adulterado = canonico(selar(dict(documento, execucoes=[gravado]))) + b"\n"
         verifica(8, limite, "FAIL", "J-N7: stream gravado não confere: dobro", fecho_bytes=adulterado)
 
     controle = dict(ex["controles_negativos"][0], stderr="aviso\n")

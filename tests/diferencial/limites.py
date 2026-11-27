@@ -54,6 +54,7 @@ _ITENS = {
         "critério faltando", "cópia diferente", "bytes não canônicos",
         "stdout adulterado", "saída adulterada", "âncora divergente",
         "árvore atual mudou", "contrato trocado", "PASS gravado", "stderr de controle",
+        "campo informativo sem novo selo",
     ),
 }
 
