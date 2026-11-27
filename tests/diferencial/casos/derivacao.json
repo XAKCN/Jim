@@ -1,0 +1,2256 @@
+[
+ {
+  "args": {
+   "arquivos": [
+    "sonda.py",
+    "valor.txt"
+   ],
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": null
+  },
+  "funcao": "validar_contrato",
+  "grupo": "D",
+  "id": "D001",
+  "limite": [],
+  "oraculo": {
+   "chamada": "release.validar_contrato",
+   "saida": {
+    "tipo": "retorno",
+    "valor": null
+   }
+  },
+  "regra": "\u00a74.1"
+ },
+ {
+  "args": {
+   "candidato": "id",
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "candidato": "id",
+    "evidencias_aceitas": {
+     "dobro": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "dobro"
+    ],
+    "severidade": {
+     "dobro": "critica"
+    },
+    "versao": "1"
+   }
+  },
+  "funcao": "contrato_gate",
+  "grupo": "D",
+  "id": "D002",
+  "limite": [],
+  "oraculo": {
+   "chamada": "release.contrato_gate",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "candidato": "id",
+     "evidencias_aceitas": {
+      "dobro": [
+       "execucao"
+      ]
+     },
+     "integracao": {
+      "evidencias_aceitas": [
+       "execucao"
+      ]
+     },
+     "obrigatorios": [
+      "dobro"
+     ],
+     "severidade": {
+      "dobro": "critica"
+     },
+     "versao": "1"
+    }
+   }
+  },
+  "regra": "\u00a74.2"
+ },
+ {
+  "args": {
+   "arquivos": [
+    "sonda.py",
+    "valor.txt"
+   ],
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "regra": "sem_sobreviventes",
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": "J-K4",
+  "esperado": {
+   "classe": "EntradaInvalida",
+   "mensagem": "R-2.1: regra inv\u00e1lida",
+   "tipo": "excecao"
+  },
+  "funcao": "validar_contrato",
+  "grupo": "D",
+  "id": "D003",
+  "limite": [
+   "D: sem_sobreviventes"
+  ],
+  "oraculo": {
+   "chamada": "release.validar_contrato",
+   "saida": {
+    "tipo": "retorno",
+    "valor": null
+   }
+  },
+  "regra": "\u00a74.1"
+ },
+ {
+  "args": {
+   "criterio": {
+    "aceitos": [
+     "execucao"
+    ],
+    "comando": [
+     "sonda.py"
+    ],
+    "controles_negativos": [
+     {
+      "valor.txt": "3\n"
+     }
+    ],
+    "esperado": {
+     "dobro": 4
+    },
+    "reprova": "o dobro de 2 deve ser 4",
+    "severidade": "critica"
+   },
+   "saida": {
+    "dobro": 4
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": true
+  },
+  "funcao": "avaliar_saida",
+  "grupo": "D",
+  "id": "D004",
+  "limite": [
+   "D: PASS com esperado"
+  ],
+  "oraculo": {
+   "chamada": "release.avaliar_saida",
+   "saida": {
+    "tipo": "retorno",
+    "valor": true
+   }
+  },
+  "regra": "\u00a74.4"
+ },
+ {
+  "args": {
+   "criterio": {
+    "regra": "todos_aprovados"
+   },
+   "saida": {
+    "aprovados": 2,
+    "casos": 2,
+    "falhas": []
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": true
+  },
+  "funcao": "avaliar_saida",
+  "grupo": "D",
+  "id": "D005",
+  "limite": [
+   "D: todos_aprovados"
+  ],
+  "oraculo": {
+   "chamada": "release.avaliar_saida",
+   "saida": {
+    "tipo": "retorno",
+    "valor": true
+   }
+  },
+  "regra": "\u00a74.4"
+ },
+ {
+  "args": {
+   "criterio": {
+    "regra": "todos_aprovados"
+   },
+   "saida": {
+    "aprovados": 0,
+    "casos": 0,
+    "falhas": []
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": false
+  },
+  "funcao": "avaliar_saida",
+  "grupo": "D",
+  "id": "D006",
+  "limite": [
+   "D: todos_aprovados"
+  ],
+  "oraculo": {
+   "chamada": "release.avaliar_saida",
+   "saida": {
+    "tipo": "retorno",
+    "valor": false
+   }
+  },
+  "regra": "\u00a74.4"
+ },
+ {
+  "args": {
+   "texto": "{\"a\":1}\nfim"
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "a": 1
+   }
+  },
+  "funcao": "ultima_linha_json",
+  "grupo": "D",
+  "id": "D007",
+  "limite": [
+   "D: lixo depois da \u00faltima linha"
+  ],
+  "oraculo": {
+   "chamada": "release.ultima_linha_json",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "a": 1
+    }
+   }
+  },
+  "regra": "\u00a74.3"
+ },
+ {
+  "args": {
+   "texto": "log\r\n{\"a\":1}\r\n"
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "a": 1
+   }
+  },
+  "funcao": "ultima_linha_json",
+  "grupo": "D",
+  "id": "D008",
+  "limite": [
+   "D: CRLF"
+  ],
+  "oraculo": {
+   "chamada": "release.ultima_linha_json",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "a": 1
+    }
+   }
+  },
+  "regra": "\u00a74.3"
+ },
+ {
+  "args": {
+   "texto": "log\u001c{\"a\":1}\u001cfim"
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "a": 1
+   }
+  },
+  "funcao": "ultima_linha_json",
+  "grupo": "D",
+  "id": "D009",
+  "limite": [
+   "D: U+001C"
+  ],
+  "oraculo": {
+   "chamada": "release.ultima_linha_json",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "a": 1
+    }
+   }
+  },
+  "regra": "\u00a74.3"
+ },
+ {
+  "args": {
+   "texto": "log\n\u00a0{\"a\":1}\nfim"
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": null
+  },
+  "funcao": "ultima_linha_json",
+  "grupo": "D",
+  "id": "D010",
+  "limite": [
+   "D: U+00A0 antes de objeto"
+  ],
+  "oraculo": {
+   "chamada": "release.ultima_linha_json",
+   "saida": {
+    "tipo": "retorno",
+    "valor": null
+   }
+  },
+  "regra": "\u00a74.3"
+ },
+ {
+  "args": {
+   "texto": "{\"a\":1}\n{inv\u00e1lido\nfim"
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": null
+  },
+  "funcao": "ultima_linha_json",
+  "grupo": "D",
+  "id": "D011",
+  "limite": [
+   "D: \u00faltima inv\u00e1lida sem recuo"
+  ],
+  "oraculo": {
+   "chamada": "release.ultima_linha_json",
+   "saida": {
+    "tipo": "retorno",
+    "valor": null
+   }
+  },
+  "regra": "\u00a74.3"
+ },
+ {
+  "args": {
+   "texto": "{\"a\":9007199254740992}"
+  },
+  "comparar": "exato",
+  "divergencia": "J-S2",
+  "esperado": {
+   "tipo": "retorno",
+   "valor": null
+  },
+  "funcao": "ultima_linha_json",
+  "grupo": "D",
+  "id": "D012",
+  "limite": [],
+  "oraculo": {
+   "chamada": "release.ultima_linha_json",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "a": 9007199254740992
+    }
+   }
+  },
+  "regra": "\u00a74.3"
+ },
+ {
+  "args": {
+   "texto": "{\"a\":1e400}"
+  },
+  "comparar": "exato",
+  "divergencia": "J-S2",
+  "esperado": {
+   "tipo": "retorno",
+   "valor": null
+  },
+  "funcao": "ultima_linha_json",
+  "grupo": "D",
+  "id": "D013",
+  "limite": [],
+  "oraculo": {
+   "chamada": "release.ultima_linha_json",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "a": {
+      "$float": "inf"
+     }
+    }
+   }
+  },
+  "regra": "\u00a74.3"
+ },
+ {
+  "args": {
+   "texto": "{\"a\":[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[0]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]}"
+  },
+  "comparar": "exato",
+  "divergencia": "J-S2",
+  "esperado": {
+   "tipo": "retorno",
+   "valor": null
+  },
+  "funcao": "ultima_linha_json",
+  "grupo": "D",
+  "id": "D014",
+  "limite": [],
+  "oraculo": {
+   "chamada": "release.ultima_linha_json",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "a": [
+      [
+       [
+        [
+         [
+          [
+           [
+            [
+             [
+              [
+               [
+                [
+                 [
+                  [
+                   [
+                    [
+                     [
+                      [
+                       [
+                        [
+                         [
+                          [
+                           [
+                            [
+                             [
+                              [
+                               [
+                                [
+                                 [
+                                  [
+                                   [
+                                    [
+                                     [
+                                      [
+                                       [
+                                        [
+                                         [
+                                          [
+                                           [
+                                            [
+                                             [
+                                              [
+                                               [
+                                                [
+                                                 [
+                                                  [
+                                                   [
+                                                    [
+                                                     [
+                                                      [
+                                                       [
+                                                        [
+                                                         [
+                                                          [
+                                                           [
+                                                            [
+                                                             [
+                                                              [
+                                                               [
+                                                                [
+                                                                 [
+                                                                  [
+                                                                   [
+                                                                    [
+                                                                     0
+                                                                    ]
+                                                                   ]
+                                                                  ]
+                                                                 ]
+                                                                ]
+                                                               ]
+                                                              ]
+                                                             ]
+                                                            ]
+                                                           ]
+                                                          ]
+                                                         ]
+                                                        ]
+                                                       ]
+                                                      ]
+                                                     ]
+                                                    ]
+                                                   ]
+                                                  ]
+                                                 ]
+                                                ]
+                                               ]
+                                              ]
+                                             ]
+                                            ]
+                                           ]
+                                          ]
+                                         ]
+                                        ]
+                                       ]
+                                      ]
+                                     ]
+                                    ]
+                                   ]
+                                  ]
+                                 ]
+                                ]
+                               ]
+                              ]
+                             ]
+                            ]
+                           ]
+                          ]
+                         ]
+                        ]
+                       ]
+                      ]
+                     ]
+                    ]
+                   ]
+                  ]
+                 ]
+                ]
+               ]
+              ]
+             ]
+            ]
+           ]
+          ]
+         ]
+        ]
+       ]
+      ]
+     ]
+    }
+   }
+  },
+  "regra": "\u00a74.3"
+ },
+ {
+  "args": {
+   "criterio": {
+    "aceitos": [
+     "execucao"
+    ],
+    "comando": [
+     "sonda.py"
+    ],
+    "controles_negativos": [
+     {
+      "valor.txt": "3\n"
+     }
+    ],
+    "esperado": {
+     "dobro": 4
+    },
+    "reprova": "o dobro de 2 deve ser 4",
+    "severidade": "critica"
+   },
+   "execucao": {
+    "comando": [
+     "python",
+     "sonda.py"
+    ],
+    "controles_negativos": [
+     {
+      "alterado": true,
+      "exit_code": 0,
+      "saida": {
+       "dobro": 6
+      },
+      "stderr": "aviso\n",
+      "stderr_sha256": "fe5619ee02cda192c6ed6a9bde845e6b03c4b8238dd6ff24406a47e2c9976808",
+      "stdout": "{\"dobro\": 6}\n",
+      "stdout_sha256": "4e736431d2091322a408e91eac0f71ee28590e9e0385dfbcff4f94134a31b94f"
+     }
+    ],
+    "criterio": "dobro",
+    "duracao_s": 1.0,
+    "exit_code": 0,
+    "saida": {
+     "dobro": 4
+    },
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "{\"dobro\": 4}\n",
+    "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": false
+  },
+  "funcao": "controles_aprovados",
+  "grupo": "D",
+  "id": "D015",
+  "limite": [
+   "D: controle com stderr"
+  ],
+  "oraculo": {
+   "chamada": "release.controles_aprovados",
+   "saida": {
+    "tipo": "retorno",
+    "valor": false
+   }
+  },
+  "regra": "\u00a74.5"
+ },
+ {
+  "args": {
+   "criterio": {
+    "aceitos": [
+     "execucao"
+    ],
+    "comando": [
+     "sonda.py"
+    ],
+    "controles_negativos": [
+     {
+      "valor.txt": "3\n"
+     }
+    ],
+    "esperado": {
+     "dobro": 4
+    },
+    "reprova": "o dobro de 2 deve ser 4",
+    "severidade": "critica"
+   },
+   "execucao": {
+    "comando": [
+     "python",
+     "sonda.py"
+    ],
+    "controles_negativos": [
+     {
+      "alterado": true,
+      "exit_code": 0,
+      "saida": {
+       "dobro": 6,
+       "erro": "x"
+      },
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"dobro\":6,\"erro\":\"x\"}",
+      "stdout_sha256": "b1fbb2badde61aabb7f1ed5239cd29318e55a882e52cd2b528e56b70c573e0cd"
+     }
+    ],
+    "criterio": "dobro",
+    "duracao_s": 1.0,
+    "exit_code": 0,
+    "saida": {
+     "dobro": 4
+    },
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "{\"dobro\": 4}\n",
+    "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": false
+  },
+  "funcao": "controles_aprovados",
+  "grupo": "D",
+  "id": "D016",
+  "limite": [
+   "D: controle com erro"
+  ],
+  "oraculo": {
+   "chamada": "release.controles_aprovados",
+   "saida": {
+    "tipo": "retorno",
+    "valor": false
+   }
+  },
+  "regra": "\u00a74.5"
+ },
+ {
+  "args": {
+   "criterio": {
+    "aceitos": [
+     "execucao"
+    ],
+    "comando": [
+     "sonda.py"
+    ],
+    "controles_negativos": [
+     {
+      "valor.txt": "3\n"
+     }
+    ],
+    "esperado": {
+     "dobro": 4
+    },
+    "reprova": "o dobro de 2 deve ser 4",
+    "severidade": "critica"
+   },
+   "execucao": {
+    "comando": [
+     "python",
+     "sonda.py"
+    ],
+    "controles_negativos": [
+     {
+      "alterado": true,
+      "exit_code": 0,
+      "saida": {
+       "dobro": true
+      },
+      "stderr": "",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "{\"dobro\":true}",
+      "stdout_sha256": "0f61fbcd79127314d2e1c46d36e1d9e2d27858f5f2a68fc2a3f0776ed93c2b3e"
+     }
+    ],
+    "criterio": "dobro",
+    "duracao_s": 1.0,
+    "exit_code": 0,
+    "saida": {
+     "dobro": 4
+    },
+    "stderr": "",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout": "{\"dobro\": 4}\n",
+    "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": false
+  },
+  "funcao": "controles_aprovados",
+  "grupo": "D",
+  "id": "D017",
+  "limite": [
+   "D: formato bool e int"
+  ],
+  "oraculo": {
+   "chamada": "release.controles_aprovados",
+   "saida": {
+    "tipo": "retorno",
+    "valor": false
+   }
+  },
+  "regra": "\u00a74.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "dobro": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+      "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+    "evidencias_aceitas": {
+     "dobro": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "dobro"
+    ],
+    "severidade": {
+     "dobro": "critica"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+    "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+    "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+     "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "dobro": {
+      "motivo": null,
+      "resultado": "PASS",
+      "severidade": "critica"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [],
+    "veredito": "PASS"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "D",
+  "id": "D018",
+  "limite": [
+   "D: PASS com esperado"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "dobro": {
+       "motivo": null,
+       "resultado": "PASS",
+       "severidade": "critica"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [],
+     "veredito": "PASS"
+    }
+   }
+  },
+  "regra": "\u00a74.6/\u00a73.5"
+ },
+ {
+  "args": {
+   "avaliacoes": {
+    "dobro": {
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+      "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   },
+   "contrato": {
+    "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+    "evidencias_aceitas": {
+     "dobro": [
+      "execucao"
+     ]
+    },
+    "integracao": {
+     "evidencias_aceitas": [
+      "execucao"
+     ]
+    },
+    "obrigatorios": [
+     "dobro"
+    ],
+    "severidade": {
+     "dobro": "critica"
+    },
+    "versao": "1"
+   },
+   "correntes": {
+    "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+    "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5",
+    "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   },
+   "hoje": "2026-01-01",
+   "integracao": {
+    "adequado": true,
+    "atual": true,
+    "conflito": false,
+    "dependencias": {
+     "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+     "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5"
+    },
+    "falha_critica": false,
+    "instrumento": "execucao",
+    "valido_ate": "vinculada_dependencias",
+    "versao_contrato": "1"
+   }
+  },
+  "comparar": "exato",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "contrato": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "criterios": {
+     "dobro": {
+      "motivo": "R-2.9: campo adequado omitido",
+      "resultado": "UNKNOWN",
+      "severidade": "critica"
+     }
+    },
+    "integracao": {
+     "motivo": null,
+     "resultado": "PASS"
+    },
+    "ordem_falhas": [
+     "dobro"
+    ],
+    "veredito": "UNKNOWN"
+   }
+  },
+  "funcao": "gate_43",
+  "grupo": "D",
+  "id": "D019",
+  "limite": [
+   "D: cr\u00edtica sem controles"
+  ],
+  "oraculo": {
+   "chamada": "gate43.gate_43",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "contrato": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "criterios": {
+      "dobro": {
+       "motivo": "R-2.9: campo adequado omitido",
+       "resultado": "UNKNOWN",
+       "severidade": "critica"
+      }
+     },
+     "integracao": {
+      "motivo": null,
+      "resultado": "PASS"
+     },
+     "ordem_falhas": [
+      "dobro"
+     ],
+     "veredito": "UNKNOWN"
+    }
+   }
+  },
+  "regra": "\u00a74.6/\u00a73.5"
+ },
+ {
+  "args": {
+   "atuais": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   },
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   },
+   "contrato_sha256": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "contrato_sha256_depois": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "execucoes": [
+    {
+     "comando": [
+      "python",
+      "sonda.py"
+     ],
+     "controles_negativos": [
+      {
+       "alterado": true,
+       "exit_code": 0,
+       "saida": {
+        "dobro": 6
+       },
+       "stderr": "",
+       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "stdout": "{\"dobro\": 6}\n",
+       "stdout_sha256": "4e736431d2091322a408e91eac0f71ee28590e9e0385dfbcff4f94134a31b94f"
+      }
+     ],
+     "criterio": "dobro",
+     "duracao_s": 1.0,
+     "exit_code": 0,
+     "saida": {
+      "dobro": 4
+     },
+     "stderr": "",
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout": "{\"dobro\": 4}\n",
+     "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+    }
+   ],
+   "executados": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "avaliacoes": {
+     "dobro": {
+      "adequado": true,
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+       "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+       "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    },
+    "correntes": {
+     "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+     "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+     "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+     "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+    },
+    "integracao": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   }
+  },
+  "funcao": "derivar_registros",
+  "grupo": "D",
+  "id": "D020",
+  "limite": [
+   "D: PASS com esperado"
+  ],
+  "oraculo": {
+   "chamada": "release.registros",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "avaliacoes": {
+      "dobro": {
+       "adequado": true,
+       "atual": true,
+       "conflito": false,
+       "dependencias": {
+        "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+        "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+        "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+        "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+       },
+       "falha_critica": false,
+       "instrumento": "execucao",
+       "valido_ate": "vinculada_dependencias",
+       "versao_contrato": "1"
+      }
+     },
+     "correntes": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+      "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+     },
+     "integracao": {
+      "adequado": true,
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    }
+   }
+  },
+  "regra": "\u00a74.6"
+ },
+ {
+  "args": {
+   "atuais": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   },
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   },
+   "contrato_sha256": "3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5",
+   "contrato_sha256_depois": "3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5",
+   "execucoes": [
+    {
+     "comando": [
+      "python",
+      "sonda.py"
+     ],
+     "criterio": "dobro",
+     "duracao_s": 1.0,
+     "exit_code": 0,
+     "saida": {
+      "dobro": 4
+     },
+     "stderr": "",
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout": "{\"dobro\": 4}\n",
+     "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+    }
+   ],
+   "executados": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "avaliacoes": {
+     "dobro": {
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5",
+       "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+       "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    },
+    "correntes": {
+     "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+     "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5",
+     "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+     "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+    },
+    "integracao": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   }
+  },
+  "funcao": "derivar_registros",
+  "grupo": "D",
+  "id": "D021",
+  "limite": [
+   "D: cr\u00edtica sem controles"
+  ],
+  "oraculo": {
+   "chamada": "release.registros",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "avaliacoes": {
+      "dobro": {
+       "atual": true,
+       "conflito": false,
+       "dependencias": {
+        "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+        "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5",
+        "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+        "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+       },
+       "falha_critica": false,
+       "instrumento": "execucao",
+       "valido_ate": "vinculada_dependencias",
+       "versao_contrato": "1"
+      }
+     },
+     "correntes": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+      "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+     },
+     "integracao": {
+      "adequado": true,
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:3e1053db89ac462f82309f0f54673ef6c018c41021564c73ea0f76a013a979a5"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    }
+   }
+  },
+  "regra": "\u00a74.6"
+ },
+ {
+  "args": {
+   "atuais": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   },
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   },
+   "contrato_sha256": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "contrato_sha256_depois": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "execucoes": [
+    {
+     "comando": [
+      "python",
+      "sonda.py"
+     ],
+     "controles_negativos": [
+      {
+       "alterado": true,
+       "exit_code": 0,
+       "saida": {
+        "dobro": 6
+       },
+       "stderr": "",
+       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "stdout": "{\"dobro\": 6}\n",
+       "stdout_sha256": "4e736431d2091322a408e91eac0f71ee28590e9e0385dfbcff4f94134a31b94f"
+      }
+     ],
+     "criterio": "dobro",
+     "duracao_s": 1.0,
+     "exit_code": 1,
+     "saida": {
+      "dobro": 4
+     },
+     "stderr": "",
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout": "{\"dobro\": 4}\n",
+     "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+    }
+   ],
+   "executados": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "avaliacoes": {
+     "dobro": {
+      "adequado": false,
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+       "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+       "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+      },
+      "falha_critica": true,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    },
+    "correntes": {
+     "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+     "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+     "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+     "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+    },
+    "integracao": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   }
+  },
+  "funcao": "derivar_registros",
+  "grupo": "D",
+  "id": "D022",
+  "limite": [
+   "D: exit diferente de zero"
+  ],
+  "oraculo": {
+   "chamada": "release.registros",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "avaliacoes": {
+      "dobro": {
+       "adequado": false,
+       "atual": true,
+       "conflito": false,
+       "dependencias": {
+        "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+        "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+        "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+        "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+       },
+       "falha_critica": true,
+       "instrumento": "execucao",
+       "valido_ate": "vinculada_dependencias",
+       "versao_contrato": "1"
+      }
+     },
+     "correntes": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+      "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+     },
+     "integracao": {
+      "adequado": true,
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    }
+   }
+  },
+  "regra": "\u00a74.6"
+ },
+ {
+  "args": {
+   "atuais": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   },
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   },
+   "contrato_sha256": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "contrato_sha256_depois": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "execucoes": [
+    {
+     "comando": [
+      "python",
+      "sonda.py"
+     ],
+     "controles_negativos": [
+      {
+       "alterado": true,
+       "exit_code": 0,
+       "saida": {
+        "dobro": 6
+       },
+       "stderr": "",
+       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "stdout": "{\"dobro\": 6}\n",
+       "stdout_sha256": "4e736431d2091322a408e91eac0f71ee28590e9e0385dfbcff4f94134a31b94f"
+      }
+     ],
+     "criterio": "dobro",
+     "duracao_s": 1.0,
+     "exit_code": 0,
+     "saida": null,
+     "stderr": "",
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout": "sem JSON\n",
+     "stdout_sha256": "72a66cc185fa57fdd04b79b3cde98c4dfeb54407ec441c19d9b7ed3383f5f350"
+    }
+   ],
+   "executados": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "avaliacoes": {
+     "dobro": {
+      "adequado": false,
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+       "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+       "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+      },
+      "falha_critica": true,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    },
+    "correntes": {
+     "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+     "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+     "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+     "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+    },
+    "integracao": {
+     "adequado": true,
+     "atual": true,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   }
+  },
+  "funcao": "derivar_registros",
+  "grupo": "D",
+  "id": "D023",
+  "limite": [
+   "D: sa\u00edda None"
+  ],
+  "oraculo": {
+   "chamada": "release.registros",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "avaliacoes": {
+      "dobro": {
+       "adequado": false,
+       "atual": true,
+       "conflito": false,
+       "dependencias": {
+        "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+        "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+        "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+        "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+       },
+       "falha_critica": true,
+       "instrumento": "execucao",
+       "valido_ate": "vinculada_dependencias",
+       "versao_contrato": "1"
+      }
+     },
+     "correntes": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+      "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+     },
+     "integracao": {
+      "adequado": true,
+      "atual": true,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    }
+   }
+  },
+  "regra": "\u00a74.6"
+ },
+ {
+  "args": {
+   "atuais": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2"
+   },
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   },
+   "contrato_sha256": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "contrato_sha256_depois": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "execucoes": [
+    {
+     "comando": [
+      "python",
+      "sonda.py"
+     ],
+     "controles_negativos": [
+      {
+       "alterado": true,
+       "exit_code": 0,
+       "saida": {
+        "dobro": 6
+       },
+       "stderr": "",
+       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "stdout": "{\"dobro\": 6}\n",
+       "stdout_sha256": "4e736431d2091322a408e91eac0f71ee28590e9e0385dfbcff4f94134a31b94f"
+      }
+     ],
+     "criterio": "dobro",
+     "duracao_s": 1.0,
+     "exit_code": 0,
+     "saida": {
+      "dobro": 4
+     },
+     "stderr": "",
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout": "{\"dobro\": 4}\n",
+     "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+    }
+   ],
+   "executados": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "avaliacoes": {
+     "dobro": {
+      "adequado": true,
+      "atual": false,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+       "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+       "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    },
+    "correntes": {
+     "candidato": "sha256:391d5502777d6c68d5fae7d3728517628a48b30235ac3f066588d8fc5bcf3660",
+     "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+     "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+     "valor.txt": "sha256:1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2"
+    },
+    "integracao": {
+     "adequado": false,
+     "atual": false,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   }
+  },
+  "funcao": "derivar_registros",
+  "grupo": "D",
+  "id": "D024",
+  "limite": [
+   "D: arquivo mudado"
+  ],
+  "oraculo": {
+   "chamada": "release.registros",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "avaliacoes": {
+      "dobro": {
+       "adequado": true,
+       "atual": false,
+       "conflito": false,
+       "dependencias": {
+        "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+        "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+        "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+        "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+       },
+       "falha_critica": false,
+       "instrumento": "execucao",
+       "valido_ate": "vinculada_dependencias",
+       "versao_contrato": "1"
+      }
+     },
+     "correntes": {
+      "candidato": "sha256:391d5502777d6c68d5fae7d3728517628a48b30235ac3f066588d8fc5bcf3660",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+      "valor.txt": "sha256:1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2"
+     },
+     "integracao": {
+      "adequado": false,
+      "atual": false,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    }
+   }
+  },
+  "regra": "\u00a74.6"
+ },
+ {
+  "args": {
+   "atuais": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70"
+   },
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   },
+   "contrato_sha256": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "contrato_sha256_depois": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "execucoes": [
+    {
+     "comando": [
+      "python",
+      "sonda.py"
+     ],
+     "controles_negativos": [
+      {
+       "alterado": true,
+       "exit_code": 0,
+       "saida": {
+        "dobro": 6
+       },
+       "stderr": "",
+       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "stdout": "{\"dobro\": 6}\n",
+       "stdout_sha256": "4e736431d2091322a408e91eac0f71ee28590e9e0385dfbcff4f94134a31b94f"
+      }
+     ],
+     "criterio": "dobro",
+     "duracao_s": 1.0,
+     "exit_code": 0,
+     "saida": {
+      "dobro": 4
+     },
+     "stderr": "",
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout": "{\"dobro\": 4}\n",
+     "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+    }
+   ],
+   "executados": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "avaliacoes": {
+     "dobro": {
+      "adequado": true,
+      "atual": false,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+       "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+       "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    },
+    "correntes": {
+     "candidato": "sha256:28c406d318988c1f6da1fee6c175ae3336cde87b14b0fc317354997d1ff16709",
+     "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+     "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70"
+    },
+    "integracao": {
+     "adequado": false,
+     "atual": false,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   }
+  },
+  "funcao": "derivar_registros",
+  "grupo": "D",
+  "id": "D025",
+  "limite": [
+   "D: arquivo apagado"
+  ],
+  "oraculo": {
+   "chamada": "release.registros",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "avaliacoes": {
+      "dobro": {
+       "adequado": true,
+       "atual": false,
+       "conflito": false,
+       "dependencias": {
+        "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+        "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+        "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+        "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+       },
+       "falha_critica": false,
+       "instrumento": "execucao",
+       "valido_ate": "vinculada_dependencias",
+       "versao_contrato": "1"
+      }
+     },
+     "correntes": {
+      "candidato": "sha256:28c406d318988c1f6da1fee6c175ae3336cde87b14b0fc317354997d1ff16709",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70"
+     },
+     "integracao": {
+      "adequado": false,
+      "atual": false,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    }
+   }
+  },
+  "regra": "\u00a74.6"
+ },
+ {
+  "args": {
+   "atuais": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   },
+   "contrato": {
+    "arquivos": [
+     "*.py",
+     "*.txt"
+    ],
+    "criterios": {
+     "dobro": {
+      "aceitos": [
+       "execucao"
+      ],
+      "comando": [
+       "sonda.py"
+      ],
+      "controles_negativos": [
+       {
+        "valor.txt": "3\n"
+       }
+      ],
+      "esperado": {
+       "dobro": 4
+      },
+      "reprova": "o dobro de 2 deve ser 4",
+      "severidade": "critica"
+     }
+    },
+    "data_referencia": "2026-01-01",
+    "esquema": "jim-contrato/1",
+    "versao": "1"
+   },
+   "contrato_sha256": "c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+   "contrato_sha256_depois": "0000000000000000000000000000000000000000000000000000000000000000",
+   "execucoes": [
+    {
+     "comando": [
+      "python",
+      "sonda.py"
+     ],
+     "controles_negativos": [
+      {
+       "alterado": true,
+       "exit_code": 0,
+       "saida": {
+        "dobro": 6
+       },
+       "stderr": "",
+       "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+       "stdout": "{\"dobro\": 6}\n",
+       "stdout_sha256": "4e736431d2091322a408e91eac0f71ee28590e9e0385dfbcff4f94134a31b94f"
+      }
+     ],
+     "criterio": "dobro",
+     "duracao_s": 1.0,
+     "exit_code": 0,
+     "saida": {
+      "dobro": 4
+     },
+     "stderr": "",
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout": "{\"dobro\": 4}\n",
+     "stdout_sha256": "531597e2f7fd1ac8ad2a4e19c980aa8bb70099a8ea749af881f0b14ed86e7dc1"
+    }
+   ],
+   "executados": {
+    "sonda.py": "b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+    "valor.txt": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+   }
+  },
+  "comparar": "codigo",
+  "divergencia": null,
+  "esperado": {
+   "tipo": "retorno",
+   "valor": {
+    "avaliacoes": {
+     "dobro": {
+      "adequado": true,
+      "atual": false,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+       "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+       "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    },
+    "correntes": {
+     "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+     "contrato": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+     "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+     "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+    },
+    "integracao": {
+     "adequado": false,
+     "atual": false,
+     "conflito": false,
+     "dependencias": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+     },
+     "falha_critica": false,
+     "instrumento": "execucao",
+     "valido_ate": "vinculada_dependencias",
+     "versao_contrato": "1"
+    }
+   }
+  },
+  "funcao": "derivar_registros",
+  "grupo": "D",
+  "id": "D026",
+  "limite": [
+   "D: contrato mudado"
+  ],
+  "oraculo": {
+   "chamada": "release.registros",
+   "saida": {
+    "tipo": "retorno",
+    "valor": {
+     "avaliacoes": {
+      "dobro": {
+       "adequado": true,
+       "atual": false,
+       "conflito": false,
+       "dependencias": {
+        "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+        "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b",
+        "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+        "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+       },
+       "falha_critica": false,
+       "instrumento": "execucao",
+       "valido_ate": "vinculada_dependencias",
+       "versao_contrato": "1"
+      }
+     },
+     "correntes": {
+      "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+      "contrato": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "sonda.py": "sha256:b6801095cdd62a16f3038d724f6c3b1ccfc908e517f3fd8eac3af6141a4cdd70",
+      "valor.txt": "sha256:53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+     },
+     "integracao": {
+      "adequado": false,
+      "atual": false,
+      "conflito": false,
+      "dependencias": {
+       "candidato": "sha256:af939c88a4e8e9041a5ce7052ca049fcd12fd7f4ec3fc3821f44e8779714c7d4",
+       "contrato": "sha256:c74446ad623229c85233471db9977217fd32e0a31a2792ff72b1455336a5a52b"
+      },
+      "falha_critica": false,
+      "instrumento": "execucao",
+      "valido_ate": "vinculada_dependencias",
+      "versao_contrato": "1"
+     }
+    }
+   }
+  },
+  "regra": "\u00a74.6"
+ }
+]

@@ -1,0 +1,16 @@
+{
+  "esquema": "jim-contrato/1",
+  "versao": "1",
+  "data_referencia": "2026-01-01",
+  "arquivos": ["*.py", "*.txt"],
+  "criterios": {
+    "dobro": {
+      "comando": ["sonda.py"],
+      "aceitos": ["execucao"],
+      "severidade": "critica",
+      "reprova": "o dobro de 2 deve ser 4",
+      "esperado": {"dobro": 4},
+      "controles_negativos": [{"valor.txt": "3\n"}]
+    }
+  }
+}
