@@ -4,6 +4,7 @@ from inspect import signature
 import json
 import socket
 import unittest
+from unittest.mock import patch
 
 from jim import _core
 
@@ -122,6 +123,18 @@ class DiferencialTest(unittest.TestCase):
             with self.subTest(caso=caso["id"], limites=caso["limite"]):
                 self.comparar(caso)
 
+    def test_comparador_recusa_retorno_divergente(self):
+        caso = {
+            "id": "retorno-divergente",
+            "funcao": "json_canonico",
+            "args": {"valor": True},
+            "esperado": {"tipo": "retorno", "valor": etiquetar(b"false")},
+            "comparar": "exato",
+        }
+        with patch.object(_core, "iguais", return_value=True):
+            with self.assertRaisesRegex(AssertionError, "obtido="):
+                self.comparar(caso)
+
     def comparar(self, caso):
         funcao = getattr(_core, caso["funcao"])
         esperado = caso["esperado"]
@@ -142,8 +155,8 @@ class DiferencialTest(unittest.TestCase):
             obtido, esperado = normalizar(obtido), normalizar(esperado)
         # Compara os valores JSON, incluindo as etiquetas dos campos binários.
         if obtido["tipo"] == esperado["tipo"] == "retorno":
-            self.assertTrue(_core.iguais(obtido["valor"], esperado["valor"]),
-                            f"obtido={obtido!r}\nesperado={esperado!r}")
+            self.assertEqual(vigia.canonico(obtido["valor"]), vigia.canonico(esperado["valor"]),
+                             f"obtido={obtido!r}\nesperado={esperado!r}")
         else:
             self.assertEqual(obtido, esperado)
 

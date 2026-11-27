@@ -96,8 +96,9 @@ se `stderr` não vazio). `saida` = `release.ultima_linha_json(n(stdout))`.
 ## 4. Comparador no CI e regra do PASS
 
 - **C1** Para cada caso: decodifica etiquetas, chama `jim._core.<funcao>(**args)` e compara com
-  `esperado`. `exato`: retorno com `iguais` (bytes comparados pela etiqueta `$bytes`); exceção
-  `EntradaInvalida` com a mesma mensagem. `codigo`: mesma estrutura e mesmos `resultado`/`veredito`;
+  `esperado`. `exato` compara retornos pela forma canônica gerada em Python, independente do
+  `iguais` do núcleo e com a etiqueta `$bytes` preservada. Exige a mesma mensagem em exceções
+  `EntradaInvalida`. `codigo`: mesma estrutura e mesmos `resultado`/`veredito`;
   cada `motivo` e cada mensagem comparados pelo código (texto até o primeiro `": "`).
 - **C2** `NaoImplementado` nunca conta como aprovado. Com `jim._core.IMPLEMENTADO is False`, a suíte
   diferencial é pulada com aviso explícito; com True, qualquer `NaoImplementado` é falha.
