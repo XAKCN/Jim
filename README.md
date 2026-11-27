@@ -18,7 +18,7 @@ Sem reprodução, o teto é **UNPROVEN**.
 
 ## Instalação
 
-Requisitos: CPython ≥ 3.9 e Rust ≥ 1.85, que compila o núcleo.
+Veja os [requisitos](#requisitos) abaixo. Em resumo: CPython ≥ 3.9, Rust ≥ 1.85 e rede.
 
 ```sh
 uvx --from git+https://github.com/XAKCN/Jim jim --version
@@ -29,6 +29,21 @@ O comando imprime `jim 0.1.0`. Como alternativa, instale com o pip:
 ```sh
 pip install git+https://github.com/XAKCN/Jim
 ```
+
+## Requisitos
+
+| Item | Valor | Fonte |
+|---|---|---|
+| Python | CPython ≥ 3.9 (CI testa 3.9 e 3.13) | `pyproject.toml` (`requires-python`), CI |
+| Dependências de runtime | nenhuma | `pyproject.toml` (`dependencies = []`) |
+| Rust / cargo | ≥ 1.85 (edition 2021), necessário para compilar o núcleo | `Cargo.toml` (`rust-version`) |
+| Build | maturin ≥ 1.9, < 2; o pip/uv baixa sozinho | `pyproject.toml` (`build-system`) |
+| uv / uvx | opcional; só para o comando de uma linha | — |
+| Sistema | Linux (CI em Ubuntu 24.04). macOS e Windows ainda não: a leitura segura do inventário recusa com `J-C7` | CI, `src/hash.rs` |
+| Rede | necessária para instalar via git (clona o repo e baixa crates e o maturin) | — |
+
+Não há wheel pré-compilado nem pacote publicado no PyPI: toda instalação compila o núcleo Rust
+na máquina. Para desenvolver, `pip install -r requirements.txt` instala só o maturin.
 
 ## Como funciona
 
@@ -96,6 +111,14 @@ Depois siga o roteiro:
 4. Com terminal, o agente roda `uvx --from git+https://github.com/XAKCN/Jim jim provar`.
 5. Fora do agente, rode `uvx --from git+https://github.com/XAKCN/Jim jim verificar --reproduzir`.
 6. Cobre a tabela final: afirmação | evidência | veredito.
+
+## Chatbot sem rede (Claude.ai, ChatGPT)
+
+Sem terminal nem rede, o chat não executa nada, e o teto é UNPROVEN. Isso é o comportamento
+esperado, não falha. Para usar assim, anexe o zip do repositório ou cole o
+[AGENTS.md](https://raw.githubusercontent.com/XAKCN/Jim/main/AGENTS.md) (link raw) junto com o
+prompt acima. Para chegar a PASS, use um agente com terminal (Claude Code, Codex, Cursor), que
+roda `jim provar`, e reproduza com `jim verificar --reproduzir` fora do agente.
 
 ## Links
 
