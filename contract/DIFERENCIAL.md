@@ -21,7 +21,7 @@ Os arquivos de `casos/` só mudam por execução do gerador; ninguém os edita �
 Uso local (o caminho é só exemplo):
 
 ```sh
-JIM_ORACULO=/workspace/jim_ref/base_4_5/project python -I -B tests/diferencial/gerar.py
+JIM_ORACULO=/caminho/para/gauntlet-loops/base_4_5/project python -I -B tests/diferencial/gerar.py
 ```
 
 - **G1** Sem `JIM_ORACULO`: sai com código 2. Nunca há caminho padrão.
