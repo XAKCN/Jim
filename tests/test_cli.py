@@ -121,6 +121,12 @@ class CLIPontaAPontaTest(unittest.TestCase):
         valor.write_bytes(b"2\n")
         fecho = self.raiz / ".jim" / "fecho.json"
         dados = fecho.read_bytes()
+        sem_selo_novo = dados.replace(b'"duracao_s":1.0', b'"duracao_s":2.0', 1)
+        self.assertNotEqual(sem_selo_novo, dados)
+        fecho.write_bytes(sem_selo_novo)
+        saida = self.rodar("verificar", "--reproduzir", codigo=1)
+        self.assertTrue(saida["motivo"].startswith("J-V4b: "), saida)
+
         corrompido = dados.replace(b'"veredito":"UNPROVEN"', b'"veredito":"XNPROVEN"', 1)
         self.assertNotEqual(corrompido, dados)
         fecho.write_bytes(corrompido)
