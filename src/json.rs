@@ -556,36 +556,26 @@ impl Parser<'_> {
 
 /// `repr` de float do Python (§2.2), para |x| ≤ 2^53 − 1 finito.
 pub fn float_repr(x: f64) -> String {
-    if x == 0.0 {
-        return if x.is_sign_negative() { "-0.0".into() } else { "0.0".into() };
+    // Ryū escolhe os dígitos mais curtos e desempata pelo dígito par, como o Python.
+    let mut buffer = ryu::Buffer::new();
+    let texto = buffer.format_finite(x);
+    if let Some((mantissa, expoente)) = texto.split_once('e') {
+        let expoente: i32 = expoente.parse().expect("expoente do Ryū");
+        return format!("{mantissa}e{expoente:+03}");
     }
-    let sinal = if x < 0.0 { "-" } else { "" };
-    let e = format!("{:e}", x.abs()); // dígitos mais curtos de ida e volta
-    let (mant, exp) = e.split_once('e').unwrap_or((&e, "0"));
-    let exp: i64 = exp.parse().unwrap_or(0);
-    let mut d: String = mant.chars().filter(|c| *c != '.').collect();
-    while d.len() > 1 && d.ends_with('0') {
-        d.pop();
-    }
-    let n = d.len() as i64;
-    let p = exp + 1;
-    let corpo = if p <= -4 {
-        let mut s = d[..1].to_string();
-        if n > 1 {
-            s.push('.');
-            s.push_str(&d[1..]);
-        }
-        let q = p - 1;
-        s.push_str(&format!("e{}{:02}", if q < 0 { '-' } else { '+' }, q.abs()));
-        s
-    } else if p <= 0 {
-        format!("0.{}{}", "0".repeat((-p) as usize), d)
-    } else if p >= n {
-        format!("{}{}.0", d, "0".repeat((p - n) as usize))
-    } else {
-        format!("{}.{}", &d[..p as usize], &d[p as usize..])
+    // No domínio do Jim, a outra diferença de formato é a faixa [1e-5, 1e-4).
+    let (sinal, absoluto) = match texto.strip_prefix('-') {
+        Some(resto) => ("-", resto),
+        None => ("", texto),
     };
-    format!("{sinal}{corpo}")
+    if let Some(digitos) = absoluto.strip_prefix("0.0000") {
+        let (primeiro, resto) = digitos.split_at(1);
+        if resto.is_empty() {
+            return format!("{sinal}{primeiro}e-05");
+        }
+        return format!("{sinal}{primeiro}.{resto}e-05");
+    }
+    texto.into()
 }
 
 fn canonico_em(v: &Valor, out: &mut Vec<u8>) {
@@ -757,6 +747,19 @@ mod testes {
     fn vetor_objeto_2_2() {
         let v = e("{\"z\":0.0001,\"y\":1e-05,\"x\":-0.0,\"é\":\"\u{2028}\\u007f\\u0001\",\"B\":[1,2.0]}").unwrap();
         assert_eq!(c(&v), "{\"B\":[1,2.0],\"x\":-0.0,\"y\":1e-05,\"z\":0.0001,\"é\":\"\u{2028}\u{7f}\\u0001\"}");
+    }
+
+    #[test]
+    fn floats_empatados_escolhem_o_digito_par() {
+        for (valor, esperado) in [
+            (684191433378107.25, "684191433378107.2"),
+            (-2112127953860455.25, "-2112127953860455.2"),
+            (213962842088193.625, "213962842088193.62"),
+            (2554252682301.15625, "2554252682301.1562"),
+            (-0.000012345, "-1.2345e-05"),
+        ] {
+            assert_eq!(float_repr(valor), esperado);
+        }
     }
 
     #[test]
