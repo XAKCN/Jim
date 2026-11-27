@@ -213,7 +213,8 @@ def validar_contrato(contrato: Json, arquivos: List[str]) -> None:
 
 def contrato_gate(contrato: Json, candidato: str) -> Dict[str, Json]:
     """Contrato no formato de gate_43 (§4.2; release.contrato_gate da v5-alpha).
-    Pressupõe validar_contrato; contrato inválido: EntradaInvalida."""
+    Pressupõe validar_contrato; contrato inválido: EntradaInvalida.
+    Item de `depende_de` fora de §2.5: EntradaInvalida "R-2.12: ..."."""
 
 
 def ultima_linha_json(texto: str) -> Json:

@@ -89,9 +89,12 @@ pub fn validar_contrato_com(c: &Valor, arquivos: Option<&[String]>) -> Result<()
             return Err("R-2.1: condição de reprovação ausente".into());
         }
         // depende_de: padrão = arquivos
+        let dependencia_valida = |p: &Valor| {
+            p.como_texto().is_some_and(|s| validar_caminho(s).is_ok()) && em_arquivos(p)
+        };
         let deps: Option<Vec<Valor>> = match crit.bruto("depende_de") {
             None => arquivos.map(|a| a.iter().map(|s| Valor::texto(s)).collect()),
-            Some(Valor::Lista(l)) if !l.is_empty() && l.iter().all(em_arquivos) => Some(l.clone()),
+            Some(Valor::Lista(l)) if !l.is_empty() && l.iter().all(dependencia_valida) => Some(l.clone()),
             Some(_) => return Err("R-2.12: dependências fora do candidato".into()),
         };
         match crit.bruto("timeout_s") {
@@ -869,5 +872,19 @@ pub(crate) mod testes {
         let g = contrato_gate(&Valor::Objeto(o), "sha256:x").unwrap();
         assert!(g.como_objeto().unwrap().contem("premissas"));
         assert!(contrato_gate(&j("{}"), "x").unwrap_err().starts_with("J-K2"));
+    }
+
+    #[test]
+    fn contrato_gate_recusa_dependencias_que_nao_sao_caminhos() {
+        let arquivos = ["t.py".to_string(), "dados.txt".to_string()];
+        for deps in [r#"[1]"#, r#"["./t.py"]"#, r#"["contrato"]"#] {
+            let c = contrato(&format!(r#", "depende_de": {deps}"#));
+            let erro = validar_contrato(&c, &arquivos).unwrap_err();
+            assert_eq!(erro, "R-2.12: dependências fora do candidato");
+            assert_eq!(contrato_gate(&c, "sha256:x").unwrap_err(), erro);
+        }
+        let c = contrato(r#", "depende_de": ["dados.txt"]"#);
+        assert!(validar_contrato(&c, &arquivos).is_ok());
+        assert!(contrato_gate(&c, "sha256:x").is_ok());
     }
 }

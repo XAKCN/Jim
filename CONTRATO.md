@@ -200,3 +200,4 @@ exigido dos dois lados.
 | C0-4 | 2026-11-27 | §2.7 abre cada componente do inventário a partir do descritor do pai, sem seguir symlinks, e confere o descritor obtido. Sem essa abertura segura, o inventário de arquivos é recusado com J-C7. |
 | C0-5 | 2026-11-27 | §5.2 exige que a montagem submeta os bytes do fecho ao mesmo leitor estrito de V2. Se excederem o limite de §2.1, a montagem devolve EntradaInvalida. |
 | C0-6 | 2026-11-27 | §4.6 recusa execuções e controles com chaves ou tipos fora do formato gravado de §5.1, usando a mesma validação de formato do fecho. |
+| C0-7 | 2026-11-27 | §4.2 exige caminhos válidos em `depende_de` mesmo sem a lista de arquivos resolvidos. Uma dependência inválida na projeção devolve EntradaInvalida R-2.12. |

@@ -41,3 +41,16 @@ class NucleoTest(unittest.TestCase):
         execucao["duracao_s"] = True
         with self.assertRaisesRegex(_core.EntradaInvalida, "^R-2.1: execução gravada malformada"):
             _core.derivar_registros(**args)
+
+    def test_contrato_gate_recusa_dependencias_que_nao_sao_caminhos(self):
+        caso = next(c for c in carregar_casos() if c["funcao"] == "contrato_gate")
+        contrato = decodificar(caso["args"])["contrato"]
+        criterio, = contrato["criterios"].values()
+        criterio.pop("controles_negativos")
+        for dependencia in (1, "./sonda.py", "contrato"):
+            with self.subTest(dependencia=dependencia):
+                criterio["depende_de"] = [dependencia]
+                with self.assertRaisesRegex(_core.EntradaInvalida, "^R-2.12:"):
+                    _core.validar_contrato(contrato, ["sonda.py", "valor.txt"])
+                with self.assertRaisesRegex(_core.EntradaInvalida, "^R-2.12:"):
+                    _core.contrato_gate(contrato, "id")

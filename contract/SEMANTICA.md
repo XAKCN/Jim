@@ -307,6 +307,10 @@ terminam em `.py` e cujos valores são `str` ou None →
 "integracao": {"evidencias_aceitas": ["execucao"]}}` e, se `c` tem `premissas`,
 `"premissas": c.premissas` (ausência preservada).
 
+A projeção aplica as validações de §4.1 que independem dos arquivos resolvidos.
+C0-7: quando presente, `depende_de` deve ser uma lista não vazia de caminhos
+válidos (§2.5). Violação → `"R-2.12: dependências fora do candidato"`.
+
 ### §4.3 `ultima_linha_json(texto)`
 
 1. J-S1: troca `\r\n` e depois `\r` por `\n` (emula a leitura em modo texto da v5-alpha; o
