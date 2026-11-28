@@ -79,6 +79,8 @@ def executar(args):
         raiz = args.raiz.resolve(strict=True)
     except (FileNotFoundError, NotADirectoryError):
         raise ErroUso(f"J-CLI: diretório de --raiz não encontrado: {str(args.raiz.absolute())!r}") from None
+    if not raiz.is_dir():
+        raise ErroUso(f"J-CLI: --raiz não é um diretório: {str(raiz)!r}")
     contrato = (args.contrato or raiz / "jim.json").resolve()
     fecho = (args.fecho or raiz / ".jim" / "fecho.json").resolve()
     if args.comando == "provar":

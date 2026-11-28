@@ -104,6 +104,18 @@ class CLITest(unittest.TestCase):
                     self.assertEqual(resultado.stderr,
                                      f"J-CLI: diretório de --raiz não encontrado: {str(raiz)!r}\n")
 
+    def test_raiz_e_arquivo(self):
+        with TemporaryDirectory() as temporario:
+            diretorio = Path(temporario).resolve()
+            arquivo = diretorio / "arquivo.txt"
+            arquivo.touch()
+            for comando in ("provar", "verificar"):
+                with self.subTest(comando=comando):
+                    resultado = chamar(comando, "--raiz", arquivo.name, raiz=diretorio)
+                    self.assertEqual((resultado.returncode, resultado.stdout), (4, ""))
+                    self.assertEqual(resultado.stderr,
+                                     f"J-CLI: --raiz não é um diretório: {str(arquivo)!r}\n")
+
     def test_excecoes_do_nucleo(self):
         for excecao in (_core.EntradaInvalida("R-5.16: teste"), _core.NaoImplementado("J-0: teste")):
             with self.subTest(excecao=type(excecao).__name__):
