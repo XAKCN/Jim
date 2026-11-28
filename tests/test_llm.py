@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 
 from jim import _core
 
+from tests.candidato import contrato_bytes
 from tests.diferencial import vigia
 from tests.test_cli import chamar
 
@@ -63,17 +64,24 @@ class ExemploMinimoTest(unittest.TestCase):
     def test_provar_e_verificar(self):
         exemplo = RAIZ / "exemplos/minimo"
         demo = RAIZ / "demo"
-        self.assertEqual(_core.json_estrito((exemplo / "jim.json").read_bytes()),
-                         _core.json_estrito((demo / "jim.json").read_bytes()))
+        contrato = exemplo / "jim.json"
+        self.assertEqual(contrato.read_bytes(), (demo / "jim.json").read_bytes())
         self.assertEqual((exemplo / "sonda.py").read_bytes(), (demo / "sonda_honesta.py").read_bytes())
         self.assertEqual((exemplo / "valor.txt").read_bytes(), b"2\n")
         with TemporaryDirectory() as temporario:
             raiz = Path(temporario) / "minimo"
             copytree(exemplo, raiz, ignore=ignore_patterns(".jim", "__pycache__"))
+            # A vigia compara o hash do fecho, que inclui o hash dos bytes do contrato.
+            # Reproduza com a serialização do caso diferencial congelado.
+            dados = contrato_bytes(_core.json_estrito(contrato.read_bytes()))
+            (raiz / "jim.json").write_bytes(dados)
+            contrato_diferencial = raiz.parent / "contrato_diferencial.json"
+            contrato_diferencial.write_bytes(dados)
+            confianca = ("--contrato", str(contrato_diferencial))
             for comando, opcoes, codigo, veredito in (
                 ("provar", (), 3, "UNPROVEN"),
-                ("verificar", (), 3, "UNPROVEN"),
-                ("verificar", ("--reproduzir",), 0, "PASS"),
+                ("verificar", confianca, 3, "UNPROVEN"),
+                ("verificar", (*confianca, "--reproduzir"), 0, "PASS"),
             ):
                 with self.subTest(comando=comando, opcoes=opcoes):
                     processo = chamar(comando, "--raiz", str(raiz), *opcoes, relogio_fixo=True)
