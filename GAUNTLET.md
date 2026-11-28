@@ -1,10 +1,14 @@
 # Gauntlet no Jim
 
-O loop obriga o agente a **provar**. O agente registra a evidência com `jim provar`, mas quem verifica aprova fora do agente. **PASS** exige reprodução fora do agente e saída 0 de `jim verificar --reproduzir`. Sem reprodução, o teto é **UNPROVEN**.
+O loop obriga o agente a **provar**. O agente registra a evidência com `jim provar` e nunca declara PASS. O agente reporta no máximo **UNPROVEN**, mesmo que observe saída 0. **PASS** só vale quando quem verifica reproduz fora do agente com seu contrato de confiança e obtém saída 0.
 
 ## Gancho
 
-Ao ver a palavra `gauntlet` junto do link do repositório Jim ou desta página, leia esta página, detecte o ambiente na ordem abaixo e responda na primeira linha exatamente `gauntlet armado: modo X (descrição curta); teto Y`. Substitua X e a descrição por `A (terminal com rede)`, `B (só web)` ou `C (terminal sem rede)`. Substitua Y por `PASS` no modo A ou `UNPROVEN` nos modos B e C.
+Ao ver a palavra `gauntlet` junto do link do repositório Jim ou desta página, leia esta página, detecte o ambiente na ordem abaixo e responda na primeira linha no formato `gauntlet armado: modo X (descrição curta); teto Y`. Use a linha exata do modo detectado.
+
+- `gauntlet armado: modo A (terminal com rede); teto UNPROVEN até reprodução fora do agente`
+- `gauntlet armado: modo B (só web); teto UNPROVEN`
+- `gauntlet armado: modo C (terminal sem rede); teto UNPROVEN`
 
 ## Detecte o ambiente
 
@@ -31,7 +35,9 @@ python3 -m venv .venv && .venv/bin/pip install git+https://github.com/XAKCN/Jim
 
 O venv evita a restrição PEP 668 (`externally-managed-environment`) do pip do sistema. Com rede, o maturin baixa Rust automaticamente se não houver `rustc >= 1.85`. A primeira instalação leva cerca de 35 s.
 
-O agente roda `jim provar`, com teto UNPROVEN. Entregue o fecho de `.jim/`, a versão dos arquivos e o comando. Quem verifica usa um contrato de confiança e roda `jim verificar --raiz exemplos/minimo --reproduzir` fora do agente, com `uvx` ou o Jim do venv. Só essa reprodução pode chegar a PASS.
+Entregue o fecho de `.jim/`, a versão dos arquivos e o comando. `jim provar` lê por padrão o `RAIZ/jim.json` do candidato. Quem verifica fornece em `--contrato` uma cópia de confiança independente do agente. Um fecho feito com critérios enfraquecidos pelo agente só passa pela conferência do contrato se a cópia de confiança tiver os mesmos bytes. Para o exemplo mínimo, use o `exemplos/minimo/jim.json` da cópia confiável do repositório.
+
+Em outro ambiente, quem verifica roda `jim verificar --raiz exemplos/minimo --contrato CONFIANCA/jim.json --reproduzir`, com `uvx` ou o Jim do venv. Substitua `CONFIANCA/jim.json` pelo caminho da cópia de confiança.
 
 ### Modo B — só web
 
@@ -42,6 +48,8 @@ Sem terminal, leia os links raw com a ferramenta web e siga o protocolo à mão.
 A sonda falhou uma vez. Siga o Modo B, com a mesma tabela e teto UNPROVEN. Não insista em clone, uvx, pip ou curl. Se houver um zip anexado, use-o para ler os arquivos. A instalação a partir do zip também precisa de rede.
 
 ## Vereditos e códigos de saída
+
+Esta tabela vale para `jim provar` e `jim verificar`. Saída 0 de `--help`, `--version` ou `jim cadeia verificar` (que pode sair 0 sem reprodução) nunca vale como PASS.
 
 | Código | Veredito | Quando se aplica |
 |---|---|---|
@@ -58,7 +66,7 @@ UNKNOWN nunca vira PASS. Registre uma nova prova quando houver a evidência que 
 1. **Contrato primeiro.** Antes de construir, defina as afirmações verificáveis, os critérios de reprovação e o instrumento que observa cada resultado.
 2. **Controle negativo.** Para cada teste, mude um artefato para quebrar o comportamento relevante. O teste precisa rejeitar esse caso pelo critério combinado. No exemplo, trocar `2` por `3` em `valor.txt` muda a saída de `{"dobro": 4}` para `{"dobro": 6}` e o critério deixa de ser atendido.
 3. **Prova reproduzível.** No Modo A, rode `jim provar` e guarde o fecho local em `.jim/`. Registre arquivos, comandos, códigos e streams completos. Nos modos B e C, descreva como executar e que resultado se espera, indicando quais observações faltam.
-4. **Veredito.** Registre o veredito observado no Jim. No protocolo manual, marque FAIL se a evidência disponível contradiz a afirmação, UNKNOWN se faltam dados para avaliá-la e UNPROVEN se os critérios parecem atendidos sem reprodução.
+4. **Veredito.** Registre o veredito da prova do agente. No protocolo manual, marque FAIL se a evidência disponível contradiz a afirmação, UNKNOWN se faltam dados para avaliá-la e UNPROVEN se os critérios parecem atendidos sem reprodução.
 5. **Tabela final.** Uma linha por afirmação. Cite a evidência ou a lacuna concreta e o veredito correspondente.
 
 | Afirmação | Evidência | Veredito |

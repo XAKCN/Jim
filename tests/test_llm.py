@@ -24,15 +24,24 @@ class DocumentacaoLLMTest(unittest.TestCase):
                 caminho = RAIZ / nome
                 self.assertTrue(caminho.is_file())
                 dados = caminho.read_bytes()
-                self.assertLess(len(dados), 12_000)
+                self.assertLess(len(dados), 9_000)
                 texto = dados.decode("utf-8")
                 for trecho in (
                     "gauntlet armado: modo X (descrição curta); teto Y", "UNPROVEN",
+                    "gauntlet armado: modo A (terminal com rede); teto UNPROVEN até reprodução fora do agente",
+                    "gauntlet armado: modo B (só web); teto UNPROVEN",
+                    "gauntlet armado: modo C (terminal sem rede); teto UNPROVEN",
                     "Modo A", "Modo B", "Modo C", "uvx --from git+https://github.com/XAKCN/Jim",
                 ):
                     self.assertIn(trecho, texto)
                 if nome == "llms.txt":
                     self.assertEqual(texto.splitlines()[0], "# Jim")
+
+    def test_documentacao_sem_teto_pass(self):
+        for nome in ("GAUNTLET.md", "llms.txt", "README.md", "AGENTS.md", "exemplos/minimo/LEIAME.md"):
+            with self.subTest(arquivo=nome):
+                texto = (RAIZ / nome).read_text(encoding="utf-8")
+                self.assertNotIn("teto PASS", texto)
 
     def test_links_raw(self):
         for nome in ("GAUNTLET.md", "llms.txt", "README.md", "AGENTS.md"):

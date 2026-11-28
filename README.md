@@ -5,8 +5,8 @@ LLM: leia https://raw.githubusercontent.com/XAKCN/Jim/main/llms.txt
 ![Banner do Jim](docs/img/banner.png)
 
 O loop obriga o agente a **provar**: ele registra a evidência, mas não aprova o próprio trabalho.
-**PASS** só sai quando quem verifica reproduz a execução fora do agente.
-Sem reprodução, o teto é **UNPROVEN**.
+O agente nunca declara PASS e reporta no máximo **UNPROVEN**, mesmo que observe saída 0.
+**PASS** só vale quando quem verifica reproduz fora do agente com seu contrato de confiança e obtém saída 0.
 
 ## Vereditos
 
@@ -54,7 +54,7 @@ na máquina. Para desenvolver, `pip install -r requirements.txt` instala só o m
 ```mermaid
 flowchart TD
     C["Contrato (jim.json)"] --> P["jim provar<br/>agente; teto UNPROVEN"]
-    P -->|UNPROVEN| V["jim verificar --reproduzir<br/>quem verifica; fora do agente"]
+    P -->|UNPROVEN| V["jim verificar --contrato CONFIANCA/jim.json --reproduzir<br/>quem verifica; fora do agente"]
     P -->|"FAIL ou UNKNOWN"| R["Veredito: FAIL ou UNKNOWN"]
     V -->|reprodução confere| S["Veredito: PASS"]
     V -->|evidência diverge ou contradiz| F["Veredito: FAIL"]
@@ -88,7 +88,7 @@ Verificar --reproduzir (exit 0): PASS
 
 1. Alegação sem prova: a sonda imprime um resultado fixo, o controle negativo não a derruba e sai UNKNOWN.
 2. Teste tautológico: aprova também o código quebrado; o controle negativo expõe isso e sai FAIL.
-3. Candidato honesto: `provar` dá UNPROVEN; PASS só vem depois, com `verificar --reproduzir`.
+3. Candidato honesto. `provar` dá UNPROVEN. A reprodução da demo ilustra a saída 0 esperada por quem verifica.
 
 ## Uso num chatbot comum
 
@@ -98,14 +98,16 @@ Substitua `<link do repositório>` pelo link do Jim e cole o prompt no chat.
 gauntlet <link do repositório>: leia https://raw.githubusercontent.com/XAKCN/Jim/main/llms.txt e siga o modo A, B ou C
 ```
 
-1. Espere `gauntlet armado: modo X (descrição curta); teto Y` na primeira linha da resposta.
+1. Espere `gauntlet armado: modo X (descrição curta); teto Y` na primeira linha da resposta. No Modo A, a linha é `gauntlet armado: modo A (terminal com rede); teto UNPROVEN até reprodução fora do agente`. Nos modos B e C, o teto é `UNPROVEN`.
 2. Feche o contrato (critérios e instrumento) antes de pedir a construção.
 3. Peça a prova reproduzível e o controle negativo de cada teste.
 4. No Modo A, o agente pode experimentar com `uvx --from git+https://github.com/XAKCN/Jim jim provar --raiz exemplos/minimo` a partir da raiz do repositório.
-5. Fora do agente, quem verifica reproduz com `uvx --from git+https://github.com/XAKCN/Jim jim verificar --raiz exemplos/minimo --reproduzir`.
+5. Em outro ambiente, quem verifica reproduz com `uvx --from git+https://github.com/XAKCN/Jim jim verificar --raiz exemplos/minimo --contrato CONFIANCA/jim.json --reproduzir`.
 6. Cobre a tabela final com `afirmação | evidência | veredito`.
 
 No Modo A, depois do `uvx`, `jim` não fica no PATH. Use `uvx` de novo ou chame `.venv/bin/jim` se instalou no venv.
+
+`jim provar` lê por padrão o `RAIZ/jim.json` do candidato. Quem verifica substitui `CONFIANCA/jim.json` pelo caminho de uma cópia de confiança independente do agente. Um fecho feito com critérios enfraquecidos pelo agente só passa pela conferência do contrato se a cópia de confiança tiver os mesmos bytes. Para o exemplo mínimo, use o `exemplos/minimo/jim.json` da cópia confiável do repositório.
 
 ## Chatbot sem rede (Claude.ai, ChatGPT)
 
@@ -115,7 +117,7 @@ No Modo A, depois do `uvx`, `jim` não fica no PATH. Use `uvx` de novo ou chame 
 Se o chatbot precisar dos arquivos no chat, anexe o zip do repositório ou cole o
 [GAUNTLET.md](https://raw.githubusercontent.com/XAKCN/Jim/main/GAUNTLET.md). O zip serve para
 leitura. A instalação offline a partir dele falha porque o maturin precisa de rede.
-Sem execução, o teto é UNPROVEN. PASS exige `jim verificar --reproduzir` fora do agente.
+Sem execução, siga a tabela manual do protocolo com teto UNPROVEN.
 
 ## Links
 
