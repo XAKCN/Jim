@@ -18,6 +18,10 @@ class ErroUso(ValueError):
 
 
 class Parser(argparse.ArgumentParser):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, add_help=False, **kwargs)
+        self.add_argument("-h", "--help", action="help", help="Mostra esta ajuda e sai.")
+
     def error(self, message):
         raise ErroUso(f"J-CLI: {message}")
 
@@ -31,23 +35,34 @@ def ler_ancora(texto):
 
 
 def parser_cli():
-    parser = Parser(prog="jim")
-    parser.add_argument("--version", action="version", version=f"jim {__version__}")
+    parser = Parser(prog="jim", description="Registra evidências e verifica provas reproduzíveis.")
+    parser.add_argument("--version", action="version", version=f"jim {__version__}",
+                        help="Mostra a versão e sai.")
     comandos = parser.add_subparsers(dest="comando", required=True)
-    provar = comandos.add_parser("provar")
-    verificar = comandos.add_parser("verificar")
+    ajuda_provar = "Executa os instrumentos e grava o fecho e a cadeia."
+    ajuda_verificar = "Confere o fecho com o contrato e os arquivos atuais."
+    provar = comandos.add_parser("provar", help=ajuda_provar, description=ajuda_provar)
+    verificar = comandos.add_parser("verificar", help=ajuda_verificar, description=ajuda_verificar)
     for comando in (provar, verificar):
-        comando.add_argument("--raiz", type=Path, default=Path("."))
-        comando.add_argument("--contrato", type=Path)
-        comando.add_argument("--fecho", type=Path)
-    provar.add_argument("--cadeia", type=Path)
-    verificar.add_argument("--ancora", metavar="HEX")
-    verificar.add_argument("--reproduzir", action="store_true")
-    cadeia = comandos.add_parser("cadeia")
+        comando.add_argument("--raiz", type=Path, default=Path("."),
+                             help="Diretório do candidato (padrão: diretório atual).")
+        comando.add_argument("--contrato", type=Path,
+                             help="Caminho do contrato (padrão: RAIZ/jim.json).")
+        comando.add_argument("--fecho", type=Path,
+                             help="Caminho do fecho (padrão: RAIZ/.jim/fecho.json).")
+    provar.add_argument("--cadeia", type=Path,
+                        help="Caminho da cadeia (padrão: RAIZ/.jim/cadeia.jsonl).")
+    verificar.add_argument("--ancora", metavar="HEX", help="SHA-256 esperado do fecho.")
+    verificar.add_argument("--reproduzir", action="store_true",
+                           help="Reexecuta os instrumentos de um fecho íntegro que ficou UNPROVEN.")
+    ajuda_cadeia = "Opera sobre a cadeia de registros."
+    cadeia = comandos.add_parser("cadeia", help=ajuda_cadeia, description=ajuda_cadeia)
     subcomandos = cadeia.add_subparsers(required=True)
-    conferir = subcomandos.add_parser("verificar")
-    conferir.add_argument("arquivo", metavar="ARQ", type=Path)
-    conferir.add_argument("--ancora", metavar="N:HEX", type=ler_ancora)
+    ajuda_conferir = "Confere a integridade da cadeia e a âncora, se fornecida."
+    conferir = subcomandos.add_parser("verificar", help=ajuda_conferir, description=ajuda_conferir)
+    conferir.add_argument("arquivo", metavar="ARQ", type=Path, help="Arquivo JSONL da cadeia.")
+    conferir.add_argument("--ancora", metavar="N:HEX", type=ler_ancora,
+                          help="Número e hash esperados da cabeça da cadeia.")
     return parser
 
 
@@ -60,7 +75,12 @@ def executar(args):
             codigo = 0 if resultado["ancorada"] is True else 3
         return resultado, codigo, resultado["erro"]
 
-    raiz = args.raiz.resolve(strict=True)
+    try:
+        raiz = args.raiz.resolve(strict=True)
+    except (FileNotFoundError, NotADirectoryError):
+        raise ErroUso(f"J-CLI: diretório de --raiz não encontrado: {str(args.raiz.absolute())!r}") from None
+    if not raiz.is_dir():
+        raise ErroUso(f"J-CLI: --raiz não é um diretório: {str(raiz)!r}")
     contrato = (args.contrato or raiz / "jim.json").resolve()
     fecho = (args.fecho or raiz / ".jim" / "fecho.json").resolve()
     if args.comando == "provar":

@@ -1,0 +1,55 @@
+# Jim
+
+> O loop obriga o agente a provar. O agente registra evidência com `jim provar` e nunca declara PASS. O agente reporta no máximo UNPROVEN, mesmo que observe saída 0. PASS só vale quando quem verifica reproduz fora do agente com seu contrato de confiança e obtém saída 0.
+
+Se o usuário disser gauntlet, siga esta página.
+
+Ao ver a palavra `gauntlet` junto do link do repositório Jim ou desta página, leia esta página, detecte o ambiente na ordem abaixo e responda na primeira linha no formato `gauntlet armado: modo X (descrição curta); teto Y`. Use a linha exata do modo detectado.
+
+- `gauntlet armado: modo A (terminal com rede); teto UNPROVEN até reprodução fora do agente`
+- `gauntlet armado: modo B (só web); teto UNPROVEN`
+- `gauntlet armado: modo C (terminal sem rede); teto UNPROVEN`
+
+Se houver ferramenta de terminal, faça uma única sonda com `curl -sS -m 5 -I https://github.com`.
+
+- **Modo A (terminal com rede).** A sonda recebeu uma resposta HTTP. Na raiz do repositório, rode `uvx --from git+https://github.com/XAKCN/Jim jim provar --raiz exemplos/minimo`. Se só tiver o link, salve os três arquivos raw do exemplo em `exemplos/minimo/` e rode a partir do diretório que contém `exemplos/`. `uvx` não deixa `jim` no PATH. Repita com `uvx` ou instale com `python3 -m venv .venv && .venv/bin/pip install git+https://github.com/XAKCN/Jim` e rode `.venv/bin/jim`. O venv evita o bloqueio do pip do sistema pelo PEP 668. Com rede, o maturin baixa Rust se não houver `rustc >= 1.85`. A primeira instalação leva cerca de 35 s.
+- **Modo B (só web).** Sem terminal, leia os links raw e faça o protocolo à mão na tabela `afirmação | evidência | veredito`. O teto é UNPROVEN. Não execute nada nem tente clone, curl, pip ou uvx.
+- **Modo C (terminal sem rede).** A sonda falhou uma vez. Siga o Modo B com teto UNPROVEN. Não insista em clone, uvx, pip ou curl. Use o zip anexado para ler arquivos. A instalação a partir do zip também precisa de rede.
+
+`jim provar` lê por padrão o `RAIZ/jim.json` do candidato. Quem verifica fornece em `--contrato` uma cópia de confiança independente do agente. Um fecho feito com critérios enfraquecidos pelo agente só passa pela conferência do contrato se a cópia de confiança tiver os mesmos bytes. Para o exemplo mínimo, use o `exemplos/minimo/jim.json` da cópia confiável do repositório.
+
+Em outro ambiente, quem verifica roda `jim verificar --raiz exemplos/minimo --contrato CONFIANCA/jim.json --reproduzir`. Substitua `CONFIANCA/jim.json` pelo caminho da cópia de confiança.
+
+Os códigos abaixo valem para `jim provar` e `jim verificar`. Saída 0 de `--help`, `--version` ou `jim cadeia verificar` (que pode sair 0 sem reprodução) nunca vale como PASS.
+
+- `0` **PASS**. A evidência íntegra atende aos critérios e a reprodução fora do agente confere.
+- `1` **FAIL**. A evidência contradiz um critério ou há divergência.
+- `2` **UNKNOWN**. Falta informação ou a entrada está malformada.
+- `3` **UNPROVEN**. O gate aceitaria, mas falta reprodução ou ela não cobre o fecho.
+- `4` **Erro sem veredito**. Erro de uso, de entrada, de I/O ou falha interna.
+
+UNKNOWN nunca vira PASS. Registre uma nova prova quando houver a evidência que faltava. Sem execução real, nunca diga "pronto".
+
+Siga cinco passos em qualquer modo.
+
+1. **Contrato primeiro.** Defina critérios verificáveis, o que reprova e o instrumento antes de construir.
+2. **Controle negativo.** Cada teste precisa rejeitar o código quebrado pelo critério combinado. Defina a alteração e a rejeição esperada. No exemplo, trocar `2` por `3` faz a sonda devolver `{"dobro": 6}` em vez de `{"dobro": 4}`.
+3. **Prova reproduzível.** No Modo A rode `jim provar`, preserve o fecho e os streams completos em `.jim/` e entregue os arquivos e comandos a quem verifica. Nos modos B e C descreva arquivos, comandos e saídas esperadas, marcando o que falta observar.
+4. **Veredito.** Use o veredito da prova do agente. No protocolo manual, aplique FAIL se a evidência contradiz o critério, UNKNOWN se faltam dados para avaliá-lo e UNPROVEN se parece atendido sem reprodução. Os códigos são referência da CLI.
+5. **Tabela final.** Registre uma linha por afirmação no formato `afirmação | evidência | veredito`, com a observação ou lacuna concreta.
+
+Não carregue `tests/diferencial/casos/` no contexto. São cerca de 400 KB de JSON gerados.
+
+## Documentação
+
+- [GAUNTLET.md](https://raw.githubusercontent.com/XAKCN/Jim/main/GAUNTLET.md): versão completa do protocolo.
+- [README.md](https://raw.githubusercontent.com/XAKCN/Jim/main/README.md): instalação, requisitos e demo.
+- [AGENTS.md](https://raw.githubusercontent.com/XAKCN/Jim/main/AGENTS.md): instruções para trabalhar no repositório.
+- [CONTRATO.md](https://raw.githubusercontent.com/XAKCN/Jim/main/CONTRATO.md): semântica e CLI, em especial a seção 3.
+
+## Exemplo mínimo
+
+- [exemplos/minimo/](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/LEIAME.md): comandos e códigos esperados.
+- [jim.json](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/jim.json): critério e controle negativo.
+- [sonda.py](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/sonda.py): instrumento Python.
+- [valor.txt](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/valor.txt): entrada do instrumento.

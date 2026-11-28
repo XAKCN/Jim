@@ -41,6 +41,25 @@ def setUpModule():
 
 
 class CLITest(unittest.TestCase):
+    def test_ajuda(self):
+        for args, trechos in (
+            ((), ("Registra evidências", "Executa os instrumentos", "Confere o fecho",
+                  "Opera sobre a cadeia", "Mostra a versão")),
+            (("provar",), ("Executa os instrumentos", "Diretório do candidato",
+                           "Caminho do contrato", "Caminho do fecho", "Caminho da cadeia")),
+            (("verificar",), ("Confere o fecho", "Diretório do candidato", "Caminho do contrato",
+                              "Caminho do fecho", "SHA-256 esperado", "Reexecuta os instrumentos")),
+            (("cadeia",), ("Opera sobre a cadeia", "Confere a integridade")),
+            (("cadeia", "verificar"), ("Confere a integridade", "Arquivo JSONL", "Número e hash")),
+        ):
+            with self.subTest(args=args):
+                resultado = chamar(*args, "--help")
+                self.assertEqual((resultado.returncode, resultado.stderr), (0, ""))
+                texto = " ".join(resultado.stdout.split())
+                self.assertIn("Mostra esta ajuda", texto)
+                for trecho in trechos:
+                    self.assertIn(trecho, texto)
+
     def test_versao(self):
         resultado = chamar("--version")
         self.assertEqual((resultado.returncode, resultado.stdout, resultado.stderr),
@@ -56,9 +75,46 @@ class CLITest(unittest.TestCase):
 
     def test_io(self):
         with TemporaryDirectory() as temporario:
-            resultado = chamar("provar", "--raiz", temporario)
+            (Path(temporario) / "jim.json").touch()
+            resultado = chamar("verificar", "--raiz", temporario)
         self.assertEqual((resultado.returncode, resultado.stdout), (4, ""))
         self.assertTrue(resultado.stderr.startswith("J-IO: "), resultado.stderr)
+
+    def test_contrato_ausente(self):
+        with TemporaryDirectory() as temporario:
+            raiz = Path(temporario).resolve()
+            for comando in ("provar", "verificar"):
+                for nome in ("jim.json", "personalizado.json"):
+                    with self.subTest(comando=comando, contrato=nome):
+                        opcoes = () if nome == "jim.json" else ("--contrato", nome)
+                        resultado = chamar(comando, *opcoes, raiz=raiz)
+                        self.assertEqual((resultado.returncode, resultado.stdout), (4, ""))
+                        self.assertEqual(resultado.stderr, (
+                            f"J-CLI: contrato não encontrado: {str(raiz / nome)!r} "
+                            "(crie um jim.json; exemplo pronto em exemplos/minimo/)\n"
+                        ))
+
+    def test_raiz_ausente(self):
+        with TemporaryDirectory() as temporario:
+            for comando in ("provar", "verificar"):
+                with self.subTest(comando=comando):
+                    raiz = Path(temporario) / "ausente"
+                    resultado = chamar(comando, "--raiz", str(raiz))
+                    self.assertEqual((resultado.returncode, resultado.stdout), (4, ""))
+                    self.assertEqual(resultado.stderr,
+                                     f"J-CLI: diretório de --raiz não encontrado: {str(raiz)!r}\n")
+
+    def test_raiz_e_arquivo(self):
+        with TemporaryDirectory() as temporario:
+            diretorio = Path(temporario).resolve()
+            arquivo = diretorio / "arquivo.txt"
+            arquivo.touch()
+            for comando in ("provar", "verificar"):
+                with self.subTest(comando=comando):
+                    resultado = chamar(comando, "--raiz", arquivo.name, raiz=diretorio)
+                    self.assertEqual((resultado.returncode, resultado.stdout), (4, ""))
+                    self.assertEqual(resultado.stderr,
+                                     f"J-CLI: --raiz não é um diretório: {str(arquivo)!r}\n")
 
     def test_excecoes_do_nucleo(self):
         for excecao in (_core.EntradaInvalida("R-5.16: teste"), _core.NaoImplementado("J-0: teste")):
