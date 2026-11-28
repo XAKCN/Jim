@@ -1,0 +1,47 @@
+# Jim
+
+> O loop obriga o agente a provar. O agente registra evidência com `jim provar`. PASS exige que quem verifica reproduza fora do agente com `jim verificar --reproduzir` e obtenha saída 0. Sem reprodução, o teto é UNPROVEN.
+
+Se o usuário disser gauntlet, siga esta página.
+
+Ao ver a palavra `gauntlet` junto do link do repositório Jim ou desta página, leia esta página, detecte o ambiente na ordem abaixo e responda na primeira linha exatamente `gauntlet armado: modo X (descrição curta); teto Y`. Substitua X e a descrição por `A (terminal com rede)`, `B (só web)` ou `C (terminal sem rede)`. Substitua Y por `PASS` no modo A ou `UNPROVEN` nos modos B e C.
+
+Se houver ferramenta de terminal, faça uma única sonda com `curl -sS -m 5 -I https://github.com`.
+
+- **Modo A (terminal com rede).** A sonda recebeu uma resposta HTTP. Na raiz do repositório, rode `uvx --from git+https://github.com/XAKCN/Jim jim provar --raiz exemplos/minimo`. Se só tiver o link, salve os três arquivos raw do exemplo em `exemplos/minimo/` e rode a partir do diretório que contém `exemplos/`. `uvx` não deixa `jim` no PATH. Repita com `uvx` ou instale com `python3 -m venv .venv && .venv/bin/pip install git+https://github.com/XAKCN/Jim` e rode `.venv/bin/jim`. O venv evita o bloqueio do pip do sistema pelo PEP 668. Com rede, o maturin baixa Rust se não houver `rustc >= 1.85`. A primeira instalação leva cerca de 35 s. O agente roda `jim provar` e registra no máximo UNPROVEN. Quem verifica usa um contrato de confiança e roda `jim verificar --raiz exemplos/minimo --reproduzir` fora do agente para chegar a PASS.
+- **Modo B (só web).** Sem terminal, leia os links raw e faça o protocolo à mão na tabela `afirmação | evidência | veredito`. O teto é UNPROVEN. Não execute nada nem tente clone, curl, pip ou uvx.
+- **Modo C (terminal sem rede).** A sonda falhou uma vez. Siga o Modo B com teto UNPROVEN. Não insista em clone, uvx, pip ou curl. Use o zip anexado para ler arquivos. A instalação a partir do zip também precisa de rede.
+
+Associe os vereditos aos códigos de saída da CLI.
+
+- `0` **PASS**. A evidência íntegra atende aos critérios e a reprodução fora do agente confere.
+- `1` **FAIL**. A evidência contradiz um critério ou há divergência.
+- `2` **UNKNOWN**. Falta informação ou a entrada está malformada.
+- `3` **UNPROVEN**. O gate aceitaria, mas falta reprodução ou ela não cobre o fecho.
+- `4` **Erro sem veredito**. Erro de uso, de entrada, de I/O ou falha interna.
+
+UNKNOWN nunca vira PASS. Registre uma nova prova quando houver a evidência que faltava. Sem execução real, nunca diga "pronto".
+
+Siga cinco passos em qualquer modo.
+
+1. **Contrato primeiro.** Defina critérios verificáveis, o que reprova e o instrumento antes de construir.
+2. **Controle negativo.** Cada teste precisa rejeitar o código quebrado pelo critério combinado. Defina a alteração e a rejeição esperada. No exemplo, trocar `2` por `3` faz a sonda devolver `{"dobro": 6}` em vez de `{"dobro": 4}`.
+3. **Prova reproduzível.** No Modo A rode `jim provar`, preserve o fecho e os streams completos em `.jim/` e entregue os arquivos e comandos a quem verifica. Nos modos B e C descreva arquivos, comandos e saídas esperadas, marcando o que falta observar.
+4. **Veredito.** Use o veredito observado se rodou o Jim. No protocolo manual, aplique FAIL se a evidência contradiz o critério, UNKNOWN se faltam dados para avaliá-lo e UNPROVEN se parece atendido sem reprodução. Os códigos são referência da CLI.
+5. **Tabela final.** Registre uma linha por afirmação no formato `afirmação | evidência | veredito`, com a observação ou lacuna concreta.
+
+Não carregue `tests/diferencial/casos/` no contexto. São cerca de 400 KB de JSON gerados.
+
+## Documentação
+
+- [GAUNTLET.md](https://raw.githubusercontent.com/XAKCN/Jim/main/GAUNTLET.md): versão completa do protocolo.
+- [README.md](https://raw.githubusercontent.com/XAKCN/Jim/main/README.md): instalação, requisitos e demo.
+- [AGENTS.md](https://raw.githubusercontent.com/XAKCN/Jim/main/AGENTS.md): instruções para trabalhar no repositório.
+- [CONTRATO.md](https://raw.githubusercontent.com/XAKCN/Jim/main/CONTRATO.md): semântica e CLI, em especial a seção 3.
+
+## Exemplo mínimo
+
+- [exemplos/minimo/](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/LEIAME.md): comandos e códigos esperados.
+- [jim.json](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/jim.json): critério e controle negativo.
+- [sonda.py](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/sonda.py): instrumento Python.
+- [valor.txt](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/valor.txt): entrada do instrumento.

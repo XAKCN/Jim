@@ -1,5 +1,7 @@
 # Jim
 
+LLM: leia https://raw.githubusercontent.com/XAKCN/Jim/main/llms.txt
+
 ![Banner do Jim](docs/img/banner.png)
 
 O loop obriga o agente a **provar**: ele registra a evidência, mas não aprova o próprio trabalho.
@@ -18,17 +20,19 @@ Sem reprodução, o teto é **UNPROVEN**.
 
 ## Instalação
 
-Veja os [requisitos](#requisitos) abaixo. Em resumo: CPython ≥ 3.9, Rust ≥ 1.85 e rede.
+A instalação requer CPython ≥ 3.9 e rede. O build usa Rust ≥ 1.85. Veja os [requisitos](#requisitos).
 
 ```sh
 uvx --from git+https://github.com/XAKCN/Jim jim --version
 ```
 
-O comando imprime `jim 0.1.0`. Como alternativa, instale com o pip:
+O comando imprime `jim 0.1.0`. Para instalar com o pip, use um ambiente virtual.
 
 ```sh
-pip install git+https://github.com/XAKCN/Jim
+python3 -m venv .venv && .venv/bin/pip install git+https://github.com/XAKCN/Jim
 ```
+
+O pip do sistema pode recusar a instalação com `externally-managed-environment` (PEP 668).
 
 ## Requisitos
 
@@ -36,7 +40,7 @@ pip install git+https://github.com/XAKCN/Jim
 |---|---|---|
 | Python | CPython ≥ 3.9 (CI testa 3.9 e 3.13) | `pyproject.toml` (`requires-python`), CI |
 | Dependências de runtime | nenhuma | `pyproject.toml` (`dependencies = []`) |
-| Rust / cargo | ≥ 1.85 (edition 2021), necessário para compilar o núcleo | `Cargo.toml` (`rust-version`) |
+| Rust / cargo | Com rede, o maturin baixa Rust automaticamente se não houver `rustc >= 1.85` (cerca de 670 MB e 35 s na primeira instalação). Com `rustc >= 1.85` já instalado, usa o local. | `Cargo.toml` (`rust-version`), maturin |
 | Build | maturin ≥ 1.9, < 2; o pip/uv baixa sozinho | `pyproject.toml` (`build-system`) |
 | uv / uvx | opcional; só para o comando de uma linha | — |
 | Sistema | Linux (CI em Ubuntu 24.04). macOS e Windows ainda não: a leitura segura do inventário recusa com `J-C7` | CI, `src/hash.rs` |
@@ -88,40 +92,36 @@ Verificar --reproduzir (exit 0): PASS
 
 ## Uso num chatbot comum
 
-Cole o prompt abaixo em um chat com qualquer LLM. No chat ele é só uma instrução: não executa nem impõe nada.
+Substitua `<link do repositório>` pelo link do Jim e cole o prompt no chat.
 
 ```text
-gauntlet
-1. Contrato primeiro: defina critérios e instrumento de teste antes de construir.
-2. Nunca diga "pronto" sem prova reproduzível.
-3. Todo teste tem controle negativo: ele precisa falhar com o código quebrado.
-4. Todo veredito é um de: PASS, FAIL, UNPROVEN ou UNKNOWN.
-5. Sem execução real, o teto é UNPROVEN. PASS exige reprodução fora do agente.
-6. Com terminal, use `uvx --from git+https://github.com/XAKCN/Jim jim` no lugar de `jim`.
-7. Você roda `jim provar`; quem verifica roda `jim verificar --reproduzir` fora do agente.
-8. Feche com uma tabela: afirmação | evidência | veredito.
-Confirme a ativação respondendo apenas "gauntlet armado".
+gauntlet <link do repositório>: leia https://raw.githubusercontent.com/XAKCN/Jim/main/llms.txt e siga o modo A, B ou C
 ```
 
-Depois siga o roteiro:
-
-1. Ative com a palavra `gauntlet` e espere a resposta `gauntlet armado`.
+1. Espere `gauntlet armado: modo X (descrição curta); teto Y` na primeira linha da resposta.
 2. Feche o contrato (critérios e instrumento) antes de pedir a construção.
 3. Peça a prova reproduzível e o controle negativo de cada teste.
-4. Com terminal, o agente roda `uvx --from git+https://github.com/XAKCN/Jim jim provar`.
-5. Fora do agente, rode `uvx --from git+https://github.com/XAKCN/Jim jim verificar --reproduzir`.
-6. Cobre a tabela final: afirmação | evidência | veredito.
+4. No Modo A, o agente pode experimentar com `uvx --from git+https://github.com/XAKCN/Jim jim provar --raiz exemplos/minimo` a partir da raiz do repositório.
+5. Fora do agente, quem verifica reproduz com `uvx --from git+https://github.com/XAKCN/Jim jim verificar --raiz exemplos/minimo --reproduzir`.
+6. Cobre a tabela final com `afirmação | evidência | veredito`.
+
+No Modo A, depois do `uvx`, `jim` não fica no PATH. Use `uvx` de novo ou chame `.venv/bin/jim` se instalou no venv.
 
 ## Chatbot sem rede (Claude.ai, ChatGPT)
 
-Sem terminal nem rede, o chat não executa nada, e o teto é UNPROVEN. Isso é o comportamento
-esperado, não falha. Para usar assim, anexe o zip do repositório ou cole o
-[AGENTS.md](https://raw.githubusercontent.com/XAKCN/Jim/main/AGENTS.md) (link raw) junto com o
-prompt acima. Para chegar a PASS, use um agente com terminal (Claude Code, Codex, Cursor), que
-roda `jim provar`, e reproduza com `jim verificar --reproduzir` fora do agente.
+1. **Ferramenta de leitura de links.** Roda fora da sandbox do terminal. Pode abrir páginas e links raw mesmo quando o terminal está sem rede ou indisponível.
+2. **Terminal ou sandbox sem rede.** Clone, `uvx`, `pip` e `curl` falham. Se a sonda de rede falhar uma vez, siga o protocolo manual sem insistir nesses comandos.
+
+Se o chatbot precisar dos arquivos no chat, anexe o zip do repositório ou cole o
+[GAUNTLET.md](https://raw.githubusercontent.com/XAKCN/Jim/main/GAUNTLET.md). O zip serve para
+leitura. A instalação offline a partir dele falha porque o maturin precisa de rede.
+Sem execução, o teto é UNPROVEN. PASS exige `jim verificar --reproduzir` fora do agente.
 
 ## Links
 
-- [AGENTS.md](AGENTS.md): instruções para agentes de código.
-- [CONTRATO.md](CONTRATO.md) e [contract/](contract/): semântica, formatos e CLI.
-- Licença [MIT](LICENSE). Autor: XAKCN.
+- [GAUNTLET.md](https://raw.githubusercontent.com/XAKCN/Jim/main/GAUNTLET.md) contém o protocolo completo.
+- [llms.txt](https://raw.githubusercontent.com/XAKCN/Jim/main/llms.txt) é a entrada curta para assistentes.
+- [exemplos/minimo/](https://raw.githubusercontent.com/XAKCN/Jim/main/exemplos/minimo/LEIAME.md) descreve o primeiro uso da CLI.
+- [AGENTS.md](https://raw.githubusercontent.com/XAKCN/Jim/main/AGENTS.md) contém instruções para agentes de código.
+- [CONTRATO.md](https://raw.githubusercontent.com/XAKCN/Jim/main/CONTRATO.md) e [contract/SEMANTICA.md](https://raw.githubusercontent.com/XAKCN/Jim/main/contract/SEMANTICA.md) descrevem a semântica, os formatos e a CLI.
+- Licença [MIT](https://raw.githubusercontent.com/XAKCN/Jim/main/LICENSE). Autor: XAKCN.
