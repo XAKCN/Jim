@@ -12,8 +12,18 @@ from .arquivos import (
 from .executor import executar_criterios
 
 
+def ler_contrato(caminho):
+    try:
+        return caminho.read_bytes()
+    except (FileNotFoundError, NotADirectoryError):
+        raise ErroArquivos(
+            f"J-CLI: contrato não encontrado: {str(caminho)!r} "
+            "(crie um jim.json; exemplo pronto em exemplos/minimo/)"
+        ) from None
+
+
 def provar(raiz, contrato, fecho, cadeia):
-    dados = contrato.read_bytes()
+    dados = ler_contrato(contrato)
     documento = _core.json_estrito(dados)
     caminhos = resolver_arquivos(raiz, documento)
     _core.validar_contrato(documento, caminhos)
@@ -34,7 +44,7 @@ def provar(raiz, contrato, fecho, cadeia):
         depois = inventariar_restantes(copia, caminhos)
     montado = _core.montar_fecho(
         dados, relativo, execucoes, executados, depois,
-        _core.sha256_hex(contrato.read_bytes()), {},
+        _core.sha256_hex(ler_contrato(contrato)), {},
     )
     evento = {
         "fecho_sha256": montado["sha256"],
@@ -61,8 +71,8 @@ def observar_atuais(raiz, dados):
 
 
 def verificar(raiz, contrato, fecho, ancora, reproduzir):
+    dados_contrato = ler_contrato(contrato)
     dados_fecho = fecho.read_bytes()
-    dados_contrato = contrato.read_bytes()
     documento, atuais = observar_atuais(raiz, dados_contrato)
     resultado = _core.verificar_fecho(dados_fecho, dados_contrato, atuais, ancora=ancora)
     if not reproduzir or resultado["veredito"] != "UNPROVEN":
@@ -75,6 +85,6 @@ def verificar(raiz, contrato, fecho, ancora, reproduzir):
             "execucoes": executar_criterios(copia, antes, documento),
             "inventario_depois": inventariar_restantes(copia, caminhos),
         }
-    dados_contrato = contrato.read_bytes()
+    dados_contrato = ler_contrato(contrato)
     _, atuais = observar_atuais(raiz, dados_contrato)
     return _core.verificar_fecho(dados_fecho, dados_contrato, atuais, reproducao, ancora)
